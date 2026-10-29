@@ -1,116 +1,66 @@
-# Inquiry and CRM foundation
+# Firebase catalog and inquiry foundation
 
-The website is an inquiry catalog. A successful submission creates a contact, an inquiry, an optional product link, a first activity, and one notification job in one database transaction. It does not create an order, take payment, reserve stock, or send an email.
+The selected stack is GitHub, Firebase and Vercel. Firebase project: `tavan-tansag-30560` (Spark). The chosen Firestore database is `tavan-tansag-preview`, using Enterprise Native mode in Tokyo (`asia-northeast1`). Choosing these settings does not confirm that the remote database has been created, seeded or tested.
 
-The app supports a local bilingual sample catalog and request-time Supabase catalog reads. Staff sign-in, a CRM administration screen, staff write operations, and a notification worker remain separate implementation steps.
+The current Firebase integration covers a sanitized, read-only catalog. **Firebase inquiry storage, staff authentication, CRM permissions and notification delivery are not implemented.** The inquiry service remains disabled even if `INQUIRIES_ENABLED=true` is set.
 
 ## Configuration
 
-| Variable | Scope | Purpose |
-| --- | --- | --- |
-| `NEXT_PUBLIC_SUPABASE_URL` | Public | Project API URL. |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public | Prepared for future browser catalog/auth access under RLS; intake does not require it. |
-| `SUPABASE_SECRET_KEY` | Server only | Modern Supabase secret API key used only by the inquiry server. Never prefix it with `NEXT_PUBLIC_`. |
-| `INQUIRIES_ENABLED` | Server only | Must equal `true` to permit storage. Leave false/unset while reviewing sample content. |
-| `SITE_ORIGIN` | Server only, optional | Exact public origin such as `https://example.com`, without a path or trailing slash. If omitted, the request URL origin is used. |
+| Variable | Purpose |
+|---|---|
+| `CATALOG_SOURCE` | `file` for local development; `firebase` for Firestore reads. |
+| `CATALOG_INCLUDE_SAMPLES` | `true` includes explicitly marked samples in an isolated preview; `false` is the default. This does not grant database access. |
+| `FIREBASE_PROJECT_ID` | `tavan-tansag-30560`. Server configuration, not a credential. |
+| `FIRESTORE_DATABASE_ID` | `tavan-tansag-preview`. A named database, not `(default)`. |
+| `INQUIRIES_ENABLED` | Keep `false`. The Firebase storage implementation is absent, so changing this cannot enable intake. |
+| `SITE_INDEXABLE` | Keep `false` for sample content. Search directives are not access control. |
+| `NEXT_PUBLIC_SITE_URL` | Site URL for metadata; if omitted, the app uses Vercel's deployment URL when available. |
+| `SITE_ORIGIN` | Optional exact origin for browser inquiry requests, with no path or trailing slash. |
 
-All three of the URL, secret key, and explicit enabled flag are required. Missing configuration produces `503 NOT_CONFIGURED`; it never produces a successful reference. The UI must retain the entered message and offer the store's known contact channel. Keep the switch off until the production store is ready to receive and follow up inquiries.
+Catalog reads require no API key or service-account credential. The server calls the Firestore Enterprise Native REST pipeline as an unauthenticated reader, subject to the database's access rules. Keep all privileged write credentials outside the app's public environment, source code and browser bundles.
 
-This code deliberately has no fallback from `SUPABASE_SECRET_KEY` to a legacy service-role environment variable. Supabase supports modern secret keys for server workloads; these bypass RLS and belong exclusively on the server. See [Supabase API key guidance](https://supabase.com/docs/guides/api/api-keys).
+Place local values in the root `.env.local`, not under `src/`. Set equivalent values for the intended Vercel environment. Do not give production data access to an untrusted preview.
 
-Use separate development/preview and production database projects and environment variables. Do not expose a production secret to an untrusted pull-request preview. This task has not created a project, configured secrets, applied a remote migration, or deployed the site.
+## Public catalog boundary
 
-## Database setup
+`catalog_public` must contain **only information intended for public disclosure**: the record code, slug, category, bilingual name/description/observations, image path, verification/publication status and approved descriptive attributes. It must never contain customer details, internal notes, cost, Drive source links or review questions.
 
-1. Review `supabase/migrations/202610290001_foundation.sql` and apply it to a new development Supabase database using a database-owner connection or the SQL editor. The migration is transactional and should be applied once through migration tracking.
-2. Run `node supabase/generate-seed.mjs` locally to generate `supabase/seed.sql` from `data/catalog.json`.
-3. Review and apply the seed to the development database. It inserts samples only and does not overwrite existing product codes. Replaying it is safe. It never infers price, material, period, maker, weight, or stock from an image.
-4. Test with the SQL assertions below and a development environment before enabling intake.
+A field projection in a query is not field-level security. Anyone authorized to read a document can potentially request that document through another supported query. The security boundary is the sanitized collection plus restrictive database rules. Raw provenance stays in the server-side source records; runtime validation also strips it before browser props are created. Repository access is a separate boundary.
 
-The sample seed is intentionally hidden from anonymous catalog queries. To publish a record, staff must verify its facts, set `verification_status='verified'`, publish the product, and publish each approved translation. A database constraint rejects a published but unverified product. The intake function accepts only published product codes. It will reject a sample/draft code as `UNKNOWN_PRODUCT`; general inquiries omit `productId`.
+The publication rules distinguish `sample` + `needs_review` from `published` + `verified`. Both Mongolian and English content are required. In an isolated preview, sample records may be deliberately readable; a production rule set must exclude them. No anonymous write access is required.
 
-Set `CATALOG_SOURCE=supabase` with the project URL and server secret to read the database at request time. `CATALOG_INCLUDE_SAMPLES=true` allows `sample` + `needs_review` records only in the isolated test project, alongside published + verified products. Otherwise only published + verified products with both published translations appear. Explicit query projection and runtime validation exclude provenance, costs and private notes from browser props. A failed cloud read shows a generic bilingual error and never silently falls back to the local JSON file. File mode remains the local development default.
+The cloud reader validates the returned public shape, uses a request-time read and reports a catalog-unavailable state on configuration, provider or data errors. It never disguises a failed Firebase read by displaying the local file instead. `CATALOG_SOURCE=file` remains an explicit offline development mode.
 
-## Public request contract
+## Remote setup still to verify
 
-`POST /api/inquiries` with `Content-Type: application/json` and `Idempotency-Key: <random UUID>`:
+1. Authenticate the approved Firebase CLI account and verify project `tavan-tansag-30560`.
+2. Create or inspect the named Enterprise Native database `tavan-tansag-preview` in `asia-northeast1`. Confirm its actual edition and API mode before applying the integration.
+3. Review and apply rules that allow only the intended public catalog reads, deny public writes and protect every other collection.
+4. Review `firebase/seed.json`: it contains only sanitized sample documents. `firebase/seed-write.json` is the create-only REST commit payload; existing documents must not be overwritten by an initial import.
+5. Import the reviewed samples with an authorized administrative tool. Never place a privileged token in Vercel solely to support public catalog reads.
+6. Test real anonymous reads, denied writes, private-collection denial, sample filtering, error behavior and absence of raw provenance.
+7. Set `CATALOG_SOURCE=firebase` with the project/database IDs in the isolated Vercel preview and verify the deployed pages. Keep indexing and inquiries off.
 
-```json
-{
-  "name": "Бат Болд",
-  "contactMethod": "email",
-  "contactValue": "visitor@example.com",
-  "message": "Энэ эдлэлийн талаар зөвлөгөө авах хүсэлтэй байна.",
-  "locale": "mn",
-  "productId": "TT-001",
-  "website": ""
-}
-```
+The selected Spark plan and database edition are deployment constraints to verify with the actual project. Do not interpret the integration code as confirmation of quotas, entitlement, billing status or successful provisioning.
 
-`productId` and `website` are optional. `website` is a hidden honeypot and must stay empty. `locale` is `mn` or `en`. `contactMethod` is `email` or `phone`.
+## Inquiry API: prepared contract, unavailable persistence
 
-Validation limits: trimmed name 2–100 characters; contact value 5–160 characters; message 10–2,000 characters; product code `TT-` followed by 3–6 digits. Emails must be syntactically valid. Phone values allow an optional leading `+` and common separators, at most 30 characters and 7–15 digits. The entire request is limited to 12,000 bytes, including streamed requests without Content-Length. Unknown fields are rejected, so callers cannot submit staff roles or a CRM stage.
+`POST /api/inquiries` accepts JSON with an `Idempotency-Key` header. The prepared fields are name, contact method, contact value, message, locale, optional product code and an empty honeypot field.
 
-Use a fresh idempotency key for a new submission. Keep it while retrying an unchanged message after a network failure; create a new key when the user edits the payload. Keys accept 16–128 letters, digits, underscores, or hyphens. Never reuse one key for unrelated visitors or messages.
+Validation covers the supported fields, name/contact/message lengths, email or phone syntax, locale, product-code shape, origin and a bounded request body. Errors return no provider credentials or customer records. Origin checks are a browser boundary, not proof that an automated client is legitimate.
 
-| HTTP status | Result | UI behavior |
-| --- | --- | --- |
-| `201` | `{ "ok": true, "reference": "TT-…" }` | Newly saved inquiry; show the reference. |
-| `200` | Same success shape | The same submission was already saved; show the original reference. |
-| `400` | `VALIDATION_ERROR`, `INVALID_IDEMPOTENCY_KEY`, `INVALID_JSON`, or `UNKNOWN_PRODUCT` | Correct the relevant input or contact the store about the sample. |
-| `403` | `ORIGIN_DENIED` | Request came from another browser origin. |
-| `409` | `IDEMPOTENCY_CONFLICT` | Payload changed under the same key; use a new key. |
-| `413` / `415` | `PAYLOAD_TOO_LARGE` / `UNSUPPORTED_MEDIA_TYPE` | Reduce the input or send JSON. |
-| `429` | `RATE_LIMITED`, with `Retry-After: 900` | Keep the message; ask the visitor to try later. |
-| `503` | `NOT_CONFIGURED` or `PERSISTENCE_UNAVAILABLE` | Keep the message and provide direct store contact. Never say it was sent. |
+For a well-formed request, the current service returns `503`, `ok:false`, `NOT_CONFIGURED`. It creates **no** contact, inquiry, stock reservation, payment, order or notification. The page disables submission and offers the store's known Facebook contact. The API stays closed independently of the UI and enabled flag.
 
-Responses are marked `Cache-Control: no-store`. Error responses do not expose Supabase error details, contact records, or keys. Origin checks are a browser boundary, not proof that an automated client is legitimate.
+Success, retry and throttling branches may be exercised through injected synthetic test dependencies. Those tests establish the HTTP contract only; they do not establish Firebase transactions, idempotency, rate limiting or access controls.
 
-## Data and permissions
+## Firebase work required before opening intake
 
-| Table | Purpose / access |
-| --- | --- |
-| `public.products`, `public.product_translations` | Public descriptive catalog only; anonymous users see published records/translations. Staff can read drafts according to their role. |
-| `private.product_details` | Source provenance, review questions, cost and internal notes. Service access only in this foundation. |
-| `private.staff_roles` | Server-controlled owner/sales/editor assignments. Customers and staff cannot assign themselves roles. |
-| `private.contacts` | Contact name and preferred channel; marketing consent defaults false. No auth identity is attached from an unverified email or phone. |
-| `private.inquiries`, `private.inquiry_items` | Inquiry queue and selected product. Stages: new, contacted, qualified, quoted, waiting, won, closed, spam. |
-| `private.activities`, `private.tasks` | Activity trail and follow-up tasks. Only the initial creation activity is automated now. |
-| `private.notification_jobs` | Transactional outbox. Every saved inquiry gets exactly one pending job. |
-| `private.intake_rate_limits` | Persistent, HMAC-keyed intake counters. No raw contact details in the counter key. |
+- Implement atomic inquiry/contact/activity writes with durable idempotency and payload-conflict handling.
+- Enforce bot and abuse controls, including rate limits shared across server instances.
+- Add staff identity, server-controlled roles and record-level authorization for owner, sales and editor workflows.
+- Build protected CRM read/write screens. Unverified contact strings must not automatically grant access to an existing customer's history.
+- Add a notification outbox and delivery worker with safe retries; no email delivery is present now.
+- Agree on data minimization, retention, deletion handling, backup/recovery and the final privacy notice.
+- Verify these behaviors against the actual isolated Firebase environment before enabling any public intake path.
 
-The `private` schema must remain outside Supabase's exposed API schemas. Owner role can read all CRM inquiries and contacts; sales can read only assigned inquiries and their related contact/items/activities/tasks; editor and ordinary authenticated accounts cannot read CRM data. Tables have RLS and explicit grants. There are no direct staff write grants in this foundation. A future CRM must use authenticated, authorized server operations and enforce these permissions; it must not trust a role or user ID supplied in a form.
-
-Bootstrap the first owner through an administrator database connection after creating the actual Supabase Auth user. Substitute the known Auth UUID; do not accept the UUID or role from a public endpoint:
-
-```sql
-insert into private.staff_roles (user_id, role)
-values ('REPLACE_WITH_ACTUAL_AUTH_USER_UUID'::uuid, 'owner');
-```
-
-The public `submit_inquiry` RPC is executable only by `service_role`. It has a fixed empty search path and schema-qualified data references. Anonymous and ordinary authenticated clients cannot call it. See [Supabase database function security](https://supabase.com/docs/guides/database/functions) and [row-level security](https://supabase.com/docs/guides/database/postgres/row-level-security).
-
-## Reliability and operations
-
-- A transaction-scoped advisory lock plus a unique idempotency key prevents duplicate records on retries. A payload fingerprint makes reuse of a key with different content an error. The check happens before the rate counter, so retries do not consume additional quota.
-- A single transaction writes contact, inquiry, optional item, activity and notification job. A failure rolls them all back. A reference is returned only after the RPC succeeds.
-- The API stops waiting for its database request after eight seconds. A network timeout can happen after the database has committed; retrying the unchanged request with its original key recovers the same reference.
-- Unverified contact strings are never used to attach a visitor to a previous customer's history. Each new inquiry gets a new contact record. Any future merge must be a reviewed staff operation.
-- A normalized contact channel is limited to five new inquiries per 15-minute window in the database, across server instances. This does not stop attackers rotating contact addresses. Before public launch, add and test deployment-level request throttling/bot protection and agree on the store's abuse response and data retention settings.
-- The outbox does not yet send mail. A future worker must claim jobs safely, retry transient failures and deduplicate delivery by job ID. Until then, staff must review the database queue; do not promise email alerts.
-- The secret key is used to HMAC the rate key. Rotating it changes rate buckets; old counters are not reused. Old rate rows and customer records need an agreed retention/cleanup process before production.
-
-## Verification
-
-HTTP tests run with `npm test` (or `node --import tsx --test tests/inquiries.test.ts`). They exercise unavailable storage, persistence failures, confirmation behavior, retries, throttling, unpublished products, strict validation, origins and body limits.
-
-`supabase/tests/inquiry_security.sql` is an integration assertion script for a disposable local/test Supabase database after the migration. Run it as the database owner with stop-on-error enabled. It creates synthetic users/data inside a transaction and rolls everything back. It tests real RPC writes, retry deduplication, outbox creation, rollback, rate counters, public visibility and owner/sales/editor/customer/anonymous access boundaries. Do not run test fixtures on the production project.
-
-For a local PostgreSQL engine without Docker, an optional PGlite harness is included:
-
-```sh
-npm install --prefix /private/tmp/tavan-tansag-sql-check --ignore-scripts --no-audit --no-fund @electric-sql/pglite
-TAVAN_SQL_TEST_MODULE=/private/tmp/tavan-tansag-sql-check/node_modules/@electric-sql/pglite/dist/index.js node supabase/tests/run-sql-check.mjs
-```
-
-This harness uses an isolated in-memory database and emulates the relevant Supabase roles and `auth.uid()` contract. It validates PostgreSQL DDL, transactional behavior, grants and RLS. It does not validate the live Supabase API, JWT verification, real concurrent database connections, deployment configuration or email delivery. Those checks remain required in the development project before launch.
+Earlier PostgreSQL/Supabase migration or PGlite results do not validate Firebase. Current verification evidence and its limits belong in `docs/verification.md`.

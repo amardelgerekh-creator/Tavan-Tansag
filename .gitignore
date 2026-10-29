@@ -8,5 +8,10 @@ out/
 .DS_Store
 coverage/
 test-results/
+.firebase/
+firebase-debug.log*
+firestore-debug.log*
+# Ignore any old local CLI state left before the Firebase migration.
 supabase/.temp/
 supabase/.branches/
+.vercel
