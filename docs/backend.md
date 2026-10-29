@@ -1,6 +1,6 @@
 # Firebase catalog and inquiry foundation
 
-The selected stack is GitHub, Firebase and Vercel. Firebase project: `tavan-tansag-30560` (Spark). The chosen Firestore database is `tavan-tansag-preview`, using Enterprise Native mode in Tokyo (`asia-northeast1`). Choosing these settings does not confirm that the remote database has been created, seeded or tested.
+The selected stack is GitHub, Firebase and Vercel. Firebase project: `tavan-tansag-30560` (Spark). The Firestore database `tavan-tansag-preview` was created in Enterprise Native mode in Tokyo (`asia-northeast1`) through the authenticated console. It currently has the initial deny-all client rules and no imported catalog documents. Firebase CLI authorization, rules deployment, import and live verification remain pending.
 
 The current Firebase integration covers a sanitized, read-only catalog. **Firebase inquiry storage, staff authentication, CRM permissions and notification delivery are not implemented.** The inquiry service remains disabled even if `INQUIRIES_ENABLED=true` is set.
 
@@ -41,7 +41,7 @@ The cloud reader validates the returned public shape, uses a request-time read a
 6. Test real anonymous reads, denied writes, private-collection denial, sample filtering, error behavior and absence of raw provenance.
 7. Set `CATALOG_SOURCE=firebase` with the project/database IDs in the isolated Vercel preview and verify the deployed pages. Keep indexing and inquiries off.
 
-The selected Spark plan and database edition are deployment constraints to verify with the actual project. Do not interpret the integration code as confirmation of quotas, entitlement, billing status or successful provisioning.
+The console confirmed Spark billing and successful database provisioning. No billing upgrade was performed. The live website is deployed on Vercel with `CATALOG_SOURCE=file`; it must remain in that explicit mode until the Firebase verification succeeds.
 
 ## Inquiry API: prepared contract, unavailable persistence
 

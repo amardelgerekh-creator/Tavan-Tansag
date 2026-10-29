@@ -1,6 +1,6 @@
 # Суурь хувилбарын шалгалт — 2026-10-29
 
-Энэ баримт өмнөх локал веб шалгалтын нотолгоог Firebase шилжилтийн дараах шалгалтаас ялгаж тэмдэглэнэ. Firestore болон Vercel-ийн бодит холболтыг дууссан гэж үзэхгүй.
+Энэ баримт өмнөх локал веб шалгалтын нотолгоог Firebase шилжилтийн дараах шалгалтаас ялгаж тэмдэглэнэ. Vercel дээр сайт ажиллаж байгаа; Firestore өгөгдөл унших холболт хараахан дуусаагүй.
 
 ## Өмнөх локал веб шалгалт
 
@@ -22,18 +22,20 @@ Firebase шилжилтээс өмнөх хувилбарт дараах шал�
 
 | Шалгалт | Энэ баримтад баталгаажсан төлөв |
 |---|---|
-| Шинэ кодын typecheck, тест, production build | Шилжилтийн эцсийн хувилбарт дахин ажиллуулж тэмдэглэх |
-| Нийтийн каталогийн талбарын allowlist, эх сурвалжийн мэдээлэл хасагдах | Шинэ reader-ийн тест ба deployed response-оор баталгаажуулах |
-| `file` горим, Firebase алдаанд далд fallback хийхгүй байх | Шинэ reader-ийн тестээр баталгаажуулах |
-| Firebase төсөл/CLI эрх | Алсын тохиргооны шалгалт шаардлагатай |
-| Enterprise Native `tavan-tansag-preview`, Tokyo `asia-northeast1` | Сонгосон тохиргоо; сан үүссэн эсэхийг алсаас баталгаажуулах |
+| Шинэ кодын typecheck, тест, production build | 21 тест, typecheck, file болон Firebase горимын build амжилттай |
+| Нийтийн каталогийн талбарын allowlist, эх сурвалжийн мэдээлэл хасагдах | Reader тест амжилттай; client bundle-д хувийн талбар илрээгүй; Firebase response шалгалт үлдсэн |
+| `file` горим, Firebase алдаанд далд fallback хийхгүй байх | Reader тестээр баталгаажсан |
+| Firebase төсөл/CLI эрх | Төслийн console эрх баталгаажсан; CLI-ийн Google Allow алхам үлдсэн |
+| Enterprise Native `tavan-tansag-preview`, Tokyo `asia-northeast1` | Console-оор үүссэн, анхны deny-all дүрэмтэй |
 | Эрхийн дүрэм, жишиг импорт, бодит anonymous read | Хараахан баталгаажуулаагүй |
 | Public write болон private collection access хаалт | Бодит Firebase орчинд шалгах |
-| Маягт болон API санамсаргүй flag-тай үед ч хаалттай байх | Firebase хувилбарт дахин шалгах |
-| Vercel deployment | Төсөл үүссэн, эхний build эхэлсэн; ажиллагаа баталгаажаагүй |
+| Маягт болон API санамсаргүй flag-тай үед ч хаалттай байх | Unit тест амжилттай; онлайн API 503 NOT_CONFIGURED, маягтын илгээх товч disabled |
+| Vercel deployment | READY; GitHub автомат байршуулалт мөн READY; одоогоор file горим |
 | Firebase хүсэлт/CRM, нэвтрэлт, мэдэгдэл | Хэрэгжээгүй |
 
-GitHub-ийн эхний бүтэн хувилбар `dcb2460` commit-д бий. Энэ баримтын төлөв нь түүнээс хойших Firebase өөрчлөлтүүд remote орчинд ажиллаж байгааг батлахгүй.
+GitHub Firebase хувилбар `03fa5a8`. Vercel CLI болон GitHub CLI `amardelgerekh-creator` эрхээр баталгаажсан. [Онлайн сайт](https://tavan-tansag-preview.vercel.app/mn)-ын Монгол/Англи нүүр, Англи каталог, сонгосон эдлэлтэй хүсэлтийн хуудас HTTP 200; каталогт 10 эдлэл харагдсан. Хуудсууд noindex, robots.txt нь Disallow: /; хүсэлтийн API 503 NOT_CONFIGURED буцаасан. `docs/previews/online-home.png` нь нийтлэгдсэн нүүрийн зураг.
+
+Rules compiler, жишиг импорт болон бодит Firestore read/write эрхийн шалгалт үлдсэн. Локал Firestore emulator-д шаардлагатай Java runtime энэ компьютерт байхгүй.
 
 ## Бүртгэлийн хязгаар
 
