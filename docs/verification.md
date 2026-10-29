@@ -1,3 +1,22 @@
+# Одоогийн хувилбарын шалгалт — 2026-10-29
+
+Энэ хэсэг нь доорх түүхэн хувилбаруудын хүсэлт/CRM хэрэгжээгүй гэсэн төлөвийг шинэчилнэ.
+
+- Код `766207e747394030d962cc538a8c89c248afa261`; GitHub main-д орсон. Verify website run [40887848843](https://github.com/amardelgerekh-creator/Tavan-Tansag/actions/runs/40887848843) амжилттай.
+- Typecheck, 34 автомат тест, production build амжилттай. Нэмэлт тусгаарласан 17 signed-token/current-account сценари auth зөвшөөрөл/хоригийг шалгасан. npm audit: 0 vulnerabilities; gRPC patched override болон нийцтэй Vercel OIDC хувилбар ашигласан.
+- Браузерт бүтээгдэхүүний зураг томруулалт, Escape/focus return, Монгол/Англи дэлгэрэнгүй, 320/375/820px ба desktop зохион байгуулалт шалгасан.
+- Бодит Firebase operator smoke: атомик create/read/replay/conflict, CRM filter/sort/cursor query, transaction update амжилттай; нэргүй private GET403. Бүх 6 операторын зохиомол баримтыг устгаж баталсан.
+- Keyless Vercel production WIF: `dpl_45nKF6VHqMeDZBwTpzCKFfyGUFkG` дээр POST201, ижил хүсэлт/түлхүүрээр POST200 ижил дугаар буцаасан. Firebase-ийн хадгалсан record `new` төлөв, хариуцагчтай байсан. Нэргүй private GET403; staff API нэвтрэлтгүй GET401.
+- GitHub-аас үүссэн `dpl_J1zAKwrbQqVqVedbBMPXGVqs1pZr` production READY; tavantansag.com, www болон preview alias түүнд холбогдсон.
+- Үндсэн домэйны браузерт TT-001 бүтээгдэхүүнээс хүсэлтийн маягт руу шилжиж, код автоматаар сонгогдсон; зохиомол маягт илгээхэд бодит хадгалалтын дараах амжилтын дугаар харагдсан.
+- Хоёр production туршилтын хүсэлт, activity/replay/contact/IP тоолуурын зөвхөн холбогдох 9 баримтыг цэвэрлэж, хүсэлтүүд байхгүй болсныг баталсан. Бодит харилцагчийн баримт өөрчлөөгүй.
+- Firebase Google provider ба үндсэн домэйны зөвшөөрөл идэвхтэй. Ажилтны Google нэвтрэх цонх автомат браузерын туршилтаар бүрэн дуусаагүй; эзэмшигчээс нэвтрэхийг хүссэн. Browser-authenticated CRM GET/PATCH round trip хараахан баталгаажаагүй. Үүнийг кодын тест эсвэл operator smoke-оор орлуулан амжилттай гэж тооцоогүй.
+- Нотлох зураг: `docs/previews/improved-product-online.png`, `docs/previews/inquiry-success-online.png`.
+
+Хязгаар: 10 эдлэл жишиг, үзүүлэлт/үнэ/бэлэн байдал баталгаажаагүй хэвээр. Indexing хаалттай. И-мэйл/SMS мэдэгдэл, онлайн төлбөр, нэмэлт бодит зураг, нөөцийн синк энэ өөрчлөлтөд ороогүй. Ажилтан CRM-ээ нээж хүсэлтээ шалгана.
+
+---
+
 # Суурь хувилбарын шалгалт — 2026-10-29
 
 Энэ баримт өмнөх локал веб шалгалтын нотолгоог Firebase шилжилтийн дараах шалгалтаас ялгаж тэмдэглэнэ. Firestore-ийн бодит уншилт, импорт, эрхийн шалгалт болон шинэ Vercel байршуулалтаар онлайн сайт Firestore-оос уншиж байгаа шалгалт амжилттай болсон.
