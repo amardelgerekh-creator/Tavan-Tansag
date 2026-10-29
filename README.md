@@ -4,6 +4,8 @@
 
 Одоогийн сонголт: **GitHub + Firebase + Vercel**. Firebase төсөл нь `tavan-tansag-30560` (Spark); Firestore-ийн сонгосон байршил Tokyo — `asia-northeast1`. Эхний төлөвлөгөөний Supabase сонголтыг Firebase болгон өөрчилсөн. Хүсэлт хадгалах болон ажилтны CRM нь Firebase дээр хараахан хэрэгжээгүй.
 
+Үндсэн домэйн: **[tavantansag.com](https://tavantansag.com)**. GoDaddy DNS-ээр Vercel-д холбогдсон; `www` нь үндсэн хаяг руу шилжинэ. [Домэйны тохиргоо ба баталгаажуулалт](docs/domain.md).
+
 ## Харах, ажиллуулах
 
 Node.js 24 болон npm ашиглана.
