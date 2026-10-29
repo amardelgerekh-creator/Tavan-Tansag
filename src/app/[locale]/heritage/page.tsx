@@ -3,9 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articles } from "@/lib/articles";
 import { isLocale } from "@/lib/catalog";
-import { getLocalCatalog } from "@/lib/server/local-catalog";
+import { getCatalog } from "@/lib/server/catalog-store";
 import { Arrow } from "@/components/icons";
 import { Consultation } from "@/components/site";
+import "@/app/heritage-enhancements.css";
 
 export async function generateMetadata({
   params,
@@ -29,10 +30,10 @@ export default async function Heritage({
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  const products = getLocalCatalog();
+  const products = await getCatalog();
   return (
     <>
-      <section className="container section">
+      <section className="container section heritage-journal">
         <div className="page-heading">
           <span className="eyebrow">
             {locale === "mn" ? "ӨВ СОЁЛЫН ТЭМДЭГЛЭЛ" : "NOTES ON HERITAGE"}
@@ -47,6 +48,12 @@ export default async function Heritage({
               ? "Хэлбэрийг ажиглаж, түүхийг асууж, мэдээллийг нягтлахад тань зориулсан тэмдэглэлүүд."
               : "Notes to help you observe the form, ask about the story, and understand the information behind a piece."}
           </p>
+        </div>
+        <div className="heritage-intro-note">
+          <span>{locale === "mn" ? "АЖИГЛАХ · ОЙЛГОХ · СОНГОХ" : "OBSERVE · UNDERSTAND · CHOOSE"}</span>
+          <p>{locale === "mn"
+            ? "Эдлэлийн үзэмжийн цаана хийц, хэрэглээ, түүнтэй хамт хадгалах түүх бий. Эдгээр тэмдэглэлээс эхэлж, сонирхсон эдлэлийнхээ тухай биднээс асуугаарай."
+            : "Beyond the appearance of a piece are its construction, its use and the story kept with it. Start with these notes, then explore the questions that matter to your choice."}</p>
         </div>
         <div className="article-grid">
           {articles.map((article, index) => {
@@ -71,6 +78,7 @@ export default async function Heritage({
                   <span className="eyebrow">
                     0{index + 1} / {article.category[locale]}
                   </span>
+                  <p className="heritage-reading-time">{article.readingMinutes} {locale === "mn" ? "минут уншина" : "minute read"}</p>
                   <h2>
                     <Link href={`/${locale}/heritage/${article.slug}`}>
                       {article.title[locale]}

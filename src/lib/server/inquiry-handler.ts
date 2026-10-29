@@ -3,8 +3,15 @@ import {
   inquirySchema,
   type PersistInquiry,
 } from "./inquiry-contract";
+import { isIP } from "node:net";
 
 const MAX_BYTES = 12_000;
+
+export function inquiryClientIp(request: Request, vercel = process.env.VERCEL === "1"): string {
+  // Vercel replaces this header at its edge. Never trust client X-Forwarded-For.
+  const value = vercel ? request.headers.get("x-vercel-forwarded-for")?.trim() : null;
+  return value && isIP(value) ? value : "unidentified";
+}
 
 function respond(
   status: number,
@@ -95,7 +102,7 @@ export function createInquiryHandler(options: {
     }
 
     try {
-      const result = await options.persist(parsed.data, key.data);
+      const result = await options.persist(parsed.data, key.data, { clientIp: inquiryClientIp(request) });
       if (result.ok) {
         return respond(result.duplicate ? 200 : 201, {
           ok: true,

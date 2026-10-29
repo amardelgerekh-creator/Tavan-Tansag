@@ -71,8 +71,17 @@ export default async function Privacy({
           <h2>{locale === "mn" ? "Хандалт ба ашиглалт" : "Access and use"}</h2>
           <p>
             {locale === "mn"
-              ? "Хүсэлтийн мэдээллийг хариу өгөх эрх бүхий ажилтан ашиглахаар төлөвлөсөн. Зөвлөгөө хүссэн мэдээллийг сурталчилгааны бүртгэлд автоматаар нэмэхгүй. Энэ хувилбарт сурталчилгааны хяналт, хэрэглэгчийн зан төлөв шинжлэх нэмэлт хэрэгсэл суулгаагүй."
-              : "Enquiry information is intended for authorized staff responding to your request. Making an enquiry does not automatically subscribe you to marketing. This version has no added advertising tracking or behavioural analytics tools."}
+              ? enabled
+                ? "Илгээсэн хүсэлтийг Firebase өгөгдлийн санд хадгалж, зөвхөн эрх бүхий ажилтан хүсэлтэд хариу өгөх, харилцааны явцыг хөтлөхөд ашиглана. Хүсэлтийн мэдээлэл нийтэд харагдах каталогт орохгүй."
+                : "Цахим хүсэлт идэвхжихэд илгээсэн мэдээллийг Firebase өгөгдлийн санд хадгалж, зөвхөн эрх бүхий ажилтан хүсэлтэд хариу өгөхөд ашиглана."
+              : enabled
+                ? "Submitted enquiries are stored in Firebase and used by authorized staff to respond and manage the conversation. Enquiry details are not part of the public catalog."
+                : "When online enquiries are enabled, submitted details will be stored in Firebase for authorized staff to respond to your request."}
+          </p>
+          <p>
+            {locale === "mn"
+              ? "Зөвлөгөө хүссэн мэдээллийг сурталчилгааны бүртгэлд автоматаар нэмэхгүй. Энэ хувилбарт сурталчилгааны хяналт, хэрэглэгчийн зан төлөв шинжлэх нэмэлт хэрэгсэл суулгаагүй."
+              : "Making an enquiry does not automatically subscribe you to marketing. This version has no added advertising tracking or behavioural analytics tools."}
           </p>
           <p>
             {locale === "mn"
@@ -107,8 +116,8 @@ export default async function Privacy({
         </section>
         <p className="article-meta">
           {locale === "mn"
-            ? "Ажлын хувилбарын мэдэгдэл. Үйлчилгээг нийтэд нээхээс өмнө мэдээлэл хариуцах байгууллага, хадгалах хугацаа болон хүсэлт шийдвэрлэх нөхцөлийг бүрэн баталгаажуулж нийтэлнэ."
-            : "Working-version notice. The responsible business, retention period and request-handling arrangements must be finalized and published before the service opens to the public."}
+            ? "Энэхүү мэдэгдэл нь Таван Тансагийн зөвлөгөөний хүсэлтийн үйлчилгээнд хамаарна. Шинэчлэгдсэн: 2026 оны 10 дугаар сарын 29."
+            : "This notice applies to Tavan Tansag’s enquiry service. Updated 29 October 2026."}
         </p>
       </div>
     </section>

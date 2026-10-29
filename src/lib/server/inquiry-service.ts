@@ -1,16 +1,22 @@
 import type { PersistInquiry } from "./inquiry-contract";
+import { intakeConfigured, defaultAssignee } from "./inquiry-config";
+import { createInquiryPersistence } from "./inquiry-persistence";
 
-/**
- * Firebase CRM persistence has not been implemented. Keep the form and API
- * closed even if INQUIRIES_ENABLED is accidentally set to true. A future
- * provider must implement storage, access control, abuse protection and
- * idempotency before this availability check can be enabled.
- */
 export function inquiryStorageConfigured(): boolean {
-  return false;
+  return intakeConfigured();
 }
 
-export const persistInquiry: PersistInquiry = async () => ({
-  ok: false,
-  code: "UNAVAILABLE",
-});
+export const persistInquiry: PersistInquiry = async (input, key, context) => {
+  if (!intakeConfigured()) return { ok: false, code: "UNAVAILABLE" };
+  try {
+    const { privateFirestore } = await import("./firestore-private");
+    return await createInquiryPersistence({
+      store: privateFirestore(),
+      hashSecret: process.env.INQUIRY_HASH_SECRET!,
+      assignee: defaultAssignee(),
+      includeSamples: process.env.CATALOG_INCLUDE_SAMPLES === "true",
+    })(input, key, context);
+  } catch {
+    return { ok: false, code: "UNAVAILABLE" };
+  }
+};

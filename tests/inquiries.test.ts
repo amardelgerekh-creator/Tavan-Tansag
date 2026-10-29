@@ -31,10 +31,12 @@ function request(body: unknown = input, headers: Record<string, string> = {}) {
   });
 }
 
-test("the Firebase preview remains closed even when the inquiry flag is enabled", async () => {
+test("the Firebase preview remains closed without credentials even when the inquiry flag is enabled", async () => {
   const previous = process.env.INQUIRIES_ENABLED;
+  const previousSecret = process.env.INQUIRY_HASH_SECRET;
   try {
     process.env.INQUIRIES_ENABLED = "true";
+    delete process.env.INQUIRY_HASH_SECRET;
     assert.equal(inquiryStorageConfigured(), false);
     const response = await createInquiryHandler({
       configured: inquiryStorageConfigured,
@@ -49,6 +51,8 @@ test("the Firebase preview remains closed even when the inquiry flag is enabled"
   } finally {
     if (previous === undefined) delete process.env.INQUIRIES_ENABLED;
     else process.env.INQUIRIES_ENABLED = previous;
+    if (previousSecret === undefined) delete process.env.INQUIRY_HASH_SECRET;
+    else process.env.INQUIRY_HASH_SECRET = previousSecret;
   }
 });
 

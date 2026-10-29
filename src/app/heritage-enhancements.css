@@ -1,0 +1,45 @@
+.heritage-intro-note {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 3rem;
+  border-top: 1px solid var(--line);
+  padding: 1.5rem 0 3rem;
+  margin-bottom: 1rem;
+}
+.heritage-intro-note > span {
+  color: var(--bronze-dark);
+  font-size: .65rem;
+  letter-spacing: .12em;
+}
+.heritage-intro-note > p { max-width: 42rem; color: var(--muted); font-size: .875rem; }
+.heritage-journal .article-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem; }
+.heritage-journal .journal-card-copy { max-width: 33rem; }
+.heritage-journal .heritage-reading-time { margin-top: .6rem; font-size: .7rem; }
+.heritage-takeaways { background: #eee6da; padding: 1.7rem 2rem; margin: 2rem 0 3rem; border-left: 3px solid var(--bronze); }
+.heritage-takeaways h2 { margin: .75rem 0 1rem; font-size: 1.4rem; }
+.heritage-takeaways li { font-size: .875rem; }
+.heritage-sources { border-top: 1px solid var(--line); margin-top: 2.5rem; padding-top: .5rem; }
+.heritage-sources h2 { font-size: 1.3rem; }
+.heritage-sources p, .heritage-sources li { font-size: .78rem; }
+.heritage-article figcaption { max-width: 780px; margin: 0 auto; font-size: .75rem; color: var(--muted); }
+.heritage-related { border-top: 1px solid var(--line); padding-top: 3rem; }
+.heritage-related .section-heading { align-items: end; flex-wrap: wrap; gap: 1.5rem; }
+.heritage-related .section-heading h2 { margin-top: .8rem; }
+.service-guide { border-top: 1px solid var(--line); }
+.service-guide .section-heading h2 { margin-top: .8rem; max-width: 42rem; }
+.service-steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; margin: 2rem 0 3.5rem; padding: 0; }
+.service-steps li { border-top: 1px solid var(--bronze); padding-top: 1.5rem; }
+.service-step-number { font-size: .75rem; color: var(--bronze-dark); letter-spacing: .1em; }
+.service-steps h3 { font-size: 1.25rem; line-height: 1.4; margin: 1rem 0; }
+.service-steps p { color: var(--muted); font-size: .85rem; line-height: 1.9; }
+.service-questions { max-width: 780px; margin-bottom: 2rem; }
+.service-questions > h3 { font-size: 1.35rem; margin-bottom: 1.5rem; }
+.service-questions details { border-bottom: 1px solid var(--line); padding: 1.1rem 0; }
+.service-questions summary { cursor: pointer; font-size: .9rem; font-weight: 500; line-height: 1.7; }
+.service-questions details p { font-size: .85rem; color: var(--muted); line-height: 1.9; margin: 1rem 0 .25rem; }
+@media (max-width: 760px) {
+  .heritage-intro-note { grid-template-columns: 1fr; gap: 1rem; padding-bottom: 1.5rem; }
+  .heritage-journal .article-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .heritage-takeaways { padding: 1.25rem; }
+  .service-steps { grid-template-columns: 1fr; gap: 1.5rem; }
+}

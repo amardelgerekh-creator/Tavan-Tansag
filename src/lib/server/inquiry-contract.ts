@@ -66,4 +66,5 @@ export type PersistenceResult =
 export type PersistInquiry = (
   input: InquiryInput,
   idempotencyKey: string,
+  context?: { clientIp: string },
 ) => Promise<PersistenceResult>;

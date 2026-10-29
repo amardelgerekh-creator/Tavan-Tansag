@@ -97,6 +97,7 @@ export function Footer({ locale }: { locale: Locale }) {
       </div>
       <div className="container footer-bottom">
         <span>© {new Date().getFullYear()} Tavan Tansag</span>
+        <Link href={"/" + locale + "/staff"}>{locale === "mn" ? "Ажилтны хэсэг" : "Staff sign-in"}</Link>
         <span>ULAANBAATAR, MONGOLIA</span>
       </div>
       <div className="sample-notice">{c.sample}</div>

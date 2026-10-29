@@ -1,4 +1,13 @@
 {
+  "auth": {
+    "authorizedDomains": ["localhost", "127.0.0.1", "tavan-tansag-30560.firebaseapp.com", "tavantansag.com", "www.tavantansag.com", "tavan-tansag-preview.vercel.app"],
+    "providers": {
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Tavan Tansag",
+        "supportEmail": "amardelgerekh@gmail.com"
+      }
+    }
+  },
   "firestore": {
     "database": "tavan-tansag-preview",
     "edition": "enterprise",

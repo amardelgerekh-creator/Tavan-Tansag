@@ -5,6 +5,7 @@ import {
 } from "@/lib/server/inquiry-service";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 export const POST = createInquiryHandler({
   configured: inquiryStorageConfigured,

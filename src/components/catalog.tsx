@@ -9,6 +9,7 @@ import {
 import { t } from "@/lib/copy";
 import { SearchIcon } from "./icons";
 import { ProductCard } from "./site";
+import { filterProducts } from "@/lib/product-presentation";
 
 export function Catalog({
   products,
@@ -24,16 +25,8 @@ export function Catalog({
     products.some((p) => p.category === key),
   ) as Category[];
   const filtered = useMemo(
-    () =>
-      products.filter(
-        (p) =>
-          (category === "all" || p.category === category) &&
-          [p.name.mn, p.name.en, p.id, categories[p.category]?.[locale]]
-            .join(" ")
-            .toLocaleLowerCase()
-            .includes(query.trim().toLocaleLowerCase()),
-      ),
-    [products, category, query, locale],
+    () => filterProducts(products, category, query),
+    [products, category, query],
   );
   return (
     <>
@@ -58,6 +51,8 @@ export function Catalog({
         <label className="search-field">
           <SearchIcon />
           <input
+            type="search"
+            autoComplete="off"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={c.search}
@@ -67,7 +62,8 @@ export function Catalog({
       </div>
       <div className="catalog-count" aria-live="polite">
         {filtered.length} {c.results}
-        <span>{locale === "mn" ? "СОНГОСОН ЭДЛЭЛҮҮД" : "CURATED OBJECTS"}</span>
+        {query || category !== "all" ? <button type="button" className="text-link" onClick={() => { setQuery(""); setCategory("all"); }}>{c.reset}</button>
+          : <span>{locale === "mn" ? "СОНГОСОН ЭДЛЭЛҮҮД" : "CURATED OBJECTS"}</span>}
       </div>
       {filtered.length ? (
         <div className="product-grid">

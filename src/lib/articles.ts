@@ -1,4 +1,4 @@
-import type { Localized } from "./catalog";
+import type { Category, Localized } from "./catalog";
 
 export interface Article {
   slug: string;
@@ -6,6 +6,10 @@ export interface Article {
   title: Localized;
   summary: Localized;
   imageIndex: number;
+  relevantCategories: Category[];
+  readingMinutes: number;
+  takeaways: Localized[];
+  sources?: { title: Localized; url: string }[];
   sections: { title: Localized; paragraphs: Localized[] }[];
 }
 
@@ -24,6 +28,13 @@ export const articles: Article[] = [
       en: "From the overall silhouette to the smallest joint: what to notice in a photograph, and what to ask next.",
     },
     imageIndex: 0,
+    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    readingMinutes: 3,
+    takeaways: [
+      { mn: "Бүтэн зураг, ойрын зураг, хэмжээсийг хамтад нь харах", en: "Look at the whole object, the details and its scale" },
+      { mn: "Зургаас харагдах шинжийг баталгаатай материалаас ялгах", en: "Separate visible appearance from verified material" },
+      { mn: "Эдлэлийн кодоор нэмэлт зураг, мэдээлэл хүсэх", en: "Use the piece reference to request specific information" },
+    ],
     sections: [
       {
         title: {
@@ -83,6 +94,13 @@ export const articles: Article[] = [
       en: "Clarify your intended use, the evidence behind the description, and the terms of a purchase.",
     },
     imageIndex: 4,
+    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    readingMinutes: 3,
+    takeaways: [
+      { mn: "Хэрэглэх, бэлэглэх эсвэл цуглуулах зорилгоо тодруулах", en: "Explain whether the piece is for use, a gift or a collection" },
+      { mn: "Материал, нөхцөл байдал, бэлэн байдлыг баталгаажуулах", en: "Confirm materials, condition and availability" },
+      { mn: "Хүсэлт илгээх нь захиалга баталгаажуулсан хэрэг биш", en: "An enquiry does not confirm a reservation" },
+    ],
     sections: [
       {
         title: {
@@ -146,6 +164,17 @@ export const articles: Article[] = [
       en: "A thoughtful way to approach Mongolian craft: distinguish what is visible, what has been shared, and what can be established.",
     },
     imageIndex: 7,
+    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    readingMinutes: 4,
+    takeaways: [
+      { mn: "Ерөнхий соёлын тайлбар болон тухайн эдлэлийн түүхийг ялгах", en: "Distinguish cultural context from the history of one object" },
+      { mn: "Нэршил, он цаг, гарал үүслийн эх сурвалжийг асуух", en: "Ask for the sources behind names, dates and attribution" },
+      { mn: "Түүхийг нь мэдээлэл өгсөн хүн, баримттай нь хамт хадгалах", en: "Keep an account together with its contributor and evidence" },
+    ],
+    sources: [{
+      title: { mn: "The Met — Монгол дөрөөний музейн бүртгэл", en: "The Met — Pair of Stirrups, Mongolian" },
+      url: "https://www.metmuseum.org/art/collection/search/762162",
+    }],
     sections: [
       {
         title: {
@@ -180,6 +209,13 @@ export const articles: Article[] = [
         ],
       },
       {
+        title: { mn: "Музейн бүртгэлээс суралцах нь", en: "Learning from a museum record" },
+        paragraphs: [{
+          mn: "Нью-Йоркийн The Met музей Монгол хос дөрөөг материал, хэмжээс, он цаг, бүртгэлийн дугаартай нь нийтэлсэн байдаг. Тайлбарт нь морин хэрэглэл хэрэглээний үүргээс гадна ур хийц, чимэглэлийг харуулж ирснийг дурджээ. Энэ бол эх сурвалжтай соёлын жишээ; манай каталогийн эдлэлийн насжилт, найрлага, гарал үүслийг тогтоосон баримт биш.",
+          en: "The Met in New York records a Mongolian pair of stirrups with material, dimensions, dating and an accession number. Its commentary describes equestrian equipment as a setting for ornament and craftsmanship as well as practical use. This is a documented cultural example; it does not establish the age, composition or origin of any piece in our collection.",
+        }],
+      },
+      {
         title: {
           mn: "Урлаач, эзэмшигчийн дуу хоолойг сонсох",
           en: "Make room for the people behind the piece",
@@ -190,6 +226,50 @@ export const articles: Article[] = [
             en: "Record the names of makers, former users and contributors accurately, and clarify permission before publishing their information, images or accounts. Our aim is to share what is known about an object with care and clarity, without adding an embellished story.",
           },
         ],
+      },
+    ],
+  },
+  {
+    slug: "caring-for-your-piece",
+    category: { mn: "АРЧИЛГАА БА ХАДГАЛАЛТ", en: "CARE & KEEPING" },
+    title: { mn: "Арчилгааг материалаас нь эхлэх нь", en: "Care begins with the material" },
+    summary: {
+      mn: "Эмээл, аяга зэрэг олон материал хосолсон эдлэлээ арчлахын өмнө юу тодруулах вэ?",
+      en: "What to establish before caring for a saddle, bowl or another object made from several materials.",
+    },
+    imageIndex: 5,
+    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    readingMinutes: 2,
+    takeaways: [
+      { mn: "Материал, бүрэлт, засварын түүхийг эхэлж тодруулах", en: "First establish materials, finishes and previous repairs" },
+      { mn: "Нэг цэвэрлэгээний аргыг бүх хэсэгт хэрэглэхгүй байх", en: "Do not apply one cleaning method to every component" },
+      { mn: "Тухайн эдлэлд тохирсон арчилгааны заавар хүсэх", en: "Ask for care instructions for the particular piece" },
+    ],
+    sources: [{
+      title: { mn: "Канадын хамгаалал сэргээн засварлах хүрээлэн — Мөнгөн эдлэлийн арчилгаа", en: "Canadian Conservation Institute — Silver: Care and Tarnish Removal" },
+      url: "https://www.canada.ca/en/conservation-institute/services/conservation-preservation-publications/canadian-conservation-institute-notes/care-silver.html",
+    }],
+    sections: [
+      {
+        title: { mn: "Юунаас бүтсэнийг нь мэдэх", en: "Know what the object is made of" },
+        paragraphs: [{
+          mn: "Металл өнгөлгөөтэй хэсэг, мод, арьс болон чимэглэл нь өөр өөр арчилгаа шаардаж болно. Худалдан авахдаа материал, бүрэлт, засварласан хэсгийг тодруулж, арчилгааны зааврыг эдлэлийн кодтой нь хамт хадгалаарай. Найрлага нь тодорхойгүй хэсэгт өнгөлөгч, тос, химийн бодис хэрэглэхээс өмнө зөвлөхтэй ярилцана уу.",
+          en: "Metal finishes, wood, leather and decoration may need different care. When choosing a piece, ask about materials, coatings and repairs, and keep its care instructions with the reference code. Discuss any unidentified component with the team before applying polish, oil or cleaning chemicals.",
+        }],
+      },
+      {
+        title: { mn: "Гялалзах нь арчилгааны ганц зорилго биш", en: "A bright finish is not the only goal" },
+        paragraphs: [{
+          mn: "Канадын хамгаалал сэргээн засварлах хүрээлэнгийн тайлбараар мөнгийг давтан өнгөлөхөд гадаргуугаас материал хорогддог. Мөнгөн бүрэлт, алтадсан хэсэг, мод зэрэг материал хосолсон эдлэлийг нэг аргаар цэвэрлэж болохгүй. Иймээс доорх эх сурвалжийг ерөнхий ойлголт авахад ашиглаж, тухайн эдлэлийн цэвэрлэгээг мэргэжлийн хүнтэй тохироорой.",
+          en: "The Canadian Conservation Institute explains that repeated silver polishing removes surface material. Plating, gilding and mixed materials such as wooden attachments need particular attention. Use the source below for context, and agree any treatment of the individual object with a qualified specialist.",
+        }],
+      },
+      {
+        title: { mn: "Зөвлөгөө авахдаа юу илгээх вэ?", en: "What to include when asking for care advice" },
+        paragraphs: [{
+          mn: "Эдлэлийн код, бүтэн зураг, асуудалтай хэсгийн ойрын зураг, өмнө нь хэрэглэсэн арчилгааны бодисын мэдээлэл байвал хамт илгээгээрэй. Аягыг хүнсэнд, эмээлийг уналгад ашиглах боломжийг цэвэрлэгээний зөвлөгөөнөөс тусад нь баталгаажуулна. Зөвхөн харагдах хэлбэр нь хэрэглээний аюулгүй байдлыг тогтоохгүй.",
+          en: "Include the piece reference, an overall photograph, a close-up of the area and any known previous cleaning products. Confirm food use for a bowl or riding use for a saddle separately from cleaning advice. Appearance alone does not establish suitability for practical use.",
+        }],
       },
     ],
   },
