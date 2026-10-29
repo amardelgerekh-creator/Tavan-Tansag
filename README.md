@@ -56,9 +56,9 @@ TT-001–TT-010 нь **жишиг бүртгэлийн код**. Зургаар 
 
 `CATALOG_INCLUDE_SAMPLES=true` нь тусгаарласан туршилтын орчинд жишиг бүртгэлийг харуулах тохиргоо. Анхны утга `false`; энэ үед зөвхөн баталгаажсан, нийтлэгдсэн бүртгэлийг уншина. Тохиргоо нь Firestore-ийн эрхийг өөрөө өөрчлөхгүй.
 
-`tavan-tansag-preview` санг `tavan-tansag-30560` төсөлд Токиогийн `asia-northeast1` бүсэд үүсгэсэн. Одоогоор анхны бүх client хандалтыг хаасан дүрэмтэй. Firebase CLI нэвтрэлт, каталогийн дүрэм тавих, 10 бүртгэлийг импортлох, бодитоор унших шалгалт үлдсэн. [Backend баримтаас](docs/backend.md) нарийвчилсан тохиргоог харна уу.
+`tavan-tansag-preview` сан нь `tavan-tansag-30560` төслийн Токиогийн `asia-northeast1` бүсэд `ENTERPRISE` / `FIRESTORE_NATIVE` горимоор ажиллаж байна; `freeTier=true` баталгаажсан. Firebase CLI/MCP нэвтрэлт, эрхийн дүрмийн compile/deploy, 10 цэвэрлэсэн жишиг баримтын create-only импорт амжилттай болсон. Бодит нэргүй уншилт 10 жишиг бүртгэл, нийтлэгдсэн бүртгэлийн шүүлтүүр 0 үр дүн буцаасан. Зөвшөөрөгдөөгүй хайлт, хувийн цуглуулгын уншилт болон нэргүй бичилтийн шалгалтууд 403-аар хаагдсан. [Backend баримтаас](docs/backend.md) нарийвчилсан тохиргоог харна уу.
 
-Firebase хувилбар GitHub-ийн `03fa5a8` commit-д орсон. GitHub болон Vercel CLI нь `amardelgerekh-creator` эрхээр холбогдсон. [Онлайн туршилтын сайт](https://tavan-tansag-preview.vercel.app/mn) нь `tavan-tansag` багийн төсөлд ажиллаж байна; GitHub шинэчлэлтээс автомат байршуулалт мөн амжилттай болсон. Одоогоор `CATALOG_SOURCE=file`, `SITE_INDEXABLE=false`, `INQUIRIES_ENABLED=false`; Firestore руу шилжээгүй.
+GitHub болон Vercel CLI нь `amardelgerekh-creator` эрхээр холбогдсон. [Онлайн туршилтын сайт](https://tavan-tansag-preview.vercel.app/mn) Firebase каталогоос хүсэлт бүрд уншиж ажиллаж байгааг баталгаажуулсан. `7316e3b` хувилбарын Vercel байршуулалт READY; Монгол/Англи каталог тус бүр 10 эдлэл харуулж, нүүр, дэлгэрэнгүй болон хүсэлтийн хуудсууд HTTP 200 буцаасан. Vercel Production ба Preview-д `CATALOG_SOURCE=firebase`, `CATALOG_INCLUDE_SAMPLES=true`, `FIREBASE_PROJECT_ID=tavan-tansag-30560`, `FIRESTORE_DATABASE_ID=tavan-tansag-preview` тохируулсан. Нууц Firebase түлхүүр ашиглаагүй; `SITE_INDEXABLE=false`, `INQUIRIES_ENABLED=false` хэвээр.
 
 ## Хүсэлт ба CRM-ийн дараагийн ажил
 

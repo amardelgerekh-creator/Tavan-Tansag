@@ -1,6 +1,6 @@
 # Firebase catalog and inquiry foundation
 
-The selected stack is GitHub, Firebase and Vercel. Firebase project: `tavan-tansag-30560` (Spark). The Firestore database `tavan-tansag-preview` was created in Enterprise Native mode in Tokyo (`asia-northeast1`) through the authenticated console. It currently has the initial deny-all client rules and no imported catalog documents. Firebase CLI authorization, rules deployment, import and live verification remain pending.
+The selected stack is GitHub, Firebase and Vercel. Firebase project: `tavan-tansag-30560` (Spark). The named Firestore database `tavan-tansag-preview` is confirmed as `ENTERPRISE`, `FIRESTORE_NATIVE`, Tokyo (`asia-northeast1`), with `freeTier=true`. Firebase CLI/MCP authentication, rules compilation/deployment, sample import, direct remote access checks and the deployed website's Firestore catalog reads have succeeded.
 
 The current Firebase integration covers a sanitized, read-only catalog. **Firebase inquiry storage, staff authentication, CRM permissions and notification delivery are not implemented.** The inquiry service remains disabled even if `INQUIRIES_ENABLED=true` is set.
 
@@ -31,17 +31,18 @@ The publication rules distinguish `sample` + `needs_review` from `published` + `
 
 The cloud reader validates the returned public shape, uses a request-time read and reports a catalog-unavailable state on configuration, provider or data errors. It never disguises a failed Firebase read by displaying the local file instead. `CATALOG_SOURCE=file` remains an explicit offline development mode.
 
-## Remote setup still to verify
+## Verified remote setup and deployment
 
-1. Authenticate the approved Firebase CLI account and verify project `tavan-tansag-30560`.
-2. Create or inspect the named Enterprise Native database `tavan-tansag-preview` in `asia-northeast1`. Confirm its actual edition and API mode before applying the integration.
-3. Review and apply rules that allow only the intended public catalog reads, deny public writes and protect every other collection.
-4. Review `firebase/seed.json`: it contains only sanitized sample documents. `firebase/seed-write.json` is the create-only REST commit payload; existing documents must not be overwritten by an initial import.
-5. Import the reviewed samples with an authorized administrative tool. Never place a privileged token in Vercel solely to support public catalog reads.
-6. Test real anonymous reads, denied writes, private-collection denial, sample filtering, error behavior and absence of raw provenance.
-7. Set `CATALOG_SOURCE=firebase` with the project/database IDs in the isolated Vercel preview and verify the deployed pages. Keep indexing and inquiries off.
+- Firebase CLI and MCP are authenticated with the approved account `amardelgerekh@gmail.com`; the target project and named database were verified.
+- The CLI rules dry run compiled successfully, followed by a successful rules deployment.
+- Ten sanitized `catalog_public` documents were committed at `2026-10-29T08:38:55.427302Z` with create-only preconditions. An administrative reread exactly matched the reviewed seed. `firebase/seed.json` contains the sanitized records; `firebase/seed-write.json` is the initial create-only REST commit payload. Do not overwrite existing documents when replaying an initial import.
+- `verify-read.ts` passed against the actual remote database: the allowed anonymous sample query returned 10 records, while the published-only query returned 0.
+- `verify-access.ts --probe-writes` confirmed the exact 10 public documents and allowed fields. Unfiltered, incomplete and draft catalog queries returned 403. Reads of private inquiries, customers and nested private data returned 403. Two anonymous create probes returned 403 and created no documents.
+- Vercel Production and Preview now have `CATALOG_SOURCE=firebase`, `CATALOG_INCLUDE_SAMPLES=true`, `FIREBASE_PROJECT_ID=tavan-tansag-30560` and `FIRESTORE_DATABASE_ID=tavan-tansag-preview`. No Firebase secret key is used. Indexing and inquiries remain disabled.
 
-The console confirmed Spark billing and successful database provisioning. No billing upgrade was performed. The live website is deployed on Vercel with `CATALOG_SOURCE=file`; it must remain in that explicit mode until the Firebase verification succeeds.
+Code commit `7316e3b` was deployed through GitHub. Vercel deployment `dpl_BEhYd2F7vfK4aiVQgDwdmc3eoQqv` is READY at [tavan-tansag-preview.vercel.app](https://tavan-tansag-preview.vercel.app). Build logs confirm that catalog, home, inquiry and product routes render dynamically on demand. Both language catalogs returned 10 distinct product slugs; the checked home, catalog, product and inquiry pages returned HTTP 200 with `private, no-cache, no-store` responses. Online browser inspection confirmed the visible 10-item catalog. Pages remain noindex, robots disallows crawling, and the inquiry API returns `503 NOT_CONFIGURED` while its form is disabled.
+
+Both Vercel environments currently target the same sample-only preview database. The Vercel environment name “Production” does not make this a real customer-data production system. Use a separately reviewed data and rules boundary before introducing real customer information or opening inquiries. No billing upgrade was performed.
 
 ## Inquiry API: prepared contract, unavailable persistence
 
