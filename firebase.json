@@ -1,0 +1,9 @@
+{
+  "firestore": {
+    "database": "tavan-tansag-preview",
+    "edition": "enterprise",
+    "location": "asia-northeast1",
+    "rules": "firebase/firestore.rules",
+    "indexes": "firebase/firestore.indexes.json"
+  }
+}

@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createInquiryHandler } from "../src/lib/server/inquiry-handler";
+import {
+  inquiryStorageConfigured,
+  persistInquiry,
+} from "../src/lib/server/inquiry-service";
 import type {
   InquiryInput,
   PersistenceResult,
@@ -26,6 +30,27 @@ function request(body: unknown = input, headers: Record<string, string> = {}) {
     body: JSON.stringify(body),
   });
 }
+
+test("the Firebase preview remains closed even when the inquiry flag is enabled", async () => {
+  const previous = process.env.INQUIRIES_ENABLED;
+  try {
+    process.env.INQUIRIES_ENABLED = "true";
+    assert.equal(inquiryStorageConfigured(), false);
+    const response = await createInquiryHandler({
+      configured: inquiryStorageConfigured,
+      persist: persistInquiry,
+    })(request());
+    assert.equal(response.status, 503);
+    assert.equal((await response.json()).code, "NOT_CONFIGURED");
+    assert.deepEqual(await persistInquiry(input as InquiryInput, key), {
+      ok: false,
+      code: "UNAVAILABLE",
+    });
+  } finally {
+    if (previous === undefined) delete process.env.INQUIRIES_ENABLED;
+    else process.env.INQUIRIES_ENABLED = previous;
+  }
+});
 
 test("an unconnected preview cannot report that a customer's inquiry was sent", async () => {
   let called = false;

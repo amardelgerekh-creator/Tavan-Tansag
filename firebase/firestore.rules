@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Public-only Product document: id/slug/category, bilingual name/description/
+    // observations, local image path, publication/verification/availability,
+    // nullable price/material/dimensions/weight/maker/period, currency, visibility.
+    // NEVER put source links, cost, staff notes or CRM data in catalog_public.
+    // Rules authorize whole documents; field projection does not hide fields.
+    match /catalog_public/{productId} {
+      function isPublicCatalogEntry() {
+        return resource.data.visibility == 'public'
+          && ((resource.data.publicationStatus == 'published'
+              && resource.data.verificationStatus == 'verified')
+            || (database == 'tavan-tansag-preview'
+              && resource.data.publicationStatus == 'sample'
+              && resource.data.verificationStatus == 'needs_review'));
+      }
+      // Guest browsing is intentional. Pipeline must filter these predicates.
+      allow read: if isPublicCatalogEntry();
+      // Publishing is an administrative IAM operation, not a website capability.
+      allow create, update, delete: if false;
+    }
+    // Includes inquiries/CRM, private provenance and nested subcollections.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

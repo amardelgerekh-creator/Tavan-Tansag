@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { facebookUrl, isLocale } from "@/lib/catalog";
+import { inquiryStorageConfigured } from "@/lib/server/inquiry-service";
 
 export const dynamic = "force-dynamic";
 
@@ -22,11 +23,7 @@ export default async function Privacy({
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  const enabled =
-    process.env.INQUIRIES_ENABLED === "true" &&
-    Boolean(
-      process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SECRET_KEY,
-    );
+  const enabled = inquiryStorageConfigured();
   return (
     <section className="container section">
       <div className="page-heading article-heading">

@@ -1,0 +1,914 @@
+{
+  "writes": [
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-001",
+        "fields": {
+          "id": {
+            "stringValue": "TT-001"
+          },
+          "slug": {
+            "stringValue": "saddle-blue-border"
+          },
+          "category": {
+            "stringValue": "saddles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан суудалтай, цэнхэр хүрээтэй эмээл"
+                },
+                "en": {
+                  "stringValue": "Red-seat saddle with blue edging"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан суудал, цэнхэр хүрээ, дугуй хээт чимэглэл бүхий эмээлийн жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample saddle record with a red seat, blue edging and round decorative details."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Сийлбэртэй тавиур дээр байрлуулсан. Гөлөмний ирмэгт цэнхэр, улаан хүрээ харагдана."
+                },
+                "en": {
+                  "stringValue": "Shown on a carved display stand. Blue and red borders are visible around the flaps."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-001.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-002",
+        "fields": {
+          "id": {
+            "stringValue": "TT-002"
+          },
+          "slug": {
+            "stringValue": "saddle-multicolour-border"
+          },
+          "category": {
+            "stringValue": "saddles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Олон өнгийн хүрээтэй, шаргал гөлөмтэй эмээл"
+                },
+                "en": {
+                  "stringValue": "Saddle with multicolour edging and tan flaps"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Шаргал гөлөм, олон өнгийн хүрээ, цайвар дугуй чимэглэлтэй эмээлийн жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample saddle record with tan flaps, multicolour edging and pale round ornaments."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Урд хэсэгт олон өнгийн зурвас, шаргал хавтгай дээр бараан хээ харагдана."
+                },
+                "en": {
+                  "stringValue": "Multicolour bands appear on the front, with dark patterns over the tan flaps."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-002.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-003",
+        "fields": {
+          "id": {
+            "stringValue": "TT-003"
+          },
+          "slug": {
+            "stringValue": "saddle-dark-border"
+          },
+          "category": {
+            "stringValue": "saddles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Хар хүрээтэй, улаан суудалтай эмээл"
+                },
+                "en": {
+                  "stringValue": "Red-seat saddle with dark edging"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан суудал, бараан хүрээ, шаргал гөлөмтэй эмээлийн жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample saddle record with a red seat, dark edging and tan flaps."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Урд хэсгийн дугуй чимэглэл, төв хавтасны сүлжээ хэлбэрийн хээ харагдана."
+                },
+                "en": {
+                  "stringValue": "Round front ornaments and a lattice-like pattern on the central flap are visible."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-003.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-004",
+        "fields": {
+          "id": {
+            "stringValue": "TT-004"
+          },
+          "slug": {
+            "stringValue": "saddle-green-flaps"
+          },
+          "category": {
+            "stringValue": "saddles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Ногоон гөлөмтэй эмээл"
+                },
+                "en": {
+                  "stringValue": "Saddle with green flaps"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Ногоон гөлөм, улаан суудал, хээт хүрээтэй эмээлийн жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample saddle record with green flaps, a red seat and patterned borders."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Ногоон дэвсгэр дээр бараан болон цайвар хээ, хоёр талд урт уяа харагдана."
+                },
+                "en": {
+                  "stringValue": "Dark and pale details contrast with the green background; long ties hang at both sides."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-004.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-005",
+        "fields": {
+          "id": {
+            "stringValue": "TT-005"
+          },
+          "slug": {
+            "stringValue": "saddle-burgundy-flaps"
+          },
+          "category": {
+            "stringValue": "saddles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан хүрэн гөлөмтэй эмээл"
+                },
+                "en": {
+                  "stringValue": "Saddle with burgundy flaps"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан хүрэн гөлөм, ногоон хүрээ, цайвар чимэглэлтэй эмээлийн жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample saddle record with burgundy flaps, green edging and pale ornaments."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан хүрэн гөлөмний ирмэгт олон өнгийн хүрээ, урд дээд хэсэгт ногоон эмжээр харагдана."
+                },
+                "en": {
+                  "stringValue": "Multicolour borders frame the burgundy flaps, and green trim outlines the raised front."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-005.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-006",
+        "fields": {
+          "id": {
+            "stringValue": "TT-006"
+          },
+          "slug": {
+            "stringValue": "bowl-orange-band"
+          },
+          "category": {
+            "stringValue": "vessels"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улбар хүрээтэй, хээт суурьтай аяга"
+                },
+                "en": {
+                  "stringValue": "Bowl with an orange band and patterned foot"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улбар өнгийн бүслүүр, давхар хээт хэсэг, дугуй суурьтай аяганы жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample bowl record with an orange band, layered decorative details and a round foot."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Дэлбэгэр амсар, улбар зурвас, суурийн дээрх мушгиа хэлбэрийн хээ харагдана."
+                },
+                "en": {
+                  "stringValue": "A flared rim, orange band and scrolling details above the foot are visible."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-006.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-007",
+        "fields": {
+          "id": {
+            "stringValue": "TT-007"
+          },
+          "slug": {
+            "stringValue": "bowl-geometric-base"
+          },
+          "category": {
+            "stringValue": "vessels"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Сүлжээ хээтэй суурь бүхий аяга"
+                },
+                "en": {
+                  "stringValue": "Bowl with a geometric patterned base"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Дугуй сууриа харуулсан, сүлжээ болон мушгиа хээтэй аяганы жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample bowl record shown from underneath, with geometric and scrolling patterns."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Зураг нь аяганы ёроолыг харуулна. Төвдөө дугуй, дөрвөн талдаа өнцөглөсөн давтагдах хээтэй."
+                },
+                "en": {
+                  "stringValue": "The photo shows the underside. A circular centre is surrounded by repeated angular and scrolling details."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-007.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-008",
+        "fields": {
+          "id": {
+            "stringValue": "TT-008"
+          },
+          "slug": {
+            "stringValue": "bowl-wide-tan-band"
+          },
+          "category": {
+            "stringValue": "vessels"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Өргөн шаргал бүслүүртэй аяга"
+                },
+                "en": {
+                  "stringValue": "Bowl with a wide tan band"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Өргөн шаргал бүслүүр, мушгиа хэлбэрийн чимэглэл, дугуй суурьтай аяганы жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample bowl record with a wide tan band, scrolling decoration and a round foot."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Шаргал бүслүүр дээр толбо, судал мэт өнгөний ялгарал харагдана. Материал нь баталгаажаагүй."
+                },
+                "en": {
+                  "stringValue": "The tan band shows mottled and streaked colour variation. Its material has not been verified."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-008.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-009",
+        "fields": {
+          "id": {
+            "stringValue": "TT-009"
+          },
+          "slug": {
+            "stringValue": "bowl-low-orange-band"
+          },
+          "category": {
+            "stringValue": "vessels"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Намхан их биетэй, улбар хүрээтэй аяга"
+                },
+                "en": {
+                  "stringValue": "Low-profile bowl with an orange band"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Намхан их бие, нарийн улбар бүслүүр, өргөн дугуй суурьтай аяганы жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample low-profile bowl record with a narrow orange band and a broad round foot."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Амсар доорх хэсэг толигор, суурийн дээгүүр жижиг давтагдах хээтэй харагдана."
+                },
+                "en": {
+                  "stringValue": "The area beneath the rim appears smooth, with small repeated details above the foot."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-009.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-010",
+        "fields": {
+          "id": {
+            "stringValue": "TT-010"
+          },
+          "slug": {
+            "stringValue": "bowl-dark-surface"
+          },
+          "category": {
+            "stringValue": "vessels"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Бараан гадаргуутай, хээт бүслүүртэй аяга"
+                },
+                "en": {
+                  "stringValue": "Dark-surfaced bowl with a patterned band"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Бараан гадаргуу, шаргал бүслүүр, хээт доод хэсэгтэй аяганы жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample bowl record with a dark surface, tan band and decorated lower section."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Дэлбэгэр амсар, бараан дээд хэсэг, шаргал нарийн зурвас, дугуй суурь харагдана."
+                },
+                "en": {
+                  "stringValue": "A flared rim, dark upper section, narrow tan band and round foot are visible."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-010.jpg"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    }
+  ]
+}

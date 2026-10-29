@@ -2,7 +2,7 @@ import { createInquiryHandler } from "@/lib/server/inquiry-handler";
 import {
   inquiryStorageConfigured,
   persistInquiry,
-} from "@/lib/server/supabase-inquiries";
+} from "@/lib/server/inquiry-service";
 
 export const runtime = "nodejs";
 

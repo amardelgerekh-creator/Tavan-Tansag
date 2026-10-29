@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { facebookUrl, isLocale } from "@/lib/catalog";
 import { getCatalog } from "@/lib/server/catalog-store";
+import { inquiryStorageConfigured } from "@/lib/server/inquiry-service";
 import { t } from "@/lib/copy";
 import { InquiryForm } from "@/components/inquiry-form";
 import { Arrow } from "@/components/icons";
@@ -28,11 +29,7 @@ export default async function Inquiry({
   const products = await getCatalog();
   const c = t(locale);
   const { piece } = await searchParams;
-  const enabled = Boolean(
-    process.env.INQUIRIES_ENABLED === "true" &&
-      process.env.NEXT_PUBLIC_SUPABASE_URL &&
-      process.env.SUPABASE_SECRET_KEY,
-  );
+  const enabled = inquiryStorageConfigured();
   return (
     <section className="container inquiry-page">
       <div className="inquiry-intro">
