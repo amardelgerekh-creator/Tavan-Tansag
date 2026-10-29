@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { isLocale, siteUrl } from "@/lib/catalog";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/site";
-import { t } from "@/lib/copy";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -18,13 +17,19 @@ export async function generateMetadata({
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: "Таван Тансаг · Tavan Tansag",
+      default:
+        locale === "en"
+          ? "Tavan Tansag · Enduring Mongolian Heritage"
+          : "Таван Тансаг · Мөнх Үргэлжлэх Монгол Өв",
       template: "%s · Tavan Tansag",
     },
     description:
       locale === "en"
-        ? "Mongolian craft, heritage and precious objects. Discover the Tavan Tansag collection."
-        : "Монгол урлал, өв уламжлал, үнэт эдлэл. Таван Тансагийн эдлэлүүдтэй танилцаарай.",
+        ? "Tavan Tansag — Mongolian Heritage Jewelry House. Explore traditional craft and precious objects that carry heritage from one generation to the next."
+        : "Таван Тансаг — Монгол өвийн үнэт эдлэлийн дэлгүүр. Мөнх Үргэлжлэх Монгол Өв. Үеэс үед өвлөх урлал, үнэт эдлэлүүдтэй танилцаарай.",
+    icons: {
+      icon: { url: "/images/brand/mark.svg", type: "image/svg+xml" },
+    },
     robots: {
       index: process.env.SITE_INDEXABLE === "true",
       follow: process.env.SITE_INDEXABLE === "true",

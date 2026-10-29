@@ -9,8 +9,8 @@ export const copy = {
     explore: "Эдлэлүүдтэй танилцах",
     all: "Бүх эдлэл",
     search: "Эдлэл, нэр, кодоор хайх",
-    heroEyebrow: "МОНГОЛ УРЛАЛЫН ҮНЭ ЦЭН",
-    heroTitle: ["Өвийг дээдэлж,", "үнэ цэнийг өвлүүлнэ."],
+    heroEyebrow: "МОНГОЛ ӨВИЙН ҮНЭТ ЭДЛЭЛИЙН ДЭЛГҮҮР",
+    heroTitle: ["Мөнх Үргэлжлэх", "Монгол Өв"],
     heroText:
       "Ур хийц, түүх, уламжлал шингэсэн эдлэлүүдтэй танилцаж, өөрийн сонголтыг бидэнтэй хамт хийгээрэй.",
     selected: "ОНЦЛОХ СОНГОЛТ",
@@ -27,13 +27,13 @@ export const copy = {
     read: "Дэлгэрүүлж унших",
     craft: "ХИЙЦ БА ХЭЛБЭР",
     since: "2010 оноос",
-    aboutTitle: "Уламжлалыг өнөөдрийн\nхэрэглээтэй холбох нь.",
+    aboutTitle: "Мөнх Үргэлжлэх\nМонгол Өв",
     aboutText:
-      "Таван Тансаг нь Монголын уламжлалт үнэт эдлэлийг орчин үеийн хийц, хэрэглээтэй хослуулан хүргэхийг зорьдог дэлгүүр юм.",
+      "Таван Тансаг бол Монгол өвийн үнэт эдлэлийн дэлгүүр. Бид урлалд шингэсэн өв соёл, үнэ цэнийг үеэс үед үргэлжлүүлэн өвлүүлэхийг эрхэмлэдэг.",
     ctaTitle: "Танд тохирох эдлэлийг\nхамтдаа сонгоё.",
     ctaText:
       "Эдлэлийн талаар лавлах, дэлгэрэнгүй зураг авах эсвэл зөвлөгөө хүсэх бол бидэнтэй холбогдоорой.",
-    footerLine: "Монгол урлал. Өв уламжлал. Үнэ цэнэ.",
+    footerLine: "Мөнх Үргэлжлэх Монгол Өв",
     privacy: "Мэдээллийн нууцлал",
     sample:
       "Каталогийн ажлын хувилбар · Үзүүлэлт, үнэ, бэлэн байдлыг баталгаажуулж байна.",
@@ -90,8 +90,10 @@ export const copy = {
     explore: "Explore the collection",
     all: "All pieces",
     search: "Search by piece, name or reference",
-    heroEyebrow: "THE ART OF MONGOLIAN CRAFT",
-    heroTitle: ["Honoring heritage.", "Carrying it forward."],
+    heroEyebrow: "MONGOLIAN HERITAGE JEWELRY HOUSE",
+    // Website translation of the official Mongolian slogan; not a separate
+    // English slogan supplied by the brandbook.
+    heroTitle: ["Enduring", "Mongolian Heritage"],
     heroText:
       "Discover pieces shaped by craft, history and tradition. Find something meaningful, with a little guidance from us.",
     selected: "A CONSIDERED SELECTION",
@@ -108,13 +110,13 @@ export const copy = {
     read: "Read the story",
     craft: "CRAFT & FORM",
     since: "Since 2010",
-    aboutTitle: "Bringing tradition\ninto the present.",
+    aboutTitle: "Enduring\nMongolian Heritage",
     aboutText:
-      "Tavan Tansag brings Mongolian traditional precious objects into conversation with contemporary craftsmanship and everyday life.",
+      "Tavan Tansag is a Mongolian Heritage Jewelry House. We cherish the culture and lasting value held in traditional craft, carrying that heritage from one generation to the next.",
     ctaTitle: "Find a piece\nthat speaks to you.",
     ctaText:
       "Ask about a piece, request a closer look, or let us help you find the right choice.",
-    footerLine: "Mongolian craft. Living heritage. Lasting value.",
+    footerLine: "Enduring Mongolian Heritage",
     privacy: "Privacy",
     sample:
       "Working catalog · Specifications, prices and availability are being verified.",

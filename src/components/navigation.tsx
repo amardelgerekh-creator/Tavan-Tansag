@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { Locale } from "@/lib/catalog";
 import { t } from "@/lib/copy";
 import { Arrow } from "./icons";
+import { BrandLogo } from "./brand-logo";
 
 export function Navigation({ locale }: { locale: Locale }) {
   const c = t(locale);
@@ -25,18 +26,9 @@ export function Navigation({ locale }: { locale: Locale }) {
         <Link
           href={"/" + locale}
           className="wordmark"
-          aria-label="Tavan Tansag"
           onClick={() => setOpen(false)}
         >
-          <span className="logo-frame">
-            <img src="/images/logo.jpg" alt="" width="44" height="44" />
-          </span>
-          <span>
-            TAVAN TANSAG
-            <small>
-              {locale === "mn" ? "ҮНЭТ ЭДЛЭЛ" : "MONGOLIAN PRECIOUS OBJECTS"}
-            </small>
-          </span>
+          <BrandLogo locale={locale} />
         </Link>
         <nav
           className="desktop-nav"

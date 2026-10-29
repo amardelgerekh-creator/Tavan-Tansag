@@ -8,6 +8,7 @@ import {
 } from "@/lib/catalog";
 import { t } from "@/lib/copy";
 import { Arrow } from "./icons";
+import { BrandLogo } from "./brand-logo";
 
 export function ProductCard({
   product: p,
@@ -77,7 +78,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="container footer-main">
         <div>
           <Link href={"/" + locale} className="footer-brand">
-            TAVAN TANSAG
+            <BrandLogo locale={locale} />
           </Link>
           <p>{c.footerLine}</p>
         </div>
