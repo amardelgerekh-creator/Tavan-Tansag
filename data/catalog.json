@@ -1,0 +1,412 @@
+[
+  {
+    "id": "TT-001",
+    "slug": "saddle-blue-border",
+    "category": "saddles",
+    "name": {
+      "mn": "Улаан суудалтай, цэнхэр хүрээтэй эмээл",
+      "en": "Red-seat saddle with blue edging"
+    },
+    "description": {
+      "mn": "Улаан суудал, цэнхэр хүрээ, дугуй хээт чимэглэл бүхий эмээлийн жишиг бүртгэл.",
+      "en": "A sample saddle record with a red seat, blue edging and round decorative details."
+    },
+    "image": "/images/catalog/tt-001.jpg",
+    "sourceFileName": "EXA_7800.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1Jn3Oa0rfJS5nZEI7h67HWP8g04vNmP5e/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1gZ-az3LLwgJfYaQowQJlOXje1mdSffTR",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Сийлбэртэй тавиур дээр байрлуулсан. Гөлөмний ирмэгт цэнхэр, улаан хүрээ харагдана.",
+      "en": "Shown on a carved display stand. Blue and red borders are visible around the flaps."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-002",
+    "slug": "saddle-multicolour-border",
+    "category": "saddles",
+    "name": {
+      "mn": "Олон өнгийн хүрээтэй, шаргал гөлөмтэй эмээл",
+      "en": "Saddle with multicolour edging and tan flaps"
+    },
+    "description": {
+      "mn": "Шаргал гөлөм, олон өнгийн хүрээ, цайвар дугуй чимэглэлтэй эмээлийн жишиг бүртгэл.",
+      "en": "A sample saddle record with tan flaps, multicolour edging and pale round ornaments."
+    },
+    "image": "/images/catalog/tt-002.jpg",
+    "sourceFileName": "EXA_7843.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1at0_MxQ53KZfW06iVndFR568-2DIpdY7/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1gZ-az3LLwgJfYaQowQJlOXje1mdSffTR",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Урд хэсэгт олон өнгийн зурвас, шаргал хавтгай дээр бараан хээ харагдана.",
+      "en": "Multicolour bands appear on the front, with dark patterns over the tan flaps."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-003",
+    "slug": "saddle-dark-border",
+    "category": "saddles",
+    "name": {
+      "mn": "Хар хүрээтэй, улаан суудалтай эмээл",
+      "en": "Red-seat saddle with dark edging"
+    },
+    "description": {
+      "mn": "Улаан суудал, бараан хүрээ, шаргал гөлөмтэй эмээлийн жишиг бүртгэл.",
+      "en": "A sample saddle record with a red seat, dark edging and tan flaps."
+    },
+    "image": "/images/catalog/tt-003.jpg",
+    "sourceFileName": "EXA_7861.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1Etg3nd5AmU6xoPf8qQcHLHwYhxFGGi-e/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1gZ-az3LLwgJfYaQowQJlOXje1mdSffTR",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Урд хэсгийн дугуй чимэглэл, төв хавтасны сүлжээ хэлбэрийн хээ харагдана.",
+      "en": "Round front ornaments and a lattice-like pattern on the central flap are visible."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-004",
+    "slug": "saddle-green-flaps",
+    "category": "saddles",
+    "name": {
+      "mn": "Ногоон гөлөмтэй эмээл",
+      "en": "Saddle with green flaps"
+    },
+    "description": {
+      "mn": "Ногоон гөлөм, улаан суудал, хээт хүрээтэй эмээлийн жишиг бүртгэл.",
+      "en": "A sample saddle record with green flaps, a red seat and patterned borders."
+    },
+    "image": "/images/catalog/tt-004.jpg",
+    "sourceFileName": "EXA_7893.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1Kk2iDjw3q-D9NO4YSouPmj_Z4VQ2lm8q/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1gZ-az3LLwgJfYaQowQJlOXje1mdSffTR",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Ногоон дэвсгэр дээр бараан болон цайвар хээ, хоёр талд урт уяа харагдана.",
+      "en": "Dark and pale details contrast with the green background; long ties hang at both sides."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-005",
+    "slug": "saddle-burgundy-flaps",
+    "category": "saddles",
+    "name": {
+      "mn": "Улаан хүрэн гөлөмтэй эмээл",
+      "en": "Saddle with burgundy flaps"
+    },
+    "description": {
+      "mn": "Улаан хүрэн гөлөм, ногоон хүрээ, цайвар чимэглэлтэй эмээлийн жишиг бүртгэл.",
+      "en": "A sample saddle record with burgundy flaps, green edging and pale ornaments."
+    },
+    "image": "/images/catalog/tt-005.jpg",
+    "sourceFileName": "EXA_7902.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1VA6-brIc3TciUSW2xjPM95CMwMwIAht7/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1gZ-az3LLwgJfYaQowQJlOXje1mdSffTR",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Улаан хүрэн гөлөмний ирмэгт олон өнгийн хүрээ, урд дээд хэсэгт ногоон эмжээр харагдана.",
+      "en": "Multicolour borders frame the burgundy flaps, and green trim outlines the raised front."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-006",
+    "slug": "bowl-orange-band",
+    "category": "vessels",
+    "name": {
+      "mn": "Улбар хүрээтэй, хээт суурьтай аяга",
+      "en": "Bowl with an orange band and patterned foot"
+    },
+    "description": {
+      "mn": "Улбар өнгийн бүслүүр, давхар хээт хэсэг, дугуй суурьтай аяганы жишиг бүртгэл.",
+      "en": "A sample bowl record with an orange band, layered decorative details and a round foot."
+    },
+    "image": "/images/catalog/tt-006.jpg",
+    "sourceFileName": "EXA_8478.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1WwJa8LV_fx9QDJZFD08JnJwFLwcDVRzw/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1u2QeqHBCaLOhaT0V-4OGwon3B-vASTBN",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Дэлбэгэр амсар, улбар зурвас, суурийн дээрх мушгиа хэлбэрийн хээ харагдана.",
+      "en": "A flared rim, orange band and scrolling details above the foot are visible."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-007",
+    "slug": "bowl-geometric-base",
+    "category": "vessels",
+    "name": {
+      "mn": "Сүлжээ хээтэй суурь бүхий аяга",
+      "en": "Bowl with a geometric patterned base"
+    },
+    "description": {
+      "mn": "Дугуй сууриа харуулсан, сүлжээ болон мушгиа хээтэй аяганы жишиг бүртгэл.",
+      "en": "A sample bowl record shown from underneath, with geometric and scrolling patterns."
+    },
+    "image": "/images/catalog/tt-007.jpg",
+    "sourceFileName": "EXA_8514.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1T1K9gW-NLfiK0avQKyGGE8siZGcqYy6Q/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1u2QeqHBCaLOhaT0V-4OGwon3B-vASTBN",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Зураг нь аяганы ёроолыг харуулна. Төвдөө дугуй, дөрвөн талдаа өнцөглөсөн давтагдах хээтэй.",
+      "en": "The photo shows the underside. A circular centre is surrounded by repeated angular and scrolling details."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-008",
+    "slug": "bowl-wide-tan-band",
+    "category": "vessels",
+    "name": {
+      "mn": "Өргөн шаргал бүслүүртэй аяга",
+      "en": "Bowl with a wide tan band"
+    },
+    "description": {
+      "mn": "Өргөн шаргал бүслүүр, мушгиа хэлбэрийн чимэглэл, дугуй суурьтай аяганы жишиг бүртгэл.",
+      "en": "A sample bowl record with a wide tan band, scrolling decoration and a round foot."
+    },
+    "image": "/images/catalog/tt-008.jpg",
+    "sourceFileName": "EXA_8553.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1iyOEZfzjAtGAds07TwAfjLx14KDmsl0z/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1u2QeqHBCaLOhaT0V-4OGwon3B-vASTBN",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Шаргал бүслүүр дээр толбо, судал мэт өнгөний ялгарал харагдана. Материал нь баталгаажаагүй.",
+      "en": "The tan band shows mottled and streaked colour variation. Its material has not been verified."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-009",
+    "slug": "bowl-low-orange-band",
+    "category": "vessels",
+    "name": {
+      "mn": "Намхан их биетэй, улбар хүрээтэй аяга",
+      "en": "Low-profile bowl with an orange band"
+    },
+    "description": {
+      "mn": "Намхан их бие, нарийн улбар бүслүүр, өргөн дугуй суурьтай аяганы жишиг бүртгэл.",
+      "en": "A sample low-profile bowl record with a narrow orange band and a broad round foot."
+    },
+    "image": "/images/catalog/tt-009.jpg",
+    "sourceFileName": "EXA_8597.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1nSXEyPcPInUr3X-f5Fy0M1PyeArn7sxb/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1u2QeqHBCaLOhaT0V-4OGwon3B-vASTBN",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Амсар доорх хэсэг толигор, суурийн дээгүүр жижиг давтагдах хээтэй харагдана.",
+      "en": "The area beneath the rim appears smooth, with small repeated details above the foot."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  },
+  {
+    "id": "TT-010",
+    "slug": "bowl-dark-surface",
+    "category": "vessels",
+    "name": {
+      "mn": "Бараан гадаргуутай, хээт бүслүүртэй аяга",
+      "en": "Dark-surfaced bowl with a patterned band"
+    },
+    "description": {
+      "mn": "Бараан гадаргуу, шаргал бүслүүр, хээт доод хэсэгтэй аяганы жишиг бүртгэл.",
+      "en": "A sample bowl record with a dark surface, tan band and decorated lower section."
+    },
+    "image": "/images/catalog/tt-010.jpg",
+    "sourceFileName": "EXA_8634.jpg",
+    "sourceUrl": "https://drive.google.com/file/d/1ucYQHJOK0uzz4Tr2KvhrCHBZTdyQ3hpm/view",
+    "sourceFolderUrl": "https://drive.google.com/drive/folders/1u2QeqHBCaLOhaT0V-4OGwon3B-vASTBN",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "observations": {
+      "mn": "Дэлбэгэр амсар, бараан дээд хэсэг, шаргал нарийн зурвас, дугуй суурь харагдана.",
+      "en": "A flared rim, dark upper section, narrow tan band and round foot are visible."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр ба барааны дугаар",
+      "Тусдаа бодит эдлэл мөн эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс ба жин",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах дагалдах зүйл багтах эсэх"
+    ]
+  }
+]
