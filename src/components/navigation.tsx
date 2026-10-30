@@ -29,6 +29,7 @@ export function Navigation({ locale }: { locale: Locale }) {
           onClick={() => setOpen(false)}
         >
           <BrandLogo locale={locale} />
+          <span className="brand-slogan">{c.footerLine}</span>
         </Link>
         <nav
           className="desktop-nav"

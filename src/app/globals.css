@@ -211,6 +211,22 @@ button {
   display: block;
   flex-shrink: 0;
   width: 184px;
+  padding-block: 8px;
+}
+.wordmark .brand-logo {
+  width: 160px;
+  max-width: 100%;
+  margin-inline: auto;
+}
+.brand-slogan {
+  display: block;
+  margin-top: 4px;
+  color: var(--bronze-dark);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.45;
+  text-align: center;
+  text-wrap: balance;
 }
 .brand-logo {
   display: block;
@@ -1174,6 +1190,12 @@ button {
   }
   .wordmark {
     width: 164px;
+  }
+  .wordmark .brand-logo {
+    width: 138px;
+  }
+  .brand-slogan {
+    font-size: 9px;
   }
   .nav-actions {
     gap: 12px;
