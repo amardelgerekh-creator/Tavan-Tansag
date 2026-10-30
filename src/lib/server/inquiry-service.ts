@@ -9,12 +9,16 @@ export function inquiryStorageConfigured(): boolean {
 export const persistInquiry: PersistInquiry = async (input, key, context) => {
   if (!intakeConfigured()) return { ok: false, code: "UNAVAILABLE" };
   try {
-    const { privateFirestore } = await import("./firestore-private");
+    const [{ privateFirestore }, { notificationsConfigured }] = await Promise.all([
+      import("./firestore-private"),
+      import("./notification-service"),
+    ]);
     return await createInquiryPersistence({
       store: privateFirestore(),
       hashSecret: process.env.INQUIRY_HASH_SECRET!,
       assignee: defaultAssignee(),
       includeSamples: process.env.CATALOG_INCLUDE_SAMPLES === "true",
+      notificationsEnabled: notificationsConfigured(),
     })(input, key, context);
   } catch {
     return { ok: false, code: "UNAVAILABLE" };

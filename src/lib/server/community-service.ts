@@ -6,7 +6,10 @@ export const communityStorageConfigured = () => intakeConfigured();
 export const persistCommunity: PersistCommunity = async (input, key, context) => {
   if (!communityStorageConfigured()) return { ok: false, code: "UNAVAILABLE" };
   try {
-    const { privateFirestore } = await import("./firestore-private");
-    return await createCommunityPersistence({ store: privateFirestore(), hashSecret: process.env.INQUIRY_HASH_SECRET! })(input, key, context);
+    const [{ privateFirestore }, { notificationsConfigured }] = await Promise.all([
+      import("./firestore-private"),
+      import("./notification-service"),
+    ]);
+    return await createCommunityPersistence({ store: privateFirestore(), hashSecret: process.env.INQUIRY_HASH_SECRET!, notificationsEnabled: notificationsConfigured() })(input, key, context);
   } catch { return { ok: false, code: "UNAVAILABLE" }; }
 };

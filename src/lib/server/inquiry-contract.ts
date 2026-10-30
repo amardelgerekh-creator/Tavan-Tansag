@@ -55,7 +55,7 @@ export function normalizeContact(
 }
 
 export type PersistenceResult =
-  | { ok: true; reference: string; duplicate: boolean }
+  | { ok: true; reference: string; duplicate: boolean; notificationId?: string }
   | {
       ok: false;
       code:

@@ -8,7 +8,7 @@ import { decodeFields, PrivateStoreError, type DocumentData, type FirestoreGatew
 const actor = { uid: "staff-uid", email: "owner@example.com" };
 const input: CommunityInput = { email: "TEST@example.com", firstName: "Test Visitor", interests: ["men", "snuff-bottles"], locale: "en", consent: true };
 const key = (i: number) => `00000000-0000-4000-8000-${String(i).padStart(12, "0")}`;
-function fixture() {
+function fixture(notificationsEnabled = false) {
   const rows = new Map<string, DocumentData>(), versions = new Map<string, number>();
   const transactions = new Map<string, { snapshot: Map<string, DocumentData>; versions: Map<string, number>; reads: Set<string> }>();
   let sequence = 0, clock = Date.parse("2026-10-30T02:00:00.000Z"), fail = false, pipelineCalls = 0;
@@ -60,7 +60,7 @@ function fixture() {
       return result;
     },
   };
-  const persist = createCommunityPersistence({ store, hashSecret: "test-only-secret-at-least-32-characters", now: () => clock });
+  const persist = createCommunityPersistence({ store, hashSecret: "test-only-secret-at-least-32-characters", notificationsEnabled, now: () => clock });
   const staff = createCommunityStaffStore({ store, allowedEmails: [actor.email], now: () => clock });
   const records = () => [...rows].filter(([path]) => /^community_requests\/[^/]+$/.test(path)).map(([, data]) => communityRecordSchema.parse(data));
   return { rows, store, persist, staff, records, advance: (ms: number) => { clock += ms; }, fail: () => { fail = true; }, pipelineCalls: () => pipelineCalls };
@@ -90,6 +90,26 @@ test("email deduplication survives simultaneous distinct keys and does not overw
   assert.deepEqual(await f.persist({ ...input, firstName: "Different Visitor", interests: ["women"] }, key(3)), { ok: true });
   assert.equal(f.records()[0].firstName, input.firstName); assert.deepEqual(f.records()[0].interests, input.interests);
   assert.equal([...f.rows.keys()].filter(path => path.endsWith("/activity/created")).length, 1);
+});
+
+test("new community request atomically queues once across concurrent email deduplication, without personal data", async () => {
+  const f = fixture(true);
+  const results = await Promise.all([f.persist(input, key(1)), f.persist(input, key(2))]);
+  assert.ok(results.every(result => result.ok));
+  assert.equal(results.filter(result => result.ok && result.notificationId).length, 1);
+  const queued = [...f.rows].filter(([path]) => path.startsWith("notification_outbox/"));
+  assert.equal(queued.length, 1);
+  const row = queued[0][1];
+  assert.equal(row.sourceId, f.records()[0].id);
+  assert.equal(row.productId, null);
+  assert.equal(row.status, "pending");
+  assert.equal(row.envelope, null);
+  assert.equal(JSON.stringify(row).includes(input.email.toLowerCase()), false);
+  assert.equal(JSON.stringify(row).includes(input.firstName), false);
+  assert.deepEqual(await f.persist(input, key(1)), { ok: true });
+  const failed = fixture(true); failed.fail();
+  assert.deepEqual(await failed.persist(input, key(3)), { ok: false, code: "UNAVAILABLE" });
+  assert.equal(failed.rows.size, 0);
 });
 
 test("email limits survive IP changes, replay remains safe, and counters expire after 15 minutes", async () => {
