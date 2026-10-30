@@ -1,0 +1,31 @@
+.catalog-workspace { padding-top: 28px; border-top: 1px solid var(--line); }
+.catalog-review-heading { display: flex; gap: 24px; justify-content: space-between; align-items: flex-start; }
+.catalog-review-heading h2 { font-size: clamp(24px, 3vw, 36px); margin: 12px 0; }
+.catalog-review-heading p, .catalog-review-summary, .catalog-review-help { color: var(--muted); line-height: 1.7; }
+.catalog-review-summary { margin: 22px 0; }
+.catalog-review-layout { display: grid; grid-template-columns: minmax(230px, .75fr) minmax(0, 1.75fr); gap: 24px; align-items: start; }
+.catalog-review-list { display: grid; gap: 10px; }
+.catalog-review-card { display: grid; gap: 7px; width: 100%; padding: 18px; text-align: left; background: var(--paper); border: 1px solid var(--line); cursor: pointer; }
+.catalog-review-card.is-selected { border-color: var(--bronze); box-shadow: inset 3px 0 var(--bronze); }
+.catalog-review-card span, .catalog-review-card small { color: var(--muted); font-size: 12px; }
+.catalog-review-card strong { font-weight: 500; line-height: 1.5; }
+.catalog-review-editor { padding: clamp(16px, 2.5vw, 30px); border: 1px solid var(--line); min-width: 0; }
+.catalog-review-editor h3 { margin: 12px 0 16px; font-size: 24px; }
+.catalog-review-editor header a { font-size: 13px; text-decoration: underline; overflow-wrap: anywhere; }
+.catalog-review-editor fieldset { border: 0; padding: 0; margin: 24px 0; min-width: 0; }
+.catalog-review-editor legend { font-weight: 500; margin-bottom: 20px; }
+.catalog-review-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.catalog-review-grid label { display: grid; gap: 8px; font-size: 13px; align-content: start; }
+.catalog-review-grid input, .catalog-review-grid textarea, .catalog-review-grid select { width: 100%; min-width: 0; border: 1px solid var(--line); border-radius: 0; color: var(--ink); background: var(--paper); padding: 12px; font: inherit; line-height: 1.5; }
+.catalog-review-grid textarea { resize: vertical; }
+.catalog-review-checks { display: grid; gap: 14px; padding-top: 24px; }
+.catalog-review-checks label { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; }
+.catalog-review-checks input[type="checkbox"] { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; padding: 0; accent-color: var(--bronze); }
+.catalog-review-help { font-size: 13px; margin: 18px 0; }
+.catalog-review-editor summary { cursor: pointer; font-size: 14px; }
+.catalog-review-editor details ul { padding-left: 20px; font-size: 13px; line-height: 1.8; }
+.catalog-review-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+.catalog-review-actions button:disabled { cursor: not-allowed; opacity: .5; }
+.catalog-review-empty { padding: 30px; background: var(--paper); color: var(--muted); }
+@media (max-width: 760px) { .catalog-review-layout { grid-template-columns: 1fr; } .catalog-review-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } .catalog-review-heading { flex-direction: column; } }
+@media (max-width: 480px) { .catalog-review-grid, .catalog-review-list { grid-template-columns: 1fr; } .catalog-review-actions { flex-direction: column; align-items: stretch; } }

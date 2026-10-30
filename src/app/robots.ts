@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       ...(live
         ? {
             allow: "/",
-            disallow: ["/api/", "/admin", "/mn/inquiry", "/en/inquiry"],
+            disallow: ["/api/", "/admin", "/mn/staff", "/en/staff", "/mn/inquiry", "/en/inquiry"],
           }
         : { disallow: "/" }),
     },

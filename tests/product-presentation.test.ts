@@ -10,11 +10,12 @@ test("sample records never present a price or stock claim as confirmed", () => {
   const sample = { ...products[0], price: 2_500_000, availability: "available" };
   assert.equal(productPrice(sample, "en"), "Price on enquiry");
   assert.equal(productAvailability(sample, "en"), "Confirm with our team");
-  const reviewed = { ...sample, verificationStatus: "verified", publicationStatus: "published" };
+  const reviewed = { ...sample, verificationStatus: "verified", publicationStatus: "published", priceMode: "fixed" as const };
   assert.match(productPrice(reviewed, "en"), /2,500,000/);
   assert.equal(productAvailability(reviewed, "en"), "Available");
   assert.equal(productAvailability({ ...reviewed, availability: "sold" }, "mn"), "Борлогдсон");
   assert.equal(productPrice({ ...reviewed, price: null }, "en"), "Price on enquiry");
+  assert.equal(productPrice({ ...reviewed, priceMode: "inquiry" }, "en"), "Price on enquiry");
 });
 
 test("recommendations stay within the current category and exclude the current piece", () => {

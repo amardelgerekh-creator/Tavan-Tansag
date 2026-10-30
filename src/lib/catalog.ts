@@ -23,6 +23,8 @@ export interface Product {
   weight: string | null;
   maker: string | null;
   period: string | null;
+  condition?: string | null;
+  priceMode?: "fixed" | "inquiry" | null;
   observations: Localized;
 }
 export const categories: Record<Category, Localized> = {

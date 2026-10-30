@@ -60,6 +60,7 @@ export default async function Product({
     [c.code, p.id],
     [c.material, p.material],
     [c.dimensions, p.dimensions],
+    [mn ? "Нөхцөл байдал" : "Condition", p.condition],
     [mn ? "Жин" : "Weight", p.weight],
     [mn ? "Урлаач" : "Maker", p.maker],
     [mn ? "Хийсэн үе" : "Period", p.period],

@@ -100,6 +100,24 @@ test("same-key payload changes are conflicts and do not replace the original cus
   assert.equal(fixture.rows.get(`inquiries/${saved.reference}`)?.message, input.message);
 });
 
+test("service intent is persisted with the piece and protected against retry-key changes", async () => {
+  const fixture = storeFixture();
+  const saved = await fixture.persist({ ...input, purpose: "international" }, key(1));
+  assert.ok(saved.ok);
+  assert.equal(fixture.rows.get(`inquiries/${saved.reference}`)?.purpose, "international");
+  assert.equal(fixture.rows.get(`inquiries/${saved.reference}`)?.productId, "TT-001");
+  assert.deepEqual(await fixture.persist({ ...input, purpose: "visit" }, key(1)), { ok: false, code: "IDEMPOTENCY_CONFLICT" });
+});
+
+test("general intent keeps compatibility with enquiries submitted before intent was added", async () => {
+  const fixture = storeFixture();
+  const saved = await fixture.persist(input, key(1));
+  const replay = await fixture.persist({ ...input, purpose: "general" }, key(1));
+  assert.ok(saved.ok && replay.ok);
+  assert.equal(saved.reference, replay.reference);
+  assert.equal(replay.duplicate, true);
+});
+
 test("contact throttling survives IP changes and resets after the shared time window", async () => {
   const fixture = storeFixture();
   for (let i = 1; i <= 3; i++) assert.equal((await fixture.persist(input, key(i), { clientIp: `203.0.113.${i}` })).ok, true);

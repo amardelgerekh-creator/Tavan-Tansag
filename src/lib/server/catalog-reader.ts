@@ -25,6 +25,8 @@ const publicProduct = z.object({
   weight: z.string().nullable(),
   maker: z.string().nullable(),
   period: z.string().nullable(),
+  condition: z.string().nullish(),
+  priceMode: z.enum(["fixed", "inquiry"]).nullish(),
 });
 
 export class CatalogUnavailableError extends Error {

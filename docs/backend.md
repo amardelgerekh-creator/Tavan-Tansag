@@ -8,7 +8,7 @@ The stack is GitHub, Firebase and Vercel. Firebase project `tavan-tansag-30560` 
 
 ## Private storage and identity
 
-Private collections: `inquiries`, nested `inquiries/{reference}/activity`, `inquiry_keys`, `inquiry_limits`. Direct client reads/writes remain denied. Only server code uses Google Workload Identity Federation:
+Private collections: `inquiries`, nested `inquiries/{reference}/activity`, `inquiry_keys`, `inquiry_limits`, `catalog_reviews`, nested `catalog_reviews/{id}/activity`. Direct client reads/writes remain denied. Only server code uses Google Workload Identity Federation:
 
 - Vercel issuer: `https://oidc.vercel.com/tavan-tansag`.
 - Audience: `https://vercel.com/tavan-tansag`.
@@ -43,6 +43,16 @@ See `.env.example`. Production requires `INQUIRIES_ENABLED=true`, the five proje
 Local preview uses the catalog fixture and closed intake by default. A localhost Google domain does not grant localhost private storage access. Firebase's deployed auth provider and authorized-domain configuration must be verified separately; this CLI version did not apply `auth.authorizedDomains`, so the exact production domains were also applied through the Auth Admin API.
 
 ## Operating limits and next work
+
+### Catalog verification and operational reports (2026-10-30)
+
+`GET /api/staff/catalog` loads the ten source-linked items and private review drafts only after staff authentication. `PATCH /api/staff/catalog/{id}` checks same origin, bounded strict JSON and expected revision. Draft saves update only private review+audit. Explicit publication requires bilingual names/descriptions, material, dimensions, condition, a price policy, availability, information/photo owners, evidence notes and current-reviewer facts/rights/distinct-item attestations. It commits public allowlisted fields, private review and audit together. Condition and priceMode are optional backward-compatible public additions. No existing item is automatically verified; unknown optional maker/age/weight remain null.
+
+`GET /api/staff/metrics?days=7|30|90` authenticates staff then runs one Enterprise grouped aggregate query over all enquiries created in the selected rolling period. Counts are independent of list pagination; a group-limit sentinel fails instead of showing truncated totals. Output contains only counts/product IDs/status/language and follow-up categories, no names or contact data. Won means staff-marked sale, not independently verified payment or revenue. No page-view tracker or third-party analytics was added.
+
+Inquiry `purpose` is a validated optional enum (general/visit/gift/international/care). New records store it; older records display general. General requests retain the previous replay fingerprint to preserve retries across the deployment. Other purpose changes conflict with reuse of the same key. Public service links carry purpose through language switching.
+
+Sitemap includes services and the four guides only when SITE_INDEXABLE is deliberately enabled; unverified item pages remain excluded. Staff paths are disallowed in robots even in indexable mode. Optional GOOGLE_SITE_VERIFICATION accepts a real Search Console ownership code, but no code or verified ownership is invented.
 
 The store must verify all ten catalog entries and supply additional actual views, specifications, stock and price policy. Single source images are zoomable, not fabricated multi-view galleries. Unverified pages stay excluded from search indexing. No marketing analytics, automatic email/SMS, inventory sync or online payment was added.
 

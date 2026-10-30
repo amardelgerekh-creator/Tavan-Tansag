@@ -30,6 +30,10 @@ export const articles: Article[] = [
     imageIndex: 0,
     relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
     readingMinutes: 3,
+    sources: [{
+      title: { mn: "ICOM — Эдлэлийг таньж тодорхойлох бүртгэлийн заавар", en: "ICOM — Object identification and documentation" },
+      url: "https://icom.museum/en/resources/standards-guidelines/objectid/",
+    }],
     takeaways: [
       { mn: "Бүтэн зураг, ойрын зураг, хэмжээсийг хамтад нь харах", en: "Look at the whole object, the details and its scale" },
       { mn: "Зургаас харагдах шинжийг баталгаатай материалаас ялгах", en: "Separate visible appearance from verified material" },
@@ -96,6 +100,10 @@ export const articles: Article[] = [
     imageIndex: 4,
     relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
     readingMinutes: 3,
+    sources: [{
+      title: { mn: "ICOM — Эдлэлийн мэдээлэл, зураг, тайлбарыг бүртгэх нь", en: "ICOM — Recording an object’s details, photographs and description" },
+      url: "https://icom.museum/en/resources/standards-guidelines/objectid/",
+    }],
     takeaways: [
       { mn: "Хэрэглэх, бэлэглэх эсвэл цуглуулах зорилгоо тодруулах", en: "Explain whether the piece is for use, a gift or a collection" },
       { mn: "Материал, нөхцөл байдал, бэлэн байдлыг баталгаажуулах", en: "Confirm materials, condition and availability" },

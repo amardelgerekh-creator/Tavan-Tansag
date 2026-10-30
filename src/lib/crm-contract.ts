@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { inquiryPurposes } from "./inquiry-options";
 
 export const crmStatuses = ["new", "contacted", "consultation", "quoted", "won", "closed"] as const;
 export type CrmStatus = typeof crmStatuses[number];
@@ -19,6 +20,7 @@ export const inquiryRecordSchema = z.object({
   contactValue: z.string(),
   message: z.string(),
   locale: z.enum(["mn", "en"]),
+  purpose: z.enum(inquiryPurposes).optional().default("general"),
   productId: z.string().nullable(),
   productName: z.object({ mn: z.string(), en: z.string() }).nullable(),
   status: z.enum(crmStatuses),

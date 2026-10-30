@@ -22,13 +22,13 @@ export default async function Inquiry({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ piece?: string }>;
+  searchParams: Promise<{ piece?: string; purpose?: string }>;
 }) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const products = await getCatalog();
   const c = t(locale);
-  const { piece } = await searchParams;
+  const { piece, purpose } = await searchParams;
   const enabled = inquiryStorageConfigured();
   return (
     <section className="container inquiry-page">
@@ -55,6 +55,7 @@ export default async function Inquiry({
         locale={locale}
         products={products}
         selectedId={piece}
+        purpose={purpose}
         enabled={enabled}
       />
     </section>

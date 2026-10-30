@@ -9,6 +9,7 @@ import {
 import { t } from "@/lib/copy";
 import { Arrow } from "./icons";
 import { BrandLogo } from "./brand-logo";
+import { productPrice } from "@/lib/product-presentation";
 
 export function ProductCard({
   product: p,
@@ -42,7 +43,7 @@ export function ProductCard({
       </Link>
       <div className="product-meta">
         <span>{categories[p.category]?.[locale] || c.collection}</span>
-        <span>{c.price}</span>
+        <span>{productPrice(p, locale)}</span>
       </div>
       <h3>
         <Link href={"/" + locale + "/products/" + p.slug}>
@@ -86,6 +87,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <Link href={"/" + locale + "/collection"}>{c.collection}</Link>
           <Link href={"/" + locale + "/heritage"}>{c.heritage}</Link>
           <Link href={"/" + locale + "/about"}>{c.about}</Link>
+          <Link href={"/" + locale + "/services"}>{locale === "mn" ? "Үйлчилгээ" : "Services"}</Link>
         </div>
         <div className="footer-links">
           <a href={facebookUrl} target="_blank" rel="noreferrer">

@@ -6,6 +6,10 @@ import { getAuth, GoogleAuthProvider, inMemoryPersistence, onAuthStateChanged, s
 import type { Locale } from "@/lib/catalog";
 import { crmStatuses, inquiryRecordSchema, type CrmPatch, type CrmStatus, type InquiryRecord } from "@/lib/crm-contract";
 import "@/app/crm.css";
+import { inquiryPurposeLabels } from "@/lib/inquiry-options";
+import { CatalogReviewWorkspace } from "./catalog-review-workspace";
+import { CrmMetrics } from "./crm-metrics";
+import "@/app/crm-metrics.css";
 
 const statusNames: Record<CrmStatus, Record<Locale, string>> = {
   new: { mn: "Шинэ хүсэлт", en: "New" },
@@ -58,6 +62,7 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
   const [hasMore, setHasMore] = useState(false);
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selected, setSelected] = useState<InquiryRecord | null>(null);
+  const [workspace, setWorkspace] = useState<"inquiries" | "catalog" | "metrics">("inquiries");
 
   useEffect(() => {
     let active = true;
@@ -77,6 +82,7 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
           setHasMore(false);
           setNextCursor(null);
           setUser(current);
+          setWorkspace("inquiries");
           setReady(true);
         });
       } catch (cause) {
@@ -149,8 +155,8 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
     <div className="crm-dashboard">
       <header className="crm-header">
         <div><span className="eyebrow">TAVAN TANSAG / {locale === "mn" ? "АЖИЛТНЫ ХЭСЭГ" : "STAFF AREA"}</span>
-          <h1>{locale === "mn" ? "Харилцагчийн хүсэлтүүд" : "Client enquiries"}</h1>
-          <p>{locale === "mn" ? "Зөвлөгөө, үнийн санал, дараагийн холбоо барилтыг нэг дор." : "Consultations, quotations and the next conversation, in one place."}</p>
+          <h1>{locale === "mn" ? "Дэлгүүрийн ажлын талбар" : "Store workspace"}</h1>
+          <p>{locale === "mn" ? "Хүсэлт, эдлэлийн баталгаажуулалт, үр дүнгийн тайлан." : "Enquiries, catalog verification and results."}</p>
         </div>
         {user && <div className="crm-session"><span>{staffEmail || user.email}</span><button type="button" className="crm-secondary" onClick={() => void logout()}>{locale === "mn" ? "Гарах" : "Sign out"}</button></div>}
       </header>
@@ -163,6 +169,10 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
         <button className="button button-dark" disabled={!ready || loginBusy} onClick={() => void login()}>{loginBusy ? locale === "mn" ? "Нэвтэрч байна…" : "Signing in…" : locale === "mn" ? "Google эрхээр нэвтрэх" : "Continue with Google"}</button>
         {!ready && error && <button type="button" className="crm-secondary" onClick={() => window.location.reload()}>{locale === "mn" ? "Хуудсыг дахин ачаалах" : "Reload page"}</button>}
       </section> : <>
+        {staffEmail && <nav className="staff-workspace-nav" aria-label={locale === "mn" ? "Ажилтны цэс" : "Workspace sections"}>
+          {(["inquiries", "catalog", "metrics"] as const).map(value => <button key={value} type="button" aria-pressed={workspace === value} onClick={() => { setWorkspace(value); setNotice(""); }}>{({ inquiries: { mn: "Хүсэлтүүд", en: "Enquiries" }, catalog: { mn: "10 эдлэлийн бүртгэл", en: "Catalog verification" }, metrics: { mn: "Үр дүн", en: "Results" } })[value][locale]}</button>)}
+        </nav>}
+        {workspace === "catalog" && staffEmail ? <CatalogReviewWorkspace locale={locale} user={user} /> : workspace === "metrics" && staffEmail ? <CrmMetrics locale={locale} user={user} /> : <>
         <div className="crm-toolbar">
           <label>{locale === "mn" ? "Хүсэлтийн төлөв" : "Status"}<select value={status} onChange={(event) => { setSelected(null); setItems([]); setHasMore(false); setNextCursor(null); setNotice(""); setStatus(event.target.value as CrmStatus | ""); }}><option value="">{locale === "mn" ? "Бүх төлөв" : "All statuses"}</option>{crmStatuses.map((value) => <option key={value} value={value}>{statusNames[value][locale]}</option>)}</select></label>
           <span className="crm-result-count">{items.length} {locale === "mn" ? "хүсэлт ачаалсан" : "enquiries loaded"}</span>
@@ -189,6 +199,7 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
           }} onConflict={() => { setNotice(locale === "mn" ? "Энэ хүсэлт өөрчлөгдсөн тул таны засварыг хадгалаагүй. Жагсаалтыг шинэчиллээ; хүсэлтээ дахин сонгож шинэ мэдээллийг шалгана уу." : "This enquiry changed, so your edits were not saved. The list has been refreshed; select the enquiry again to review the latest details."); void load(); }} onClose={() => setSelected(null)} /> : <aside className="crm-selection-placeholder"><span aria-hidden="true">↖</span><p>{locale === "mn" ? "Жагсаалтаас хүсэлт сонгож дэлгэрэнгүйг үзнэ үү." : "Select an enquiry to see the details."}</p></aside>}
         </div>
         <p className="crm-footnote">{locale === "mn" ? "Бүх цаг Улаанбаатарын цагаар. Мэдээлэл зөвхөн ажилтны хэрэгцээнд зориулагдсан." : "All times are in Ulaanbaatar time. Client information is for authorized staff use only."}</p>
+        </>}
       </>}
     </div>
   );
@@ -239,6 +250,7 @@ function InquiryEditor({ item, locale, user, onSaved, onConflict, onClose }: {
       <div><dt>{locale === "mn" ? "Холбоо барих" : "Contact"}</dt><dd><a href={item.contactMethod === "email" ? `mailto:${encodeURIComponent(item.contactValue)}` : `tel:${item.contactValue.replace(/[^+\d]/g, "")}`}>{item.contactValue}</a><button type="button" className="crm-copy" onClick={async () => { try { await navigator.clipboard.writeText(item.contactValue); if (mounted.current) setCopied(true); } catch { setError(locale === "mn" ? "Хуулж чадсангүй. Мэдээллийг сонгон хуулна уу." : "Copy failed. Select and copy the contact details."); } }}>{copied ? locale === "mn" ? "Хуулсан" : "Copied" : locale === "mn" ? "Хуулах" : "Copy"}</button></dd></div>
       <div><dt>{locale === "mn" ? "Сонирхсон эдлэл" : "Piece"}</dt><dd>{item.productId ? `${item.productId} · ${item.productName?.[locale] || ""}` : locale === "mn" ? "Ерөнхий зөвлөгөө" : "General enquiry"}</dd></div>
       <div><dt>{locale === "mn" ? "Харилцах хэл" : "Language"}</dt><dd>{item.locale === "mn" ? "Монгол" : "English"}</dd></div>
+      <div><dt>{locale === "mn" ? "Хүсэлтийн төрөл" : "Enquiry purpose"}</dt><dd>{inquiryPurposeLabels[item.purpose ?? "general"][locale]}</dd></div>
       <div><dt>{locale === "mn" ? "Ирсэн" : "Received"}</dt><dd>{timeLabel(item.createdAt, locale)}</dd></div>
     </dl>
     <div className="crm-client-message"><span className="eyebrow">{locale === "mn" ? "ХАРИЛЦАГЧИЙН ЗУРВАС" : "CLIENT MESSAGE"}</span><p>{item.message}</p></div>

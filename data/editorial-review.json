@@ -1,0 +1,96 @@
+{
+  "updatedAt": "2026-10-30",
+  "purpose": "Internal editorial evidence register. This file is not a public page or a claim of expert review.",
+  "sourceCheckMethod": "Official source pages opened and checked by Codex. This is an AI-assisted source check, not a human scholarly or conservation review.",
+  "articles": [
+    {
+      "slug": "look-closer",
+      "sourceCheckedAt": "2026-10-30",
+      "sourceCheckStatus": "checked",
+      "sources": [
+        {
+          "url": "https://icom.museum/en/resources/standards-guidelines/objectid/",
+          "publisher": "International Council of Museums",
+          "supports": "Recording photographs, dimensions, materials, distinguishing features and a short description.",
+          "limits": "Supports documentation practice; does not verify any Tavan Tansag item or provide purchase advice."
+        }
+      ],
+      "editorialBasis": "Original guide to viewing catalog photographs and asking for further details.",
+      "relatedProductIds": ["TT-001", "TT-002", "TT-003", "TT-004", "TT-005"],
+      "storeReviewStatus": "pending",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "slug": "questions-before-choosing",
+      "sourceCheckedAt": "2026-10-30",
+      "sourceCheckStatus": "checked",
+      "sources": [
+        {
+          "url": "https://icom.museum/en/resources/standards-guidelines/objectid/",
+          "publisher": "International Council of Museums",
+          "supports": "Distinguishing documentation categories such as materials, maker, date and measurements.",
+          "limits": "Does not certify the catalog, business terms, food safety or riding suitability."
+        }
+      ],
+      "editorialBasis": "Original selection checklist; the enquiry-only flow reflects the implemented website, without a payment or reservation promise.",
+      "relatedProductIds": ["TT-001", "TT-002", "TT-003", "TT-004", "TT-005"],
+      "storeReviewStatus": "pending",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "slug": "stories-with-evidence",
+      "sourceCheckedAt": "2026-10-30",
+      "sourceCheckStatus": "checked",
+      "sources": [
+        {
+          "url": "https://www.metmuseum.org/art/collection/search/762162",
+          "publisher": "The Metropolitan Museum of Art",
+          "supports": "A documented Mongolian pair of stirrups provides an example of recording date, material, dimensions and accession number.",
+          "limits": "The museum object is independent of this shop; resemblance cannot establish a shared origin, date, maker or authenticity."
+        }
+      ],
+      "editorialBasis": "Original explanation of separating visible observations, oral accounts and evidence.",
+      "relatedProductIds": ["TT-006", "TT-007", "TT-008", "TT-009", "TT-010"],
+      "storeReviewStatus": "pending",
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "slug": "caring-for-your-piece",
+      "sourceCheckedAt": "2026-10-30",
+      "sourceCheckStatus": "checked",
+      "sources": [
+        {
+          "url": "https://www.canada.ca/en/conservation-institute/services/conservation-preservation-publications/canadian-conservation-institute-notes/care-silver.html",
+          "publisher": "Canadian Conservation Institute",
+          "supports": "Polishing can remove silver surface material; plating, gilding and mixed materials need particular care.",
+          "limits": "Silver-specific source. No treatment recipe is prescribed for the unverified materials in the shop catalog."
+        }
+      ],
+      "editorialBasis": "Original preparation guide for requesting object-specific care advice, not a diagnosis or conservation treatment plan.",
+      "relatedProductIds": ["TT-006", "TT-007", "TT-008", "TT-009", "TT-010"],
+      "storeReviewStatus": "pending",
+      "reviewedBy": null,
+      "reviewedAt": null
+    }
+  ],
+  "businessDetails": {
+    "checkedAt": "2026-10-30",
+    "knownFromExistingProject": ["Ulaanbaatar, Mongolia", "User-provided official Facebook page", "Mongolian and English website enquiry flow"],
+    "sources": [
+      { "url": "https://www.facebook.com/profile.php?id=61572155406045", "checkResult": "Direct public fetch unavailable; no new business claim taken from search results." },
+      { "url": "https://drive.google.com/drive/folders/1xJEoi13p6yXufxGmnIqUVdkxe0-fAgCB", "checkResult": "Connected Drive returned NOT_FOUND for this folder; existing asset manifest retained." }
+    ],
+    "streetAddress": null,
+    "openingHours": null,
+    "publicTelephone": null,
+    "responseTimePromise": null,
+    "giftPackagingPolicy": null,
+    "internationalDeliveryPolicy": null,
+    "artisanProfile": null,
+    "reviewedBy": null,
+    "reviewedAt": null
+  }
+}

@@ -11,6 +11,7 @@ export function productPrice(product: Product, locale: Locale): string {
   if (
     product.verificationStatus !== "verified" ||
     product.publicationStatus !== "published" ||
+    product.priceMode === "inquiry" ||
     product.price === null ||
     !Number.isFinite(product.price) ||
     product.price < 0 ||

@@ -3,17 +3,20 @@ import { useRef, useState } from "react";
 import { facebookUrl, type Locale, type Product } from "@/lib/catalog";
 import { t } from "@/lib/copy";
 import { Arrow } from "./icons";
+import { inquiryPurpose, inquiryPurposes, inquiryPurposeLabels } from "@/lib/inquiry-options";
 
 export function InquiryForm({
   locale,
   products,
   selectedId,
   enabled,
+  purpose,
 }: {
   locale: Locale;
   products: Product[];
   selectedId?: string;
   enabled: boolean;
+  purpose?: string;
 }) {
   const c = t(locale);
   const [method, setMethod] = useState("email");
@@ -41,6 +44,7 @@ export function InquiryForm({
           contactValue: form.get("contactValue"),
           message: form.get("message"),
           locale,
+          purpose: form.get("purpose"),
           productId: form.get("productId") || undefined,
           website: form.get("website") || "",
         }),
@@ -106,6 +110,12 @@ export function InquiryForm({
               {p.id} · {p.name[locale]}
             </option>
           ))}
+        </select>
+      </label>
+      <label>
+        {locale === "mn" ? "Танд ямар тусламж хэрэгтэй вэ?" : "How can we help?"}
+        <select name="purpose" defaultValue={inquiryPurpose(purpose)}>
+          {inquiryPurposes.map(value => <option key={value} value={value}>{inquiryPurposeLabels[value][locale]}</option>)}
         </select>
       </label>
       <label>

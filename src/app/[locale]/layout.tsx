@@ -30,6 +30,7 @@ export async function generateMetadata({
     icons: {
       icon: { url: "/images/brand/mark.svg", type: "image/svg+xml" },
     },
+    ...(process.env.GOOGLE_SITE_VERIFICATION ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } } : {}),
     robots: {
       index: process.env.SITE_INDEXABLE === "true",
       follow: process.env.SITE_INDEXABLE === "true",

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { inquiryPurposes } from "../inquiry-options";
 
 const contactValue = z.string().trim().min(5).max(160);
 
@@ -9,6 +10,7 @@ export const inquirySchema = z
     contactValue,
     message: z.string().trim().min(10).max(2000),
     locale: z.enum(["mn", "en"]),
+    purpose: z.enum(inquiryPurposes).optional(),
     productId: z
       .string()
       .regex(/^TT-\d{3,6}$/)

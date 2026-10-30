@@ -58,8 +58,8 @@ export default async function Privacy({
           </h2>
           <p>
             {locale === "mn"
-              ? "Цахим хүсэлт хүлээн авах үед таны нэр, сонгосон холбоо барих хэлбэр, и-мэйл хаяг эсвэл утасны дугаар, асуултын агуулга, сонирхсон эдлэлийн код болон харилцах хэлийг бүртгэнэ. Эдгээрийг таны асуултад хариу өгөх, шаардлагатай мэдээллийг тодруулах, хүсэлтийн явцыг хөтлөхөд ашиглана."
-              : "When online enquiries are available, they collect your name, preferred contact method, email address or phone number, message, selected piece reference and language. These details are used to answer your question, clarify the information you need and keep track of the enquiry."}
+              ? "Цахим хүсэлт хүлээн авах үед таны нэр, сонгосон холбоо барих хэлбэр, и-мэйл хаяг эсвэл утасны дугаар, хүсэлтийн төрөл, асуултын агуулга, сонирхсон эдлэлийн код болон харилцах хэлийг бүртгэнэ. Эдгээрийг таны асуултад хариу өгөх, шаардлагатай мэдээллийг тодруулах, хүсэлтийн явцыг хөтлөхөд ашиглана."
+              : "When online enquiries are available, they collect your name, preferred contact method, email address or phone number, enquiry purpose, message, selected piece reference and language. These details are used to answer your question, clarify the information you need and keep track of the enquiry."}
           </p>
           <p>
             {locale === "mn"
@@ -83,6 +83,9 @@ export default async function Privacy({
               ? "Зөвлөгөө хүссэн мэдээллийг сурталчилгааны бүртгэлд автоматаар нэмэхгүй. Энэ хувилбарт сурталчилгааны хяналт, хэрэглэгчийн зан төлөв шинжлэх нэмэлт хэрэгсэл суулгаагүй."
               : "Making an enquiry does not automatically subscribe you to marketing. This version has no added advertising tracking or behavioural analytics tools."}
           </p>
+          <p>{locale === "mn"
+            ? "Ажилтны тайланд эдлэл, хэл, төлөвөөр нэгтгэсэн хүсэлтийн тоо болон ажилтан борлуулсан гэж тэмдэглэсэн үр дүнг харуулна. Тайлангийн тоон мэдээлэлд харилцагчийн нэр, холбоо барих мэдээлэл, зурвас орохгүй."
+            : "Staff reports show enquiry counts grouped by piece, language and status, including outcomes marked as sales by staff. These aggregate reports do not include customer names, contact details or messages."}</p>
           <p>
             {locale === "mn"
               ? "Вебсайт ажиллахад шаардлагатай техникийн бүртгэлийг үйлчилгээ үзүүлэгчид боловсруулж болно. Манай Facebook холбоосоор орвол тухайн үйлчилгээний мэдээлэл ашиглах нөхцөл үйлчилнэ."
@@ -116,8 +119,8 @@ export default async function Privacy({
         </section>
         <p className="article-meta">
           {locale === "mn"
-            ? "Энэхүү мэдэгдэл нь Таван Тансагийн зөвлөгөөний хүсэлтийн үйлчилгээнд хамаарна. Шинэчлэгдсэн: 2026 оны 10 дугаар сарын 29."
-            : "This notice applies to Tavan Tansag’s enquiry service. Updated 29 October 2026."}
+            ? "Энэхүү мэдэгдэл нь Таван Тансагийн зөвлөгөөний хүсэлтийн үйлчилгээнд хамаарна. Шинэчлэгдсэн: 2026 оны 10 дугаар сарын 30."
+            : "This notice applies to Tavan Tansag’s enquiry service. Updated 30 October 2026."}
         </p>
       </div>
     </section>

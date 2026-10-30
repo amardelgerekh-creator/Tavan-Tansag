@@ -78,7 +78,8 @@ test("Firebase upload contains ten public sample docs, no provenance, and refuse
     assert.equal(product.visibility, "public");
     assert.equal(product.publicationStatus, "sample");
     assert.equal(product.verificationStatus, "needs_review");
-    assert.deepEqual(Object.keys(product).sort(), [...catalogFields].sort());
+    // Older seed documents predate these optional, reviewed public fields.
+    assert.deepEqual(Object.keys(product).sort(), catalogFields.filter((field) => !["condition", "priceMode"].includes(field)).sort());
     assert.equal(writes[i].currentDocument.exists, false);
     assert.equal(writes[i].update.name, `projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/${product.id}`);
   }

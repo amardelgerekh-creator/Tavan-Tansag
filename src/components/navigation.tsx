@@ -18,6 +18,7 @@ export function Navigation({ locale }: { locale: Locale }) {
   const items = [
     ["collection", c.collection],
     ["heritage", c.heritage],
+    ["services", locale === "mn" ? "Үйлчилгээ" : "Services"],
     ["about", c.about],
   ] as const;
   return (

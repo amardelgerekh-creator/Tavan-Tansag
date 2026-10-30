@@ -31,6 +31,7 @@ export function createInquiryPersistence(options: {
     const fingerprint = hmac("payload", JSON.stringify({
       name: input.name, contactMethod: input.contactMethod, contactValue,
       message: input.message, locale: input.locale, productId: input.productId ?? null,
+      ...(input.purpose && input.purpose !== "general" ? { purpose: input.purpose } : {}),
     }));
     const keyPath = `inquiry_keys/${hmac("key", key)}`;
     const contactPath = `inquiry_limits/${hmac("contact", input.contactMethod + ":" + contactValue)}`;
@@ -78,7 +79,7 @@ export function createInquiryPersistence(options: {
         const writes = [
           documentWrite(store, `inquiries/${reference}`, {
             reference, name: input.name, contactMethod: input.contactMethod, contactValue,
-            message: input.message, locale: input.locale, productId: input.productId ?? null, productName,
+            message: input.message, locale: input.locale, purpose: input.purpose ?? "general", productId: input.productId ?? null, productName,
             status: "new", assignee: options.assignee, followUpAt: null, notes: "", revision: 0,
             createdAt: timestamp, updatedAt: timestamp,
           }, { exists: false }),

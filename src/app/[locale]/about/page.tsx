@@ -129,6 +129,12 @@ export default async function About({
             <p>{locale === "mn" ? "Сонирхсон эдлэл, боломжтой өдөр цагаа бичиж хүсэлт илгээгээрэй. Үзүүлэх боломж, уулзах газар, цагийг ажилтан тантай эргэн холбогдож баталгаажуулна." : "Send the piece reference and your preferred day and time. A member of the team will need to confirm whether a viewing is available, together with the location and time."}</p>
           </details>
         </div>
+        <p className="article-meta">
+          <Link className="text-link" href={`/${locale}/services`}>
+            {locale === "mn" ? "Уулзалт, бэлэг, арчилгаа, хүргэлт лавлах" : "Viewings, gifts, care & international enquiries"}
+            <Arrow />
+          </Link>
+        </p>
         <Link href={`/${locale}/inquiry`} className="button button-dark">{locale === "mn" ? "Зөвлөгөө авах" : "Make an enquiry"}<Arrow /></Link>
       </section>
       <Consultation locale={locale} />
