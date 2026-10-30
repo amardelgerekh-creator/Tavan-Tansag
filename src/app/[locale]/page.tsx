@@ -6,6 +6,7 @@ import { getCatalog } from "@/lib/server/catalog-store";
 import { t } from "@/lib/copy";
 import { Arrow } from "@/components/icons";
 import { ProductCard, Consultation } from "@/components/site";
+import { ReelsGallery } from "@/components/reels-gallery";
 import "@/app/home-categories.css";
 
 export async function generateMetadata({
@@ -122,6 +123,7 @@ export default async function Home({
           ))}
         </div>
       </section>
+      <ReelsGallery locale={locale} />
       <section className="heritage-feature">
         <div className="heritage-photo">
           {story && (

@@ -969,6 +969,906 @@
       "currentDocument": {
         "exists": false
       }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-011",
+        "fields": {
+          "id": {
+            "stringValue": "TT-011"
+          },
+          "slug": {
+            "stringValue": "belt-pale-centred-buckle"
+          },
+          "category": {
+            "stringValue": "men"
+          },
+          "subcategory": {
+            "stringValue": "belts"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Цайвар төвтэй хээт арал, сүлжээ хэлбэрийн бүс"
+                },
+                "en": {
+                  "stringValue": "Woven-look belt with a pale-centred buckle"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Цайвар сүлжээ хэлбэрийн тууз, том шаргал өнгийн чимэгт аралтай бүсний жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample belt record showing a pale woven-look band and a large gold-toned decorative buckle."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Цайвар сүлжээ хэлбэртэй өргөн туузыг ороож тавьсан. Том шаргал өнгийн цоолбор мэт хээт арал нь голдоо дугуй цайвар чимэгтэй."
+                },
+                "en": {
+                  "stringValue": "A broad pale woven-look band is coiled beneath a large gold-toned openwork-style buckle with a round pale centre."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-011.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-012",
+        "fields": {
+          "id": {
+            "stringValue": "TT-012"
+          },
+          "slug": {
+            "stringValue": "knife-green-sheath-detail"
+          },
+          "category": {
+            "stringValue": "men"
+          },
+          "subcategory": {
+            "stringValue": "knives"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Ногоон бүрээстэй хутганы деталь"
+                },
+                "en": {
+                  "stringValue": "Knife detail with a green sheath"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Ногоон гадаргуутай, хээт тоног бүхий бүрээс болон салгасан ирийн ойрын зургаар бүрдүүлсэн хутганы жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample knife record based on a close view of its green sheath, patterned fittings and separate blade."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Ногоон жижиг ширхэг мэт гадаргуутай, хээтэй цайвар өнгийн тоног бүхий бүрээс болон салгасан хутганы ирийг ойроос харуулсан. Бариул бүрэн харагдахгүй."
+                },
+                "en": {
+                  "stringValue": "A close view of a green textured sheath with patterned pale fittings beside a separate knife blade. The handle is not fully visible."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-012.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-013",
+        "fields": {
+          "id": {
+            "stringValue": "TT-013"
+          },
+          "slug": {
+            "stringValue": "firesteel-orange-centre-detail"
+          },
+          "category": {
+            "stringValue": "men"
+          },
+          "subcategory": {
+            "stringValue": "firesteels"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улбар төвтэй, хээт хэтний деталь"
+                },
+                "en": {
+                  "stringValue": "Patterned firesteel detail with an orange centre"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улбар төвтэй, хээт нүүр, сүлжээ хэлхээтэй хэтний жишиг бүртгэл. Зурагт бусад хэрэглэл хамт харагдана."
+                },
+                "en": {
+                  "stringValue": "A sample firesteel record with an orange centre, patterned face and woven-look chain. Other accessories appear alongside it."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Хагас дугуй цайвар ирмэг, улбар төв, хээт нүүр, сүлжээ хэлхээтэй хэт хэлбэрийн эдлэл харагдана. Зурагт бусад унжлага, хэрэглэл хамт орсон."
+                },
+                "en": {
+                  "stringValue": "A firesteel-shaped accessory has a curved pale edge, orange centre, patterned face and woven-look chain. Other hanging accessories are also present in the photograph."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-013.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-014",
+        "fields": {
+          "id": {
+            "stringValue": "TT-014"
+          },
+          "slug": {
+            "stringValue": "earrings-rectangular-red-centres"
+          },
+          "category": {
+            "stringValue": "women"
+          },
+          "subcategory": {
+            "stringValue": "earrings"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан төвтэй, унжлагат ээмэг"
+                },
+                "en": {
+                  "stringValue": "Red-centred earrings with hanging chains"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан төв, хээт хүрээ, гурван унжлагат хэлхээтэй хос ээмэгний ойрын зургаар бүрдүүлсэн жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample record based on a close view of paired earrings with red centres, patterned frames and three hanging chains."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Хос ээмэгний ойрын зураг. Дугуйрсан тэгш өнцөгт хээт хүрээ, сунасан улаан төв, доош унжсан гурван хэлхээ харагдана."
+                },
+                "en": {
+                  "stringValue": "A close view of a pair of earrings with patterned rounded-rectangular frames, elongated red centres and three hanging chains."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-014.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-015",
+        "fields": {
+          "id": {
+            "stringValue": "TT-015"
+          },
+          "slug": {
+            "stringValue": "earrings-round-red-centre"
+          },
+          "category": {
+            "stringValue": "women"
+          },
+          "subcategory": {
+            "stringValue": "earrings"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Дугуй хүрээтэй, улаан төвт ээмэг"
+                },
+                "en": {
+                  "stringValue": "Round earrings with a red centre"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Дугуй цацрагт хүрээ, улаан төв, унжлагат хээтэй ээмэгний деталь зургаар бүрдүүлсэн жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample earring record based on a detail photograph of a round spoke-like frame, red centre and hanging ornaments."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Нэг ээмэгний деталь урд талд, төстэй хос арын бүдэг дүрсэнд байна. Дугуй цацрагт хүрээ, улаан төв, дусал мэт унжлага, сүлжээ хэлхээ харагдана."
+                },
+                "en": {
+                  "stringValue": "One earring detail is in focus, with a matching-looking pair blurred behind it. A round spoke-like frame, red centre, teardrop-shaped drops and woven-look chains are visible."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-015.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-016",
+        "fields": {
+          "id": {
+            "stringValue": "TT-016"
+          },
+          "slug": {
+            "stringValue": "hair-ornament-red-pattern"
+          },
+          "category": {
+            "stringValue": "women"
+          },
+          "subcategory": {
+            "stringValue": "hair-ornaments"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улаан хээтэй нумарсан үсний гоёл"
+                },
+                "en": {
+                  "stringValue": "Curved hair ornament with red motifs"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Шаргал өнгийн ирмэг дагуу улаан давтагдсан хээтэй, нумарсан үсний гоёлын жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample curved hair ornament record with repeating red motifs along a gold-toned edge."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Нумарсан нарийн хүрээтэй үсний гоёлыг хар дэвсгэр дээр байрлуулсан. Шаргал өнгийн урд ирмэгт улаан сүлжээ мэт давтагдсан хээтэй."
+                },
+                "en": {
+                  "stringValue": "A slim curved hair ornament on a black background. Red interlacing motifs repeat along a gold-toned front edge."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-016.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-017",
+        "fields": {
+          "id": {
+            "stringValue": "TT-017"
+          },
+          "slug": {
+            "stringValue": "snuff-bottle-brown-swirls"
+          },
+          "category": {
+            "stringValue": "snuff-bottles"
+          },
+          "subcategory": {
+            "stringValue": "bottles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Хүрэн судалтай хөөрөг"
+                },
+                "en": {
+                  "stringValue": "Brown swirled snuff bottle"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Хүрэн, шаргал, бараан судалтай бөөрөнхий их бие, улбар толгой бүхий хөөрөгний жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample snuff bottle record with a rounded body in brown, tan and dark swirls, shown beside an orange stopper."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Хүрэн, шаргал, бараан судалтай бөөрөнхий их бие. Улбар толгой, цайвар халбагыг салгаж хажууд нь байрлуулсан."
+                },
+                "en": {
+                  "stringValue": "Rounded body with brown, tan and dark swirls. An orange stopper and pale spoon are displayed beside it."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-017.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-018",
+        "fields": {
+          "id": {
+            "stringValue": "TT-018"
+          },
+          "slug": {
+            "stringValue": "snuff-bottle-pale-body"
+          },
+          "category": {
+            "stringValue": "snuff-bottles"
+          },
+          "subcategory": {
+            "stringValue": "bottles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Цайвар их биетэй хөөрөг"
+                },
+                "en": {
+                  "stringValue": "Pale-bodied snuff bottle"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Цайвар жигд өнгийн их бие, улбар судалтай толгой, цайвар халбагатай харагдах хөөрөгний жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample snuff bottle record showing a pale smooth-looking body, an orange-patterned stopper and a pale spoon."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Цайвар жигд өнгөтэй, бөөрөнхий мөртэй их бие. Улбар судалтай толгой, шаргал өнгийн хүрээ, цайвар халбага харагдана."
+                },
+                "en": {
+                  "stringValue": "A pale, smooth-looking body with rounded shoulders. An orange-patterned stopper, gold-toned rim and pale spoon are shown."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-018.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
+    },
+    {
+      "update": {
+        "name": "projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/TT-019",
+        "fields": {
+          "id": {
+            "stringValue": "TT-019"
+          },
+          "slug": {
+            "stringValue": "snuff-bottle-orange-relief"
+          },
+          "category": {
+            "stringValue": "snuff-bottles"
+          },
+          "subcategory": {
+            "stringValue": "bottles"
+          },
+          "name": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улбар өнгийн сийлбэртэй хөөрөг"
+                },
+                "en": {
+                  "stringValue": "Orange snuff bottle with relief motifs"
+                }
+              }
+            }
+          },
+          "description": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улбар өнгийн их биед барилга, навч мэт товойлгосон дүрстэй хөөрөгний жишиг бүртгэл."
+                },
+                "en": {
+                  "stringValue": "A sample orange snuff bottle record with raised building-like and leafy motifs."
+                }
+              }
+            }
+          },
+          "observations": {
+            "mapValue": {
+              "fields": {
+                "mn": {
+                  "stringValue": "Улбар өнгийн их биед барилга, навч мэт дүрстэй товойлгосон хээтэй. Салгасан толгой болон урт цайвар халбагыг хажууд нь босоо байрлуулсан."
+                },
+                "en": {
+                  "stringValue": "An orange body with raised building-like and leafy motifs. The detached stopper and a long pale spoon stand beside it."
+                }
+              }
+            }
+          },
+          "image": {
+            "stringValue": "/images/catalog/tt-019.png"
+          },
+          "verificationStatus": {
+            "stringValue": "needs_review"
+          },
+          "publicationStatus": {
+            "stringValue": "sample"
+          },
+          "availability": {
+            "stringValue": "unverified"
+          },
+          "price": {
+            "nullValue": null
+          },
+          "currency": {
+            "stringValue": "MNT"
+          },
+          "material": {
+            "nullValue": null
+          },
+          "dimensions": {
+            "nullValue": null
+          },
+          "weight": {
+            "nullValue": null
+          },
+          "maker": {
+            "nullValue": null
+          },
+          "period": {
+            "nullValue": null
+          },
+          "condition": {
+            "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
+          "visibility": {
+            "stringValue": "public"
+          }
+        }
+      },
+      "currentDocument": {
+        "exists": false
+      }
     }
   ]
 }

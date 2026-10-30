@@ -32,9 +32,12 @@ test("subcategory lookup rejects cross-parent values, null and inherited object 
   assert.equal(isSubcategory("men", "constructor"), false);
   assert.equal(isSubcategory("unknown" as Category, "rings"), false);
 });
-test("all ten records migrate taxonomy only without inventing material, stock or commercial facts", () => {
-  assert.equal(raw.length, 10);
-  for (const [index, entry] of raw.entries()) {
+test("the original ten records retain migrated taxonomy and unverified facts as catalog grows", () => {
+  assert.ok(raw.length >= 1 && raw.length <= 100);
+  for (let index = 0; index < 10; index++) {
+    const id = `TT-${String(index + 1).padStart(3, "0")}`;
+    const entry = raw.find((record: { id: string }) => record.id === id);
+    assert.ok(entry, `${id} is retained`);
     assert.equal(entry.category, index < 5 ? "horse" : "silverware");
     assert.equal(entry.subcategory, index < 5 ? "saddles" : "bowls");
     assert.equal(entry.material, null); assert.equal(entry.price, null);

@@ -4,7 +4,8 @@ import { readFileSync } from "node:fs";
 import { catalogFields, projectDatabaseCatalog, readCatalog, publicCatalogProduct, CatalogUnavailableError } from "../src/lib/server/catalog-reader";
 import { catalogPipeline, decodePipelineResponse, fetchFirestoreCatalog } from "../src/lib/server/firestore-catalog";
 
-const sample = JSON.parse(readFileSync("data/catalog.json", "utf8"))[0];
+const source = JSON.parse(readFileSync("data/catalog.json", "utf8"));
+const sample = source[0];
 const row = (overrides: Record<string, unknown> = {}) => ({ ...sample, visibility: "public", ...overrides });
 const config = { source: "firebase", includeSamples: "true", projectId: "test-project", databaseId: "test-database" };
 const seed = JSON.parse(readFileSync("firebase/seed.json", "utf8"));
@@ -64,16 +65,18 @@ test("REST read targets named database without privileged credentials and handle
     assert.equal(init?.method, "POST");
     return new Response(JSON.stringify([batch, { executionTime: batch.executionTime }]), { status: 200 });
   });
-  assert.equal(result.length, 10);
+  assert.equal(result.length, seed.length);
   assert.deepEqual(projectDatabaseCatalog(result, true), seed.map(publicCatalogProduct));
   assert.deepEqual(decodePipelineResponse({ executionTime: batch.executionTime }), []);
   assert.throws(() => decodePipelineResponse([{ error: { message: "private" } }]), CatalogUnavailableError);
   assert.throws(() => decodePipelineResponse({}), CatalogUnavailableError);
   await assert.rejects(() => fetchFirestoreCatalog({ projectId: "test-project", databaseId: "named-preview", includeSamples: true }, async () => new Response("denied", { status: 403 })), CatalogUnavailableError);
 });
-test("Firebase upload contains ten public sample docs, no provenance, and refuses overwrite", () => {
-  assert.equal(seed.length, 10);
-  assert.equal(writes.length, 10);
+test("Firebase upload contains bounded public samples matching the source, no provenance, and refuses overwrite", () => {
+  assert.ok(seed.length >= 1 && seed.length <= 100);
+  assert.equal(seed.length, source.length);
+  assert.equal(writes.length, seed.length);
+  assert.deepEqual(seed.map((entry: { id: string }) => entry.id), source.map((entry: { id: string }) => entry.id));
   for (const [i, product] of seed.entries()) {
     assert.equal(product.visibility, "public");
     assert.equal(product.publicationStatus, "sample");

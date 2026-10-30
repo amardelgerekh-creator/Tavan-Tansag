@@ -418,5 +418,410 @@
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
     ],
     "subcategory": "bowls"
+  },
+  {
+    "id": "TT-011",
+    "slug": "belt-pale-centred-buckle",
+    "category": "men",
+    "subcategory": "belts",
+    "name": {
+      "mn": "Цайвар төвтэй хээт арал, сүлжээ хэлбэрийн бүс",
+      "en": "Woven-look belt with a pale-centred buckle"
+    },
+    "description": {
+      "mn": "Цайвар сүлжээ хэлбэрийн тууз, том шаргал өнгийн чимэгт аралтай бүсний жишиг бүртгэл.",
+      "en": "A sample belt record showing a pale woven-look band and a large gold-toned decorative buckle."
+    },
+    "image": "/images/catalog/tt-011.png",
+    "sourceFileName": "p4 (8).png",
+    "sourceUrl": "https://drive.google.com/file/d/1PQfGlpziVwBGE844hQVuZRKoBJhZkppO/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Цайвар сүлжээ хэлбэртэй өргөн туузыг ороож тавьсан. Том шаргал өнгийн цоолбор мэт хээт арал нь голдоо дугуй цайвар чимэгтэй.",
+      "en": "A broad pale woven-look band is coiled beneath a large gold-toned openwork-style buckle with a round pale centre."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-012",
+    "slug": "knife-green-sheath-detail",
+    "category": "men",
+    "subcategory": "knives",
+    "name": {
+      "mn": "Ногоон бүрээстэй хутганы деталь",
+      "en": "Knife detail with a green sheath"
+    },
+    "description": {
+      "mn": "Ногоон гадаргуутай, хээт тоног бүхий бүрээс болон салгасан ирийн ойрын зургаар бүрдүүлсэн хутганы жишиг бүртгэл.",
+      "en": "A sample knife record based on a close view of its green sheath, patterned fittings and separate blade."
+    },
+    "image": "/images/catalog/tt-012.png",
+    "sourceFileName": "p4.png",
+    "sourceUrl": "https://drive.google.com/file/d/1nrQ9k_jCnjmfTA-hv4S25ZTMG2F4nuQD/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Ногоон жижиг ширхэг мэт гадаргуутай, хээтэй цайвар өнгийн тоног бүхий бүрээс болон салгасан хутганы ирийг ойроос харуулсан. Бариул бүрэн харагдахгүй.",
+      "en": "A close view of a green textured sheath with patterned pale fittings beside a separate knife blade. The handle is not fully visible."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-013",
+    "slug": "firesteel-orange-centre-detail",
+    "category": "men",
+    "subcategory": "firesteels",
+    "name": {
+      "mn": "Улбар төвтэй, хээт хэтний деталь",
+      "en": "Patterned firesteel detail with an orange centre"
+    },
+    "description": {
+      "mn": "Улбар төвтэй, хээт нүүр, сүлжээ хэлхээтэй хэтний жишиг бүртгэл. Зурагт бусад хэрэглэл хамт харагдана.",
+      "en": "A sample firesteel record with an orange centre, patterned face and woven-look chain. Other accessories appear alongside it."
+    },
+    "image": "/images/catalog/tt-013.png",
+    "sourceFileName": "p4.png",
+    "sourceUrl": "https://drive.google.com/file/d/1GFABd-uGnbfjXfRd_k4yFfXOLwghG_qK/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Хагас дугуй цайвар ирмэг, улбар төв, хээт нүүр, сүлжээ хэлхээтэй хэт хэлбэрийн эдлэл харагдана. Зурагт бусад унжлага, хэрэглэл хамт орсон.",
+      "en": "A firesteel-shaped accessory has a curved pale edge, orange centre, patterned face and woven-look chain. Other hanging accessories are also present in the photograph."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-014",
+    "slug": "earrings-rectangular-red-centres",
+    "category": "women",
+    "subcategory": "earrings",
+    "name": {
+      "mn": "Улаан төвтэй, унжлагат ээмэг",
+      "en": "Red-centred earrings with hanging chains"
+    },
+    "description": {
+      "mn": "Улаан төв, хээт хүрээ, гурван унжлагат хэлхээтэй хос ээмэгний ойрын зургаар бүрдүүлсэн жишиг бүртгэл.",
+      "en": "A sample record based on a close view of paired earrings with red centres, patterned frames and three hanging chains."
+    },
+    "image": "/images/catalog/tt-014.png",
+    "sourceFileName": "p4 (12).png",
+    "sourceUrl": "https://drive.google.com/file/d/1Lmxzbnh4GNt7PuQcCCY4_Zd2m7M11g4O/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Хос ээмэгний ойрын зураг. Дугуйрсан тэгш өнцөгт хээт хүрээ, сунасан улаан төв, доош унжсан гурван хэлхээ харагдана.",
+      "en": "A close view of a pair of earrings with patterned rounded-rectangular frames, elongated red centres and three hanging chains."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-015",
+    "slug": "earrings-round-red-centre",
+    "category": "women",
+    "subcategory": "earrings",
+    "name": {
+      "mn": "Дугуй хүрээтэй, улаан төвт ээмэг",
+      "en": "Round earrings with a red centre"
+    },
+    "description": {
+      "mn": "Дугуй цацрагт хүрээ, улаан төв, унжлагат хээтэй ээмэгний деталь зургаар бүрдүүлсэн жишиг бүртгэл.",
+      "en": "A sample earring record based on a detail photograph of a round spoke-like frame, red centre and hanging ornaments."
+    },
+    "image": "/images/catalog/tt-015.png",
+    "sourceFileName": "p4 (11).png",
+    "sourceUrl": "https://drive.google.com/file/d/1rIO8DH06v8q1XDainf0GYnNvzfrfQb0y/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Нэг ээмэгний деталь урд талд, төстэй хос арын бүдэг дүрсэнд байна. Дугуй цацрагт хүрээ, улаан төв, дусал мэт унжлага, сүлжээ хэлхээ харагдана.",
+      "en": "One earring detail is in focus, with a matching-looking pair blurred behind it. A round spoke-like frame, red centre, teardrop-shaped drops and woven-look chains are visible."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-016",
+    "slug": "hair-ornament-red-pattern",
+    "category": "women",
+    "subcategory": "hair-ornaments",
+    "name": {
+      "mn": "Улаан хээтэй нумарсан үсний гоёл",
+      "en": "Curved hair ornament with red motifs"
+    },
+    "description": {
+      "mn": "Шаргал өнгийн ирмэг дагуу улаан давтагдсан хээтэй, нумарсан үсний гоёлын жишиг бүртгэл.",
+      "en": "A sample curved hair ornament record with repeating red motifs along a gold-toned edge."
+    },
+    "image": "/images/catalog/tt-016.png",
+    "sourceFileName": "p4.png",
+    "sourceUrl": "https://drive.google.com/file/d/1-okKojpncGwKcKs9cGxKvSvMsbepuhHr/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Нумарсан нарийн хүрээтэй үсний гоёлыг хар дэвсгэр дээр байрлуулсан. Шаргал өнгийн урд ирмэгт улаан сүлжээ мэт давтагдсан хээтэй.",
+      "en": "A slim curved hair ornament on a black background. Red interlacing motifs repeat along a gold-toned front edge."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-017",
+    "slug": "snuff-bottle-brown-swirls",
+    "category": "snuff-bottles",
+    "subcategory": "bottles",
+    "name": {
+      "mn": "Хүрэн судалтай хөөрөг",
+      "en": "Brown swirled snuff bottle"
+    },
+    "description": {
+      "mn": "Хүрэн, шаргал, бараан судалтай бөөрөнхий их бие, улбар толгой бүхий хөөрөгний жишиг бүртгэл.",
+      "en": "A sample snuff bottle record with a rounded body in brown, tan and dark swirls, shown beside an orange stopper."
+    },
+    "image": "/images/catalog/tt-017.png",
+    "sourceFileName": "P4.png",
+    "sourceUrl": "https://drive.google.com/file/d/1X855ANzjKEew_H7c69xrAgQn-GM_lzjT/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Хүрэн, шаргал, бараан судалтай бөөрөнхий их бие. Улбар толгой, цайвар халбагыг салгаж хажууд нь байрлуулсан.",
+      "en": "Rounded body with brown, tan and dark swirls. An orange stopper and pale spoon are displayed beside it."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-018",
+    "slug": "snuff-bottle-pale-body",
+    "category": "snuff-bottles",
+    "subcategory": "bottles",
+    "name": {
+      "mn": "Цайвар их биетэй хөөрөг",
+      "en": "Pale-bodied snuff bottle"
+    },
+    "description": {
+      "mn": "Цайвар жигд өнгийн их бие, улбар судалтай толгой, цайвар халбагатай харагдах хөөрөгний жишиг бүртгэл.",
+      "en": "A sample snuff bottle record showing a pale smooth-looking body, an orange-patterned stopper and a pale spoon."
+    },
+    "image": "/images/catalog/tt-018.png",
+    "sourceFileName": "p4.png",
+    "sourceUrl": "https://drive.google.com/file/d/13A9QFVKx4Tb5pV_mC5wCWAwqSFN-UAWk/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Цайвар жигд өнгөтэй, бөөрөнхий мөртэй их бие. Улбар судалтай толгой, шаргал өнгийн хүрээ, цайвар халбага харагдана.",
+      "en": "A pale, smooth-looking body with rounded shoulders. An orange-patterned stopper, gold-toned rim and pale spoon are shown."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
+  },
+  {
+    "id": "TT-019",
+    "slug": "snuff-bottle-orange-relief",
+    "category": "snuff-bottles",
+    "subcategory": "bottles",
+    "name": {
+      "mn": "Улбар өнгийн сийлбэртэй хөөрөг",
+      "en": "Orange snuff bottle with relief motifs"
+    },
+    "description": {
+      "mn": "Улбар өнгийн их биед барилга, навч мэт товойлгосон дүрстэй хөөрөгний жишиг бүртгэл.",
+      "en": "A sample orange snuff bottle record with raised building-like and leafy motifs."
+    },
+    "image": "/images/catalog/tt-019.png",
+    "sourceFileName": "p4.png",
+    "sourceUrl": "https://drive.google.com/file/d/110tfQ7jtQ3JiIokte9-kVQDLba9MgIOt/view?usp=drive_link",
+    "sourceFolderUrl": "https://drive.google.com/drive/u/1/folders/1iiiTpL99ns0S0P8_JhBealX8uQthuL7w",
+    "verificationStatus": "needs_review",
+    "publicationStatus": "sample",
+    "availability": "unverified",
+    "priceMode": "inquiry",
+    "price": null,
+    "currency": "MNT",
+    "material": null,
+    "dimensions": null,
+    "weight": null,
+    "maker": null,
+    "period": null,
+    "condition": null,
+    "observations": {
+      "mn": "Улбар өнгийн их биед барилга, навч мэт дүрстэй товойлгосон хээтэй. Салгасан толгой болон урт цайвар халбагыг хажууд нь босоо байрлуулсан.",
+      "en": "An orange body with raised building-like and leafy motifs. The detached stopper and a long pale spoon stand beside it."
+    },
+    "needsConfirmation": [
+      "Албан ёсны нэр, үндсэн ба дэд ангилал",
+      "Тусдаа бодит эдлэл мөн эсэх, иж бүрдлийн хэсэг эсэх",
+      "Материал, сорьц ба чулууны мэдээлэл",
+      "Хэмжээс, жин, нөхцөл байдал",
+      "Урлаач, гарал үүсэл ба он цаг",
+      "Үнэ ба одоогийн бэлэн байдал",
+      "Зурагт харагдах бусад хэрэглэл багтах эсэх",
+      "Деталь зургаас гадна бүтэн эдлэлийг харуулсан нэмэлт зураг",
+      "Зураг ашиглах эрх болон дэлгүүрийн нийтлэх зөвшөөрөл"
+    ]
   }
 ]

@@ -170,7 +170,7 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
         {!ready && error && <button type="button" className="crm-secondary" onClick={() => window.location.reload()}>{locale === "mn" ? "Хуудсыг дахин ачаалах" : "Reload page"}</button>}
       </section> : <>
         {staffEmail && <nav className="staff-workspace-nav" aria-label={locale === "mn" ? "Ажилтны цэс" : "Workspace sections"}>
-          {(["inquiries", "catalog", "metrics"] as const).map(value => <button key={value} type="button" aria-pressed={workspace === value} onClick={() => { setWorkspace(value); setNotice(""); }}>{({ inquiries: { mn: "Хүсэлтүүд", en: "Enquiries" }, catalog: { mn: "10 эдлэлийн бүртгэл", en: "Catalog verification" }, metrics: { mn: "Үр дүн", en: "Results" } })[value][locale]}</button>)}
+          {(["inquiries", "catalog", "metrics"] as const).map(value => <button key={value} type="button" aria-pressed={workspace === value} onClick={() => { setWorkspace(value); setNotice(""); }}>{({ inquiries: { mn: "Хүсэлтүүд", en: "Enquiries" }, catalog: { mn: "Эдлэлийн бүртгэл", en: "Catalog verification" }, metrics: { mn: "Үр дүн", en: "Results" } })[value][locale]}</button>)}
         </nav>}
         {workspace === "catalog" && staffEmail ? <CatalogReviewWorkspace locale={locale} user={user} /> : workspace === "metrics" && staffEmail ? <CrmMetrics locale={locale} user={user} /> : <>
         <div className="crm-toolbar">

@@ -93,6 +93,7 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="footer-links">
           <Link href={"/" + locale + "/collection"}>{c.collection}</Link>
           <Link href={"/" + locale + "/heritage"}>{c.heritage}</Link>
+          <Link href={"/" + locale + "#films"}>{locale === "mn" ? "Богино бичлэг" : "Short films"}</Link>
           <Link href={"/" + locale + "/about"}>{c.about}</Link>
           <Link href={"/" + locale + "/services"}>{locale === "mn" ? "Үйлчилгээ" : "Services"}</Link>
         </div>

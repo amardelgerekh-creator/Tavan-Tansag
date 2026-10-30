@@ -1,0 +1,236 @@
+{
+  "sourceFolder": "https://drive.google.com/drive/folders/1Lwgf4IhMtnETYmw46omFLC2YO6Cv9eOX",
+  "checkedAt": "2026-10-30",
+  "reels": [
+    {
+      "checkedAt": "2026-10-30",
+      "sourceDriveId": "1siXP8cXlqqtzNiUcqYu_4IPR0Xnn7tRv",
+      "source": {
+        "bytes": 71032949,
+        "sha256": "15c11f5847a4f31a46bb70e5947354b4e3a01bc4f849f0a8c7dd6f1babc9ea04",
+        "fileName": "reel Энхзул 2.mp4",
+        "durationSecondsRounded": 28.7,
+        "width": 1080,
+        "height": 1920,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "9:16",
+        "frameRate": "30000/1001",
+        "videoCodec": "h264",
+        "audioCodec": "aac",
+        "audioSampleRate": 48000,
+        "audioChannels": 2,
+        "frames": 860,
+        "lastVideoTimestampUs": 28661967,
+        "url": "https://drive.google.com/file/d/1siXP8cXlqqtzNiUcqYu_4IPR0Xnn7tRv/view"
+      },
+      "output": {
+        "bytes": 3005642,
+        "sha256": "fc043c8b433e95f19b772e50ce86296e19297c7d291355a0ec90493120379909",
+        "publicPath": "/videos/reels/enkhzul-02.mp4",
+        "durationSecondsRounded": 28.71,
+        "width": 720,
+        "height": 1280,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "9:16",
+        "frameRate": "30000/1001",
+        "videoCodec": "h264",
+        "videoEncoder": "libx264",
+        "pixelFormat": "yuv420p",
+        "crf": 27,
+        "preset": "medium",
+        "audioCodec": "aac",
+        "audioTargetBitrate": "96k",
+        "audioSampleRate": 48000,
+        "audioChannels": 2,
+        "faststartVerified": true,
+        "frames": 860,
+        "lastVideoTimestampUs": 28595233,
+        "fullDecodeVerified": true
+      },
+      "poster": {
+        "bytes": 94223,
+        "sha256": "cadbec80253084b03dfbf473747eee1004e6a0afc280c86a97d0695335ff7a62",
+        "publicPath": "/images/reels/enkhzul-02.jpg",
+        "timestampSeconds": 12,
+        "width": 720,
+        "height": 1280,
+        "visuallyChecked": true,
+        "nonBlack": true,
+        "note": "Natural frame from the encoded reel. Original embedded caption and branding remain visible."
+      },
+      "preservation": {
+        "trimmed": false,
+        "sourceVideoFramesPreserved": true,
+        "sourceAudioContentRetained": true,
+        "audioReencoded": true,
+        "audioReplacedOrMuted": false,
+        "pixelAspectRatioPreserved": true,
+        "durationDifferenceNote": "Container duration differs by 0.01s after AAC re-encoding; video frame count is unchanged."
+      },
+      "description": {
+        "mn": "Хээтэй дээл, урт унжлагат ээмэгтэй дүр төрх болон Таван Тансагийн эдлэлийн үзүүлэнг харуулсан богино бичлэг.",
+        "en": "A short portrait reel showing long hanging earrings with a patterned deel and the Tavan Tansag display."
+      },
+      "descriptionBasis": "Visual inspection of frames at 2, 12 and 22 seconds only. Spoken content was not transcribed or inferred.",
+      "id": "enkhzul",
+      "title": {
+        "mn": "Энхзул · 02",
+        "en": "Enkhzul · 02"
+      }
+    },
+    {
+      "checkedAt": "2026-10-30",
+      "sourceDriveId": "1LyZT8joY7PRZs2muZEZpFe8Fx7ejD4nS",
+      "source": {
+        "bytes": 96654019,
+        "sha256": "5e2aa307ff0d0ac54c4c74e5a7bc76effb54dbf0bb68186740ce1511fc78c281",
+        "fileName": "Цэцэгдэлгэр 2.mp4",
+        "downloadedFileName": "Цэцэгдэлгэр 2 (1).mp4",
+        "durationSecondsRounded": 39.14,
+        "width": 1080,
+        "height": 1920,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "9:16",
+        "frameRate": "30000/1001",
+        "videoCodec": "h264",
+        "audioCodec": "aac",
+        "audioSampleRate": 48000,
+        "audioChannels": 2,
+        "frames": 1173,
+        "lastVideoTimestampUs": 39105733,
+        "url": "https://drive.google.com/file/d/1LyZT8joY7PRZs2muZEZpFe8Fx7ejD4nS/view"
+      },
+      "output": {
+        "bytes": 3695866,
+        "sha256": "60a1d3dbe7d037b00f341e79b1472bc640f7951d3f50840895ab7dcd5f50fd2a",
+        "publicPath": "/videos/reels/tsetsegdelger-02.mp4",
+        "durationSecondsRounded": 39.15,
+        "width": 720,
+        "height": 1280,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "9:16",
+        "frameRate": "30000/1001",
+        "videoCodec": "h264",
+        "videoEncoder": "libx264",
+        "pixelFormat": "yuv420p",
+        "crf": 27,
+        "preset": "medium",
+        "audioCodec": "aac",
+        "audioTargetBitrate": "96k",
+        "audioSampleRate": 48000,
+        "audioChannels": 2,
+        "faststartVerified": true,
+        "fullDecodeVerified": true,
+        "frames": 1173,
+        "lastVideoTimestampUs": 39039000
+      },
+      "poster": {
+        "bytes": 85043,
+        "sha256": "ec0fcc64153bc2f132d98c098a2c46148a4c0e9d01643bdd5fefd8c10db4e9ed",
+        "publicPath": "/images/reels/tsetsegdelger-02.jpg",
+        "timestampSeconds": 20,
+        "width": 720,
+        "height": 1280,
+        "visuallyChecked": true,
+        "nonBlack": true,
+        "note": "Natural frame at20s showing a clear seated portrait. Original framing and embedded branding retained."
+      },
+      "preservation": {
+        "trimmed": false,
+        "sourceVideoFramesPreserved": true,
+        "sourceAudioContentRetained": true,
+        "audioReencoded": true,
+        "audioReplacedOrMuted": false,
+        "pixelAspectRatioPreserved": true,
+        "durationDifferenceNote": "Any small container-duration difference is AAC encoding padding; every source video frame remains."
+      },
+      "description": {
+        "mn": "Хүрэн ягаан хээтэй дээл, зүүлт, энгэрийн чимэгтэй сууж буй хүний дүрсийг харуулсан босоо бичлэг.",
+        "en": "A seated portrait reel showing a plum-coloured patterned deel, a pendant and a decorative brooch."
+      },
+      "descriptionBasis": "Visual inspection of frames at [2, 6, 12, 20, 30] seconds only. Spoken content was not transcribed or inferred.",
+      "id": "tsetsegdelger",
+      "title": {
+        "mn": "Цэцэгдэлгэр · 02",
+        "en": "Tsetsegdelger · 02"
+      }
+    },
+    {
+      "checkedAt": "2026-10-30",
+      "sourceDriveId": "1B2LIAi_A_5uCK03y1OD5tqMsVoXf5sDi",
+      "source": {
+        "bytes": 104205668,
+        "sha256": "9e75224bcfba6e598ac4f283237b22f66d7aa69775c6f43566804c89da55f726",
+        "fileName": "Данзаннямын Даваахүү 3.mp4",
+        "downloadedFileName": "Данзаннямын Даваахүү 3.mp4",
+        "durationSecondsRounded": 41.91,
+        "width": 1080,
+        "height": 1920,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "9:16",
+        "frameRate": "30000/1001",
+        "videoCodec": "h264",
+        "audioCodec": "aac",
+        "audioSampleRate": 48000,
+        "audioChannels": 2,
+        "frames": 1256,
+        "lastVideoTimestampUs": 41875167,
+        "url": "https://drive.google.com/file/d/1B2LIAi_A_5uCK03y1OD5tqMsVoXf5sDi/view"
+      },
+      "output": {
+        "bytes": 4730337,
+        "sha256": "c61d07d13fba2f22ae31e9af71d2afd3b4765d2eb0575924ec8450ebcd095356",
+        "publicPath": "/videos/reels/davaakhuu-03.mp4",
+        "durationSecondsRounded": 41.92,
+        "width": 720,
+        "height": 1280,
+        "sampleAspectRatio": "1:1",
+        "displayAspectRatio": "9:16",
+        "frameRate": "30000/1001",
+        "videoCodec": "h264",
+        "videoEncoder": "libx264",
+        "pixelFormat": "yuv420p",
+        "crf": 27,
+        "preset": "medium",
+        "audioCodec": "aac",
+        "audioTargetBitrate": "96k",
+        "audioSampleRate": 48000,
+        "audioChannels": 2,
+        "faststartVerified": true,
+        "fullDecodeVerified": true,
+        "frames": 1256,
+        "lastVideoTimestampUs": 41808433
+      },
+      "poster": {
+        "bytes": 92824,
+        "sha256": "91270b6e2d9e09aa33d9ab4af4aa174bf85b466fb58a917d528a93c507abf604",
+        "publicPath": "/images/reels/davaakhuu-03.jpg",
+        "timestampSeconds": 33,
+        "width": 720,
+        "height": 1280,
+        "visuallyChecked": true,
+        "nonBlack": true,
+        "note": "Natural frame at33s showing red saddle and decorative fittings. Original framing and embedded branding retained."
+      },
+      "preservation": {
+        "trimmed": false,
+        "sourceVideoFramesPreserved": true,
+        "sourceAudioContentRetained": true,
+        "audioReencoded": true,
+        "audioReplacedOrMuted": false,
+        "pixelAspectRatioPreserved": true,
+        "durationDifferenceNote": "Any small container-duration difference is AAC encoding padding; every source video frame remains."
+      },
+      "description": {
+        "mn": "Хөөрөг барьсан хүний дүрс, морины хэрэглэл болон хээт эмээлийн ойрын дүрслэлүүдийг харуулсан богино бичлэг.",
+        "en": "A seated portrait with a snuff bottle, followed by close views of horse tack and decorated saddle details."
+      },
+      "descriptionBasis": "Visual inspection of frames at [2, 4, 8, 15, 33] seconds only. Spoken content was not transcribed or inferred.",
+      "id": "davaakhuu",
+      "title": {
+        "mn": "Даваахүү · 03",
+        "en": "Davaakhuu · 03"
+      }
+    }
+  ]
+}

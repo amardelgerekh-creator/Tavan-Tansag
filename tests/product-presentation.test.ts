@@ -36,11 +36,16 @@ test("catalog search supports both languages, multiple terms and compact referen
 });
 
 test("child filters require their matching main category and search includes localized child labels", () => {
-  assert.equal(filterProducts(products, "horse", "", "saddles").length, 5);
-  assert.equal(filterProducts(products, "silverware", "", "bowls").length, 5);
-  assert.deepEqual(filterProducts(products, "horse", "", "bowls"), []);
-  assert.deepEqual(filterProducts(products, "all", "", "bowls"), []);
-  assert.deepEqual(filterProducts(products, "men", "", "belts"), []);
+  const saddle = { ...products[0], id: "FIXTURE-SADDLE", category: "horse" as const, subcategory: "saddles" };
+  const bowl = { ...products[0], id: "FIXTURE-BOWL", category: "silverware" as const, subcategory: "bowls" };
+  const belt = { ...products[0], id: "FIXTURE-BELT", category: "men" as const, subcategory: "belts" };
+  const fixtures = [saddle, bowl];
+  assert.deepEqual(filterProducts(fixtures, "horse", "", "saddles"), [saddle]);
+  assert.deepEqual(filterProducts(fixtures, "silverware", "", "bowls"), [bowl]);
+  assert.deepEqual(filterProducts(fixtures, "horse", "", "bowls"), []);
+  assert.deepEqual(filterProducts(fixtures, "all", "", "bowls"), []);
+  assert.deepEqual(filterProducts(fixtures, "men", "", "belts"), []);
+  assert.deepEqual(filterProducts([...fixtures, belt], "men", "", "belts"), [belt]);
   const fixture = { ...products[0], category: "horse" as const, subcategory: "bridles", name: { mn: "Туршилтын эдлэл", en: "Test object" }, description: { mn: "Тайлбар", en: "Description" } };
   assert.equal(filterProducts([fixture], "all", "bridles").length, 1);
   assert.equal(filterProducts([fixture], "all", "хазаар").length, 1);
