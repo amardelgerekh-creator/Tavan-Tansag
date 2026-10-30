@@ -11,7 +11,7 @@ const product = { visibility: "public", publicationStatus: "sample", verificatio
 const key = (i: number) => `test-idempotency-key-${String(i).padStart(4, "0")}`;
 
 /** MVCC transaction fake: concurrent reads conflict before any write is applied. */
-function storeFixture(notificationsEnabled = false) {
+function storeFixture(notificationsEnabled = false, customerReceiptsEnabled = false) {
   const rows = new Map<string, DocumentData>([["catalog_public/TT-001", product]]);
   const versions = new Map<string, number>();
   const transactions = new Map<string, { snapshot: Map<string, DocumentData>; versions: Map<string, number>; reads: Set<string> }>();
@@ -55,7 +55,7 @@ function storeFixture(notificationsEnabled = false) {
   };
   const persist = createInquiryPersistence({
     store, hashSecret: "test-only-hash-secret-with-32-characters", assignee: "owner@example.com", includeSamples: true,
-    notificationsEnabled,
+    notificationsEnabled, customerReceiptsEnabled,
     now: () => clock, reference: () => `TT-${String(++referenceSequence).padStart(20, "0")}`,
   });
   return { rows, persist, advance: (ms: number) => { clock += ms; }, fail: () => { failCommit = true; } };
@@ -155,7 +155,7 @@ test("new inquiry and minimal notification outbox are atomic and concurrent retr
   const f = storeFixture(true);
   const results = await Promise.all([f.persist(input, key(1)), f.persist(input, key(1))]);
   assert.ok(results.every(result => result.ok));
-  assert.equal(results.filter(result => result.ok && result.notificationId).length, 1);
+  assert.equal(results.filter(result => result.ok && result.notificationIds?.length).length, 1);
   const queued = [...f.rows].filter(([path]) => path.startsWith("notification_outbox/"));
   assert.equal(queued.length, 1);
   const row = queued[0][1];
@@ -169,6 +169,47 @@ test("new inquiry and minimal notification outbox are atomic and concurrent retr
   const failed = storeFixture(true); failed.fail();
   assert.deepEqual(await failed.persist(input, key(2)), { ok: false, code: "UNAVAILABLE" });
   assert.equal(failed.rows.size, 1);
+});
+
+test("email inquiries atomically queue independent staff and customer receipts exactly once", async () => {
+  const f = storeFixture(true, true);
+  const results = await Promise.all([f.persist(input, key(1)), f.persist(input, key(1))]);
+  assert.ok(results.every(result => result.ok));
+  const scheduled = results.flatMap(result => result.ok ? result.notificationIds ?? [] : []);
+  assert.equal(scheduled.length, 2);
+  assert.equal(new Set(scheduled).size, 2);
+  const outbox = [...f.rows].filter(([path]) => path.startsWith("notification_outbox/"));
+  assert.equal(outbox.length, 2);
+  const staff = outbox.find(([,row]) => row.kind === "inquiry")![1];
+  const receipt = outbox.find(([,row]) => row.kind === "inquiry-receipt")![1];
+  assert.equal(receipt.sourceId, staff.sourceId);
+  assert.equal(receipt.recipientEmail, "test@example.com");
+  assert.equal(receipt.locale, input.locale);
+  assert.equal(receipt.productId, input.productId);
+  assert.equal(receipt.createdAt, staff.createdAt);
+  assert.equal(receipt.status, "pending");
+  assert.equal(receipt.envelope, null);
+  assert.equal("recipientEmail" in staff, false);
+  for (const value of [input.name, input.message]) assert.equal(JSON.stringify(outbox).includes(value), false);
+  const changed = await f.persist({ ...input, contactValue: "other@example.com" }, key(1));
+  assert.deepEqual(changed, { ok: false, code: "IDEMPOTENCY_CONFLICT" });
+  assert.equal([...f.rows.keys()].filter(path => path.startsWith("notification_outbox/")).length, 2);
+  const failed = storeFixture(true, true); failed.fail();
+  assert.deepEqual(await failed.persist(input, key(2)), { ok: false, code: "UNAVAILABLE" });
+  assert.equal(failed.rows.size, 1);
+});
+
+test("phone inquiries and invalid or throttled submissions never enqueue customer email", async () => {
+  const phone = storeFixture(true, true);
+  const result = await phone.persist({ ...input, contactMethod: "phone", contactValue: "+976 8811 1323" }, key(1));
+  assert.ok(result.ok);
+  assert.equal(result.notificationIds?.length, 1);
+  assert.equal([...phone.rows.values()].some(row => row.kind === "inquiry-receipt"), false);
+  const f = storeFixture(true, true);
+  for (let i = 1; i <= 3; i++) assert.equal((await f.persist(input, key(i))).ok, true);
+  assert.deepEqual(await f.persist(input, key(4)), { ok: false, code: "RATE_LIMITED" });
+  assert.deepEqual(await f.persist({ ...input, contactValue: "invalid" }, key(5)), { ok: false, code: "UNAVAILABLE" });
+  assert.equal([...f.rows.values()].filter(row => row.kind === "inquiry-receipt").length, 3);
 });
 
 test("only a trusted Vercel IP header is considered for distributed abuse protection", () => {

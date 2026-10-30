@@ -22,7 +22,7 @@ test("community input requires affirmative consent, valid unique interests, name
 
 test("public acknowledgement is generic and follows successful persistence", async () => {
   let saved: CommunityInput | undefined;
-  const handler = createCommunityHandler({ configured: () => true, persist: async value => { saved = value; return { ok: true }; } });
+  const handler = createCommunityHandler({ configured: () => true, persist: async value => { saved = value; return { ok: true, notificationIds: [`community-CM-${"a".repeat(64)}`, `community-receipt-CM-${"a".repeat(64)}`] }; } });
   const response = await handler(request());
   assert.equal(response.status, 202);
   assert.deepEqual(await response.json(), { ok: true, code: "REQUEST_RECEIVED" });

@@ -8,7 +8,7 @@ import { decodeFields, PrivateStoreError, type DocumentData, type FirestoreGatew
 const actor = { uid: "staff-uid", email: "owner@example.com" };
 const input: CommunityInput = { email: "TEST@example.com", firstName: "Test Visitor", interests: ["men", "snuff-bottles"], locale: "en", consent: true };
 const key = (i: number) => `00000000-0000-4000-8000-${String(i).padStart(12, "0")}`;
-function fixture(notificationsEnabled = false) {
+function fixture(notificationsEnabled = false, customerReceiptsEnabled = false) {
   const rows = new Map<string, DocumentData>(), versions = new Map<string, number>();
   const transactions = new Map<string, { snapshot: Map<string, DocumentData>; versions: Map<string, number>; reads: Set<string> }>();
   let sequence = 0, clock = Date.parse("2026-10-30T02:00:00.000Z"), fail = false, pipelineCalls = 0;
@@ -60,7 +60,7 @@ function fixture(notificationsEnabled = false) {
       return result;
     },
   };
-  const persist = createCommunityPersistence({ store, hashSecret: "test-only-secret-at-least-32-characters", notificationsEnabled, now: () => clock });
+  const persist = createCommunityPersistence({ store, hashSecret: "test-only-secret-at-least-32-characters", notificationsEnabled, customerReceiptsEnabled, now: () => clock });
   const staff = createCommunityStaffStore({ store, allowedEmails: [actor.email], now: () => clock });
   const records = () => [...rows].filter(([path]) => /^community_requests\/[^/]+$/.test(path)).map(([, data]) => communityRecordSchema.parse(data));
   return { rows, store, persist, staff, records, advance: (ms: number) => { clock += ms; }, fail: () => { fail = true; }, pipelineCalls: () => pipelineCalls };
@@ -96,7 +96,7 @@ test("new community request atomically queues once across concurrent email dedup
   const f = fixture(true);
   const results = await Promise.all([f.persist(input, key(1)), f.persist(input, key(2))]);
   assert.ok(results.every(result => result.ok));
-  assert.equal(results.filter(result => result.ok && result.notificationId).length, 1);
+  assert.equal(results.filter(result => result.ok && result.notificationIds?.length).length, 1);
   const queued = [...f.rows].filter(([path]) => path.startsWith("notification_outbox/"));
   assert.equal(queued.length, 1);
   const row = queued[0][1];
@@ -109,6 +109,32 @@ test("new community request atomically queues once across concurrent email dedup
   assert.deepEqual(await f.persist(input, key(1)), { ok: true });
   const failed = fixture(true); failed.fail();
   assert.deepEqual(await failed.persist(input, key(3)), { ok: false, code: "UNAVAILABLE" });
+  assert.equal(failed.rows.size, 0);
+});
+
+test("a first community request atomically queues one owner and one customer receipt across email retries", async () => {
+  const f = fixture(true, true);
+  const results = await Promise.all([f.persist(input, key(1)), f.persist(input, key(2))]);
+  assert.ok(results.every(result => result.ok));
+  const ids = results.flatMap(result => result.ok ? result.notificationIds ?? [] : []);
+  assert.equal(ids.length, 2);
+  assert.equal(new Set(ids).size, 2);
+  const outbox = [...f.rows].filter(([path]) => path.startsWith("notification_outbox/"));
+  assert.equal(outbox.length, 2);
+  const receipt = outbox.find(([,row]) => row.kind === "community-receipt")![1];
+  const staff = outbox.find(([,row]) => row.kind === "community")![1];
+  assert.equal(receipt.sourceId, f.records()[0].id);
+  assert.equal(receipt.recipientEmail, "test@example.com");
+  assert.equal(receipt.locale, "en");
+  assert.equal(receipt.envelope, null);
+  assert.equal("recipientEmail" in staff, false);
+  assert.equal(JSON.stringify(outbox).includes(input.firstName), false);
+  const current = f.records()[0];
+  await f.staff.update(current.id, { revision: 0, status: "withdrawn" }, actor);
+  assert.deepEqual(await f.persist(input, key(3)), { ok: true });
+  assert.equal([...f.rows.keys()].filter(path => path.startsWith("notification_outbox/")).length, 2);
+  const failed = fixture(true, true); failed.fail();
+  assert.deepEqual(await failed.persist(input, key(4)), { ok: false, code: "UNAVAILABLE" });
   assert.equal(failed.rows.size, 0);
 });
 

@@ -9,9 +9,9 @@ export const POST = createCommunityHandler({
   configured: communityStorageConfigured,
   persist: async (...args) => {
     const result = await persistCommunity(...args);
-    if (result.ok && result.notificationId) {
-      const id = result.notificationId;
-      try { after(async () => { await dispatchNotification(id); }); } catch { /* The durable outbox permits recovery. */ }
+    if (result.ok && result.notificationIds?.length) {
+      const ids = result.notificationIds;
+      try { after(async () => { await Promise.allSettled(ids.map(dispatchNotification)); }); } catch { /* The durable outbox permits recovery. */ }
     }
     return result;
   },

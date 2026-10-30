@@ -13,11 +13,11 @@ export const POST = createInquiryHandler({
   configured: inquiryStorageConfigured,
   persist: async (...args) => {
     const result = await persistInquiry(...args);
-    if (result.ok && result.notificationId) {
-      const id = result.notificationId;
+    if (result.ok && result.notificationIds?.length) {
+      const ids = result.notificationIds;
       // A scheduling failure must not erase or contradict the saved request.
       // Its atomic outbox record remains available to the recovery job.
-      try { after(async () => { await dispatchNotification(id); }); } catch { /* Recovered from the durable outbox. */ }
+      try { after(async () => { await Promise.allSettled(ids.map(dispatchNotification)); }); } catch { /* Recovered from the durable outbox. */ }
     }
     return result;
   },

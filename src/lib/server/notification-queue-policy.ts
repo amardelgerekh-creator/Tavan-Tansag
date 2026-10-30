@@ -6,15 +6,17 @@ export const notificationTopic = "tavan-notifications";
 export const notificationReconcileLimit = 5;
 export const notificationMessageSchema = z.object({ id: notificationIdSchema }).strict();
 export type NotificationDispatchResult = { status: "queued" | "disabled" | "invalid" | "unavailable" };
+export const isReceiptNotificationId = (id: string) => /^(?:inquiry|community)-receipt-/.test(id);
 
 export function createNotificationDispatcher(options: {
   configured: () => boolean;
+  canDispatch?: (id: string) => boolean;
   publish: (topic: string, message: { id: string }, options: { idempotencyKey: string; retentionSeconds: number }) => Promise<unknown>;
 }) {
   return async (id: string): Promise<NotificationDispatchResult> => {
     const parsed = notificationIdSchema.safeParse(id);
     if (!parsed.success) return { status: "invalid" };
-    if (!options.configured()) return { status: "disabled" };
+    if (!options.configured() || options.canDispatch?.(parsed.data) === false) return { status: "disabled" };
     try {
       await options.publish(notificationTopic, { id: parsed.data }, { idempotencyKey: parsed.data, retentionSeconds: 86_400 });
       return { status: "queued" };
@@ -52,13 +54,14 @@ const fn = (name: string, ...args: unknown[]) => ({ functionValue: { name, args 
 const sort = (name: string) => ({ mapValue: { fields: { expression: field(name), direction: string("ascending") } } });
 
 /** Reads only the explicit outbox, never historical customer requests. */
-export function dueNotificationsPipeline(now = Date.now()) {
+export function dueNotificationsPipeline(now = Date.now(), includeCustomerReceipts = false) {
   const due = new Date(now).toISOString();
   return { structuredPipeline: { pipeline: { stages: [
     { name: "collection", args: [{ referenceValue: `/${notificationCollection}` }] },
     { name: "where", args: [fn("and",
       fn("or", ...["pending", "failed", "sending"].map(status => fn("equal", field("status"), string(status)))),
       fn("less_than_or_equal", field("nextAttemptAt"), string(due)),
+      ...(!includeCustomerReceipts ? [fn("or", ...["inquiry", "community"].map(kind => fn("equal", field("kind"), string(kind))))] : []),
     )] },
     { name: "sort", args: [sort("nextAttemptAt"), sort("id")] },
     { name: "limit", args: [{ integerValue: String(notificationReconcileLimit) }] },

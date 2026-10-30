@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import { documentWrite, PrivateStoreError, type FirestoreGateway } from "./firestore-protocol";
-import { notificationEnvelope, notificationFromSchema, notificationIdSchema, notificationPath, notificationRecordSchema, type NotificationRecord, type NotificationResult } from "./notification-contract";
+import { isCustomerReceipt, notificationEnvelope, notificationFromSchema, notificationIdSchema, notificationPath, notificationRecordSchema, type NotificationRecord, type NotificationResult } from "./notification-contract";
 
 const LEASE_MS = 60_000;
 const RETRY_WINDOW_MS = 23 * 60 * 60 * 1000;
@@ -44,6 +44,20 @@ export function createNotificationProcessor(options: { store: FirestoreGateway; 
         }
         if (row.nextAttemptAt && Date.parse(row.nextAttemptAt) > clock) return retry((Date.parse(row.nextAttemptAt) - clock) / 1000);
         const at = new Date(clock).toISOString();
+        if (isCustomerReceipt(row.kind)) {
+          // Exact document reads remain in the claim transaction; no customer collection is scanned.
+          const inquiry = row.kind === "inquiry-receipt";
+          const sourcePath = `${inquiry ? "inquiries" : "community_requests"}/${row.sourceId}`;
+          const source = (await store.readMany([sourcePath], tx)).get(sourcePath)?.data;
+          const matches = source && source.locale === row.locale && source.createdAt === row.createdAt && (inquiry
+            ? source.reference === row.sourceId && source.productId === row.productId && source.contactMethod === "email" && source.contactValue === row.recipientEmail
+            : source.id === row.sourceId && source.email === row.recipientEmail && source.consent === true && source.status !== "withdrawn");
+          if (!matches) {
+            const next: NotificationRecord = { ...row, status: "review", updatedAt: at, nextAttemptAt: null, leaseToken: null, leaseUntil: null, lastError: "source_mismatch" };
+            await store.commit([documentWrite(store, path, next)], tx); committed = true;
+            return { status: "review" };
+          }
+        }
         const leaseUntil = new Date(clock + LEASE_MS).toISOString();
         const next = notificationRecordSchema.parse({ ...row, status: "sending", updatedAt: at,
           attemptCount: row.attemptCount + 1, firstAttemptAt: row.firstAttemptAt ?? at,

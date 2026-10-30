@@ -2,7 +2,11 @@ import { z } from "zod";
 
 export const notificationRecipient = "amardelgerekh@gmail.com" as const;
 export const notificationCollection = "notification_outbox";
-export const notificationIdSchema = z.string().regex(/^(?:inquiry-TT-[A-F0-9]{20}|community-CM-[a-f0-9]{64})$/);
+export const notificationIdSchema = z.string().regex(/^(?:inquiry(?:-receipt)?-TT-[A-F0-9]{20}|community(?:-receipt)?-CM-[a-f0-9]{64})$/);
+const recipientEmailSchema = z.string().max(254).email().refine(value => value === value.trim().toLowerCase(), "Recipient must be a normalized single email address");
+const notificationKinds = ["inquiry", "community", "inquiry-receipt", "community-receipt"] as const;
+type NotificationKind = (typeof notificationKinds)[number];
+export const isCustomerReceipt = (kind: NotificationKind) => kind === "inquiry-receipt" || kind === "community-receipt";
 const timestamp = z.string().datetime();
 export const notificationFromSchema = z.string().trim().min(3).max(200).refine(value => {
   if (/[\r\n]/.test(value)) return false;
@@ -11,17 +15,18 @@ export const notificationFromSchema = z.string().trim().min(3).max(200).refine(v
 });
 const envelopeSchema = z.object({
   from: notificationFromSchema,
-  to: z.literal(notificationRecipient),
+  to: recipientEmailSchema,
   subject: z.string().max(180),
   text: z.string().max(1500),
 }).strict();
-export const notificationErrors = ["transport_uncertain", "provider_retryable", "provider_rejected", "provider_conflict", "retry_window_expired", "attempt_limit"] as const;
+export const notificationErrors = ["transport_uncertain", "provider_retryable", "provider_rejected", "provider_conflict", "retry_window_expired", "attempt_limit", "source_mismatch"] as const;
 export const notificationRecordSchema = z.object({
   id: notificationIdSchema,
-  kind: z.enum(["inquiry", "community"]),
+  kind: z.enum(notificationKinds),
   sourceId: z.string().max(80),
   productId: z.string().regex(/^TT-\d{3,6}$/).nullable(),
   locale: z.enum(["mn", "en"]),
+  recipientEmail: recipientEmailSchema.optional(),
   createdAt: timestamp,
   updatedAt: timestamp,
   status: z.enum(["pending", "sending", "accepted", "failed", "review"]),
@@ -35,8 +40,12 @@ export const notificationRecordSchema = z.object({
   acceptedAt: timestamp.nullable(),
   lastError: z.enum(notificationErrors).nullable(),
 }).strict().superRefine((row, ctx) => {
-  const validSource = row.kind === "inquiry" ? /^TT-[A-F0-9]{20}$/.test(row.sourceId) : /^CM-[a-f0-9]{64}$/.test(row.sourceId);
-  if (!validSource || row.id !== `${row.kind}-${row.sourceId}` || (row.kind === "community" && row.productId !== null)) ctx.addIssue({ code: "custom", message: "Invalid source identity" });
+  const inquiry = row.kind === "inquiry" || row.kind === "inquiry-receipt";
+  const receipt = isCustomerReceipt(row.kind);
+  const validSource = inquiry ? /^TT-[A-F0-9]{20}$/.test(row.sourceId) : /^CM-[a-f0-9]{64}$/.test(row.sourceId);
+  if (!validSource || row.id !== `${row.kind}-${row.sourceId}` || (!inquiry && row.productId !== null)) ctx.addIssue({ code: "custom", message: "Invalid source identity" });
+  if (receipt ? !row.recipientEmail : Object.hasOwn(row, "recipientEmail")) ctx.addIssue({ code: "custom", message: "Only customer receipts require a recipient email" });
+  if (row.envelope && row.envelope.to !== (receipt ? row.recipientEmail : notificationRecipient)) ctx.addIssue({ code: "custom", message: "Envelope recipient does not match notification kind" });
   if (row.attemptCount === 0 && (row.firstAttemptAt !== null || row.envelope !== null)) ctx.addIssue({ code: "custom", message: "Unattempted notification cannot have a provider payload" });
   if (row.attemptCount > 0 && (!row.firstAttemptAt || !row.envelope)) ctx.addIssue({ code: "custom", message: "Attempted notification requires its immutable payload" });
   if (row.status === "sending" && (!row.leaseToken || !row.leaseUntil || row.nextAttemptAt !== row.leaseUntil)) ctx.addIssue({ code: "custom", message: "Sending requires a lease" });
@@ -53,7 +62,11 @@ export function notificationPath(id: string) {
   return `${notificationCollection}/${notificationIdSchema.parse(id)}`;
 }
 
-export function createNotificationRecord(input: { kind: "inquiry" | "community"; sourceId: string; productId: string | null; locale: "mn" | "en" }, now = Date.now()): NotificationRecord {
+type NotificationInput = { sourceId: string; productId: string | null; locale: "mn" | "en" } & (
+  { kind: "inquiry" | "community"; recipientEmail?: never } |
+  { kind: "inquiry-receipt" | "community-receipt"; recipientEmail: string }
+);
+export function createNotificationRecord(input: NotificationInput, now = Date.now()): NotificationRecord {
   const at = new Date(now).toISOString();
   return notificationRecordSchema.parse({
     ...input, id: `${input.kind}-${input.sourceId}`, createdAt: at, updatedAt: at,
@@ -64,9 +77,38 @@ export function createNotificationRecord(input: { kind: "inquiry" | "community";
 
 export const notificationForInquiry = (reference: string, productId: string | null, locale: "mn" | "en", now = Date.now()) => createNotificationRecord({ kind: "inquiry", sourceId: reference, productId, locale }, now);
 export const notificationForCommunity = (id: string, locale: "mn" | "en", now = Date.now()) => createNotificationRecord({ kind: "community", sourceId: id, productId: null, locale }, now);
+export const receiptForInquiry = (reference: string, productId: string | null, locale: "mn" | "en", email: string, now = Date.now()) => createNotificationRecord({ kind: "inquiry-receipt", sourceId: reference, productId, locale, recipientEmail: email.trim().toLowerCase() }, now);
+export const receiptForCommunity = (id: string, locale: "mn" | "en", email: string, now = Date.now()) => createNotificationRecord({ kind: "community-receipt", sourceId: id, productId: null, locale, recipientEmail: email.trim().toLowerCase() }, now);
 
-/** Contains only system-generated references and labels, never customer text or contact details. */
-export function notificationEnvelope(row: Pick<NotificationRecord, "kind" | "sourceId" | "productId" | "locale" | "createdAt">, from: string): NotificationEnvelope {
+/** Email bodies contain only fixed copy and bounded system references, never submitted names or messages. */
+export function notificationEnvelope(row: Pick<NotificationRecord, "kind" | "sourceId" | "productId" | "locale" | "createdAt" | "recipientEmail">, from: string): NotificationEnvelope {
+  if (isCustomerReceipt(row.kind)) {
+    const inquiry = row.kind === "inquiry-receipt", mn = row.locale === "mn";
+    return {
+      from: notificationFromSchema.parse(from), to: recipientEmailSchema.parse(row.recipientEmail),
+      subject: mn ? "Таван Тансаг · Таны хүсэлтийг хүлээн авлаа" : "Tavan Tansag · We have received your request",
+      text: [
+        mn ? "Таны хүсэлтийг хүлээн авлаа. Баярлалаа." : "Thank you. We have received your request.",
+        inquiry
+          ? (mn ? "Манай баг хүсэлтийг тань хянаж, таны үлдээсэн холбоо барих мэдээллээр хариу өгнө." : "Our team will review your enquiry and contact you using the details you provided.")
+          : (mn ? "Таван Тансагийн хүрээлэлд нэгдэх хүсэлтийг тань бүртгэлээ." : "We have recorded your request to join the Tavan Tansag community."),
+        ...(inquiry ? [
+          mn ? `Хүсэлтийн дугаар: ${row.sourceId}` : `Request reference: ${row.sourceId}`,
+          mn ? `Эдлэл: ${row.productId ?? "Ерөнхий зөвлөгөө"}` : `Piece: ${row.productId ?? "General enquiry"}`,
+        ] : []),
+        "",
+        mn ? "Холбоо барих:" : "Contact Tavan Tansag:",
+        "+97688111323",
+        `https://tavantansag.com/${row.locale}/about`,
+        `https://tavantansag.com/${row.locale}`,
+        "",
+        inquiry
+          ? (mn ? "Энэ нь захиалга эсвэл уулзалтын баталгаажуулалт биш." : "This is not an order or appointment confirmation.")
+          : (mn ? "Энэ нь мэдээлэл авах бүртгэлийн баталгаажуулалт биш." : "This acknowledges your request, not a confirmed subscription."),
+        mn ? "Хэрэв та энэ хүсэлтийг илгээгээгүй бол уг и-мэйлийг үл хэрэгсэж болно." : "If you did not submit this request, you may disregard this email.",
+      ].join("\n"),
+    };
+  }
   const inquiry = row.kind === "inquiry";
   return {
     from: notificationFromSchema.parse(from), to: notificationRecipient,

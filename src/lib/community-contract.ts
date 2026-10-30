@@ -41,5 +41,5 @@ export const communityPageSchema = z.object({
   items: z.array(communityRecordSchema).max(30), hasMore: z.boolean(), nextCursor: z.string().max(512).nullable(),
 }).strict();
 export type CommunityPage = z.infer<typeof communityPageSchema>;
-export type CommunityPersistenceResult = { ok: true; notificationId?: string } | { ok: false; code: "RATE_LIMITED" | "IDEMPOTENCY_CONFLICT" | "UNAVAILABLE" };
+export type CommunityPersistenceResult = { ok: true; notificationIds?: string[] } | { ok: false; code: "RATE_LIMITED" | "IDEMPOTENCY_CONFLICT" | "UNAVAILABLE" };
 export type PersistCommunity = (input: CommunityInput, key: string, context?: { clientIp: string }) => Promise<CommunityPersistenceResult>;

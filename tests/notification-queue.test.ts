@@ -4,12 +4,16 @@ import { execFileSync } from "node:child_process";
 import {
   createNotificationConsumer, createNotificationDispatcher, createNotificationReconcileHandler,
   dueNotificationsPipeline, notificationCronAuthorized, notificationMessageSchema,
-  notificationQueueRetry, NotificationRetry, notificationTopic,
+  notificationQueueRetry, NotificationRetry, notificationTopic, isReceiptNotificationId,
 } from "../src/lib/server/notification-queue-policy";
 import type { NotificationResult } from "../src/lib/server/notification-contract";
+import { createInquiryHandler } from "../src/lib/server/inquiry-handler";
+import { createCommunityHandler } from "../src/lib/server/community-handler";
 
 const inquiry = "inquiry-TT-0123456789ABCDEF0123";
 const community = `community-CM-${"a".repeat(64)}`;
+const inquiryReceipt = inquiry.replace("inquiry-", "inquiry-receipt-");
+const communityReceipt = community.replace("community-", "community-receipt-");
 const secret = "test-only-cron-secret-with-32-characters";
 const request = (authorization?: string) => new Request("https://example.invalid/api/cron/notifications", { headers: authorization === undefined ? {} : { authorization } });
 
@@ -25,6 +29,53 @@ test("queue publication accepts only a validated system ID and safely gates miss
   assert.deepEqual(calls, [[notificationTopic, { id: inquiry }, { idempotencyKey: inquiry, retentionSeconds: 86_400 }]]);
   const unavailable = createNotificationDispatcher({ configured: () => true, publish: async () => { throw new Error("provider token: do not leak"); } });
   assert.deepEqual(await unavailable(community), { status: "unavailable" });
+});
+
+test("owner notifications and receipts publish independently with ID-only payloads and distinct deduplication keys", async () => {
+  const calls: { topic: string; message: { id: string }; key: string }[] = [];
+  const ids = [inquiry, inquiryReceipt, community, communityReceipt];
+  const publish = createNotificationDispatcher({ configured: () => true, publish: async (topic, message, options) => { calls.push({ topic, message, key: options.idempotencyKey }); } });
+  const results = await Promise.all(ids.map(id => publish(id)));
+  assert.deepEqual(results, ids.map(() => ({ status: "queued" })));
+  assert.deepEqual(calls.map(call => call.message), ids.map(id => ({ id })));
+  assert.equal(new Set(calls.map(call => call.key)).size, ids.length);
+  for (const call of calls) {
+    assert.equal(call.topic, notificationTopic);
+    assert.equal(call.key, call.message.id);
+    assert.deepEqual(Object.keys(call.message), ["id"]);
+  }
+});
+
+test("disabling customer receipts stops their publication without interrupting owner notifications", async () => {
+  const sent: string[] = [];
+  let receiptsEnabled = false;
+  const publish = createNotificationDispatcher({
+    configured: () => true,
+    canDispatch: id => !isReceiptNotificationId(id) || receiptsEnabled,
+    publish: async (_topic, message) => { sent.push(message.id); },
+  });
+  for (const id of [inquiryReceipt, communityReceipt]) assert.deepEqual(await publish(id), { status: "disabled" });
+  assert.deepEqual(sent, []);
+  for (const id of [inquiry, community]) assert.deepEqual(await publish(id), { status: "queued" });
+  assert.deepEqual(sent, [inquiry, community]);
+  receiptsEnabled = true;
+  for (const id of [inquiryReceipt, communityReceipt]) assert.deepEqual(await publish(id), { status: "queued" });
+  assert.deepEqual(sent, [inquiry, community, inquiryReceipt, communityReceipt]);
+});
+
+test("receipt callbacks reject recipient email and reflected customer content before processing", async () => {
+  const processed: string[] = [];
+  const consume = createNotificationConsumer({ configured: () => true, process: async id => { processed.push(id); return { status: "accepted" }; } });
+  for (const id of [inquiryReceipt, communityReceipt]) {
+    for (const extra of [{ recipientEmail: "visitor@example.invalid" }, { to: "visitor@example.invalid" }, { name: "Private Visitor" }, { message: "Private content" }]) {
+      const payload = { id, ...extra };
+      assert.equal(notificationMessageSchema.safeParse(payload).success, false);
+      await consume(payload, { topicName: notificationTopic });
+    }
+  }
+  assert.deepEqual(processed, []);
+  for (const id of [inquiryReceipt, communityReceipt]) await consume({ id }, { topicName: notificationTopic });
+  assert.deepEqual(processed, [inquiryReceipt, communityReceipt]);
 });
 
 test("worker rejects poison payloads, extra customer fields and a foreign topic without processing", async () => {
@@ -122,4 +173,40 @@ test("fallback only queries due nonterminal outbox records, oldest first, select
   assert.ok(filters.includes("2026-10-30T10:00:00.000Z"));
   assert.deepEqual(stages.at(-2), { name: "limit", args: [{ integerValue: "5" }] });
   assert.deepEqual(stages.at(-1), { name: "select", args: [{ mapValue: { fields: { id: { fieldReferenceValue: "id" } } } }] });
+});
+
+test("disabled receipts are filtered in Firestore before the fallback's five-row limit", () => {
+  const now = Date.parse("2026-10-30T10:00:00.000Z");
+  const disabled = dueNotificationsPipeline(now, false).structuredPipeline.pipeline.stages;
+  const enabled = dueNotificationsPipeline(now, true).structuredPipeline.pipeline.stages;
+  const kindFilter = { functionValue: { name: "or", args: ["inquiry", "community"].map(kind => ({ functionValue: { name: "equal", args: [{ fieldReferenceValue: "kind" }, { stringValue: kind }] } })) } };
+  assert.ok(JSON.stringify(disabled[1]).includes(JSON.stringify(kindFilter)));
+  assert.ok(!JSON.stringify(enabled[1]).includes('"fieldReferenceValue":"kind"'));
+  assert.deepEqual(disabled.slice(2), enabled.slice(2));
+  assert.ok(disabled.findIndex(stage => stage.name === "where") < disabled.findIndex(stage => stage.name === "limit"));
+});
+
+test("cron accepts a mixed owner and receipt batch while returning only aggregate counts", async () => {
+  const ids = [inquiry, inquiryReceipt, community, communityReceipt];
+  const sent: string[] = [];
+  const handler = createNotificationReconcileHandler({ secret: () => secret, configured: () => true, due: async () => ids, dispatch: async id => { sent.push(id); return { status: "queued" }; } });
+  const response = await handler(request(`Bearer ${secret}`));
+  assert.equal(response.status, 200);
+  assert.deepEqual(await response.json(), { status: "ok", considered: ids.length, queued: ids.length });
+  assert.deepEqual(sent, ids);
+});
+
+test("public acknowledgements never expose internal notification IDs or private email destinations", async () => {
+  const origin = "https://tavantansag.com";
+  const inquiryHandler = createInquiryHandler({ configured: () => true, allowedOrigin: origin, persist: async () => ({ ok: true, reference: "TT-0123456789ABCDEF0123", duplicate: false, notificationIds: [inquiry, inquiryReceipt], recipientEmail: "visitor@example.invalid" }) });
+  const communityHandler = createCommunityHandler({ configured: () => true, allowedOrigin: origin, persist: async () => ({ ok: true, notificationIds: [community, communityReceipt], recipientEmail: "visitor@example.invalid" }) });
+  const submit = (path: string, body: unknown, key: string) => new Request(origin + path, { method: "POST", headers: { Origin: origin, "Content-Type": "application/json", "Idempotency-Key": key }, body: JSON.stringify(body) });
+  for (const locale of ["mn", "en"]) {
+    const inquiryResponse = await inquiryHandler(submit("/api/inquiries", { name: "Test Visitor", contactMethod: "email", contactValue: "visitor@example.invalid", message: "Test request for a consultation.", locale }, "private-boundary-key-0001"));
+    assert.equal(inquiryResponse.status, 201);
+    assert.deepEqual(await inquiryResponse.json(), { ok: true, reference: "TT-0123456789ABCDEF0123" });
+    const communityResponse = await communityHandler(submit("/api/community", { email: "visitor@example.invalid", firstName: "Test Visitor", interests: ["men"], consent: true, locale }, "00000000-0000-4000-8000-000000000001"));
+    assert.equal(communityResponse.status, 202);
+    assert.deepEqual(await communityResponse.json(), { ok: true, code: "REQUEST_RECEIVED" });
+  }
 });

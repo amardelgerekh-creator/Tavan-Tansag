@@ -1,7 +1,7 @@
 import { createHmac, randomBytes } from "node:crypto";
 import { inquirySchema, idempotencyKeySchema, normalizeContact, type PersistInquiry } from "./inquiry-contract";
 import { documentWrite, PrivateStoreError, type FirestoreGateway, type DocumentData } from "./firestore-protocol";
-import { notificationForInquiry, notificationPath } from "./notification-contract";
+import { notificationForInquiry, notificationPath, receiptForInquiry } from "./notification-contract";
 
 const WINDOW_MS = 15 * 60 * 1000;
 const RETRIES = 4;
@@ -19,6 +19,7 @@ export function createInquiryPersistence(options: {
   assignee: string;
   includeSamples: boolean;
   notificationsEnabled?: boolean;
+  customerReceiptsEnabled?: boolean;
   now?: () => number;
   reference?: () => string;
 }): PersistInquiry {
@@ -78,7 +79,11 @@ export function createInquiryPersistence(options: {
           count: count + 1,
           updatedAt: timestamp,
         });
-        const notification = options.notificationsEnabled ? notificationForInquiry(reference, input.productId ?? null, input.locale, now) : null;
+        const notifications = [
+          ...(options.notificationsEnabled ? [notificationForInquiry(reference, input.productId ?? null, input.locale, now)] : []),
+          ...(options.customerReceiptsEnabled && input.contactMethod === "email"
+            ? [receiptForInquiry(reference, input.productId ?? null, input.locale, contactValue, now)] : []),
+        ];
         const writes = [
           documentWrite(store, `inquiries/${reference}`, {
             reference, name: input.name, contactMethod: input.contactMethod, contactValue,
@@ -92,11 +97,11 @@ export function createInquiryPersistence(options: {
           documentWrite(store, `inquiries/${reference}/activity/created`, {
             kind: "created", actor: "website", at: timestamp, status: "new", assignee: options.assignee, revision: 0,
           }, { exists: false }),
-          ...(notification ? [documentWrite(store, notificationPath(notification.id), notification, { exists: false })] : []),
+          ...notifications.map(notification => documentWrite(store, notificationPath(notification.id), notification, { exists: false })),
         ];
         await store.commit(writes, transaction);
         committed = true;
-        return { ok: true, reference, duplicate: false, ...(notification ? { notificationId: notification.id } : {}) };
+        return { ok: true, reference, duplicate: false, ...(notifications.length ? { notificationIds: notifications.map(notification => notification.id) } : {}) };
       } catch (error) {
         if (!(error instanceof PrivateStoreError) || error.code !== "ABORTED" || attempt === RETRIES - 1) {
           return { ok: false, code: "UNAVAILABLE" };

@@ -79,7 +79,7 @@ test("confirmation follows persistence and returns only the reference", async ()
     persist: async (data, idempotencyKey) => {
       saved = data;
       savedKey = idempotencyKey;
-      return { ok: true, reference: "TT-12345678ABCDEF00", duplicate: false };
+      return { ok: true, reference: "TT-12345678ABCDEF00", duplicate: false, notificationIds: ["inquiry-TT-12345678ABCDEF0000000", "inquiry-receipt-TT-12345678ABCDEF0000000"] };
     },
   });
   const response = await handler(request({ ...input, name: "  Бат Болд  " }));

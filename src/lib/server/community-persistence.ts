@@ -2,7 +2,7 @@ import { createHmac } from "node:crypto";
 import { categoryIds } from "../catalog";
 import { communityConsentVersion, communityInputSchema, communityKeySchema, communityRecordSchema, type PersistCommunity } from "../community-contract";
 import { documentWrite, PrivateStoreError, type FirestoreGateway, type DocumentData } from "./firestore-protocol";
-import { notificationForCommunity, notificationPath } from "./notification-contract";
+import { notificationForCommunity, notificationPath, receiptForCommunity } from "./notification-contract";
 
 const WINDOW_MS = 15 * 60 * 1000;
 function countInWindow(data: DocumentData | undefined, now: number) {
@@ -12,7 +12,7 @@ function countInWindow(data: DocumentData | undefined, now: number) {
 }
 
 /** Durable email deduplication. Anonymous callers never replace another person's preferences or withdrawal. */
-export function createCommunityPersistence(options: { store: FirestoreGateway; hashSecret: string; notificationsEnabled?: boolean; now?: () => number }): PersistCommunity {
+export function createCommunityPersistence(options: { store: FirestoreGateway; hashSecret: string; notificationsEnabled?: boolean; customerReceiptsEnabled?: boolean; now?: () => number }): PersistCommunity {
   const { store } = options;
   const hmac = (kind: string, value: string) => createHmac("sha256", options.hashSecret).update(`community:${kind}\0${value}`).digest("hex");
   return async (raw, key, context) => {
@@ -49,7 +49,10 @@ export function createCommunityPersistence(options: { store: FirestoreGateway; h
         const emailCount = countInWindow(emailLimit, now), ipCount = countInWindow(ipLimit, now);
         if (emailCount >= 3 || ipCount >= 10) return { ok: false, code: "RATE_LIMITED" };
         const counter = (data: DocumentData | undefined, count: number) => ({ startedAt: count === 0 ? now : data!.startedAt, count: count + 1, updatedAt: at });
-        const notification = !current && options.notificationsEnabled ? notificationForCommunity(id, input.locale, now) : null;
+        const notifications = !current ? [
+          ...(options.notificationsEnabled ? [notificationForCommunity(id, input.locale, now)] : []),
+          ...(options.customerReceiptsEnabled ? [receiptForCommunity(id, input.locale, input.email, now)] : []),
+        ] : [];
         const writes = [
           documentWrite(store, keyPath, { fingerprint, requestId: id, createdAt: at }, { exists: false }),
           documentWrite(store, emailLimitPath, counter(emailLimit, emailCount)),
@@ -58,10 +61,10 @@ export function createCommunityPersistence(options: { store: FirestoreGateway; h
             documentWrite(store, path, { ...payload, id, emailVerified: false, consentAt: at, status: "requested", revision: 0, createdAt: at, updatedAt: at }, { exists: false }),
             documentWrite(store, `${path}/activity/created`, { kind: "created", actor: "website", at, status: "requested", revision: 0, consentVersion: communityConsentVersion }, { exists: false }),
           ] : []),
-          ...(notification ? [documentWrite(store, notificationPath(notification.id), notification, { exists: false })] : []),
+          ...notifications.map(notification => documentWrite(store, notificationPath(notification.id), notification, { exists: false })),
         ];
         await store.commit(writes, transaction); committed = true;
-        return { ok: true, ...(notification ? { notificationId: notification.id } : {}) };
+        return { ok: true, ...(notifications.length ? { notificationIds: notifications.map(notification => notification.id) } : {}) };
       } catch (error) {
         if (!(error instanceof PrivateStoreError) || error.code !== "ABORTED" || attempt === 3) return { ok: false, code: "UNAVAILABLE" };
       } finally { if (transaction && !committed) await store.rollback(transaction).catch(() => undefined); }
