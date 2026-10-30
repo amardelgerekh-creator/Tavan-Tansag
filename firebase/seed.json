@@ -2,7 +2,8 @@
   {
     "id": "TT-001",
     "slug": "saddle-blue-border",
-    "category": "saddles",
+    "category": "horse",
+    "subcategory": "saddles",
     "name": {
       "mn": "Улаан суудалтай, цэнхэр хүрээтэй эмээл",
       "en": "Red-seat saddle with blue edging"
@@ -26,12 +27,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-002",
     "slug": "saddle-multicolour-border",
-    "category": "saddles",
+    "category": "horse",
+    "subcategory": "saddles",
     "name": {
       "mn": "Олон өнгийн хүрээтэй, шаргал гөлөмтэй эмээл",
       "en": "Saddle with multicolour edging and tan flaps"
@@ -55,12 +58,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-003",
     "slug": "saddle-dark-border",
-    "category": "saddles",
+    "category": "horse",
+    "subcategory": "saddles",
     "name": {
       "mn": "Хар хүрээтэй, улаан суудалтай эмээл",
       "en": "Red-seat saddle with dark edging"
@@ -84,12 +89,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-004",
     "slug": "saddle-green-flaps",
-    "category": "saddles",
+    "category": "horse",
+    "subcategory": "saddles",
     "name": {
       "mn": "Ногоон гөлөмтэй эмээл",
       "en": "Saddle with green flaps"
@@ -113,12 +120,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-005",
     "slug": "saddle-burgundy-flaps",
-    "category": "saddles",
+    "category": "horse",
+    "subcategory": "saddles",
     "name": {
       "mn": "Улаан хүрэн гөлөмтэй эмээл",
       "en": "Saddle with burgundy flaps"
@@ -142,12 +151,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-006",
     "slug": "bowl-orange-band",
-    "category": "vessels",
+    "category": "silverware",
+    "subcategory": "bowls",
     "name": {
       "mn": "Улбар хүрээтэй, хээт суурьтай аяга",
       "en": "Bowl with an orange band and patterned foot"
@@ -171,12 +182,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-007",
     "slug": "bowl-geometric-base",
-    "category": "vessels",
+    "category": "silverware",
+    "subcategory": "bowls",
     "name": {
       "mn": "Сүлжээ хээтэй суурь бүхий аяга",
       "en": "Bowl with a geometric patterned base"
@@ -200,12 +213,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-008",
     "slug": "bowl-wide-tan-band",
-    "category": "vessels",
+    "category": "silverware",
+    "subcategory": "bowls",
     "name": {
       "mn": "Өргөн шаргал бүслүүртэй аяга",
       "en": "Bowl with a wide tan band"
@@ -229,12 +244,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-009",
     "slug": "bowl-low-orange-band",
-    "category": "vessels",
+    "category": "silverware",
+    "subcategory": "bowls",
     "name": {
       "mn": "Намхан их биетэй, улбар хүрээтэй аяга",
       "en": "Low-profile bowl with an orange band"
@@ -258,12 +275,14 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   },
   {
     "id": "TT-010",
     "slug": "bowl-dark-surface",
-    "category": "vessels",
+    "category": "silverware",
+    "subcategory": "bowls",
     "name": {
       "mn": "Бараан гадаргуутай, хээт бүслүүртэй аяга",
       "en": "Dark-surfaced bowl with a patterned band"
@@ -287,6 +306,7 @@
     "weight": null,
     "maker": null,
     "period": null,
+    "priceMode": "inquiry",
     "visibility": "public"
   }
 ]

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   categories,
+  subcategories,
   facebookUrl,
   type Locale,
   type Product,
@@ -10,6 +11,7 @@ import { t } from "@/lib/copy";
 import { Arrow } from "./icons";
 import { BrandLogo } from "./brand-logo";
 import { productPrice } from "@/lib/product-presentation";
+import { businessDetails } from "@/lib/business";
 
 export function ProductCard({
   product: p,
@@ -42,7 +44,7 @@ export function ProductCard({
         </span>
       </Link>
       <div className="product-meta">
-        <span>{categories[p.category]?.[locale] || c.collection}</span>
+        <span>{(p.subcategory && subcategories[p.category]?.[p.subcategory]?.[locale]) || categories[p.category]?.[locale] || c.collection}</span>
         <span>{productPrice(p, locale)}</span>
       </div>
       <h3>
@@ -82,6 +84,11 @@ export function Footer({ locale }: { locale: Locale }) {
             <BrandLogo locale={locale} />
           </Link>
           <p>{c.footerLine}</p>
+          <address className="footer-business">{businessDetails.address[locale]}<br />
+            <a href={`tel:${businessDetails.phone}`}>{businessDetails.phoneDisplay}</a><br />
+            <a href={`mailto:${businessDetails.email}`}>{businessDetails.email}</a><br />
+            {businessDetails.hours} · {locale === "mn" ? "Ирэх өдрөө урьдчилан лавлана уу." : "Please confirm your visiting day."}
+          </address>
         </div>
         <div className="footer-links">
           <Link href={"/" + locale + "/collection"}>{c.collection}</Link>

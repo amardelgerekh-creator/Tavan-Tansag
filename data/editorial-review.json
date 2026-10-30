@@ -16,7 +16,13 @@
         }
       ],
       "editorialBasis": "Original guide to viewing catalog photographs and asking for further details.",
-      "relatedProductIds": ["TT-001", "TT-002", "TT-003", "TT-004", "TT-005"],
+      "relatedProductIds": [
+        "TT-001",
+        "TT-002",
+        "TT-003",
+        "TT-004",
+        "TT-005"
+      ],
       "storeReviewStatus": "pending",
       "reviewedBy": null,
       "reviewedAt": null
@@ -34,7 +40,13 @@
         }
       ],
       "editorialBasis": "Original selection checklist; the enquiry-only flow reflects the implemented website, without a payment or reservation promise.",
-      "relatedProductIds": ["TT-001", "TT-002", "TT-003", "TT-004", "TT-005"],
+      "relatedProductIds": [
+        "TT-001",
+        "TT-002",
+        "TT-003",
+        "TT-004",
+        "TT-005"
+      ],
       "storeReviewStatus": "pending",
       "reviewedBy": null,
       "reviewedAt": null
@@ -52,7 +64,13 @@
         }
       ],
       "editorialBasis": "Original explanation of separating visible observations, oral accounts and evidence.",
-      "relatedProductIds": ["TT-006", "TT-007", "TT-008", "TT-009", "TT-010"],
+      "relatedProductIds": [
+        "TT-006",
+        "TT-007",
+        "TT-008",
+        "TT-009",
+        "TT-010"
+      ],
       "storeReviewStatus": "pending",
       "reviewedBy": null,
       "reviewedAt": null
@@ -70,7 +88,13 @@
         }
       ],
       "editorialBasis": "Original preparation guide for requesting object-specific care advice, not a diagnosis or conservation treatment plan.",
-      "relatedProductIds": ["TT-006", "TT-007", "TT-008", "TT-009", "TT-010"],
+      "relatedProductIds": [
+        "TT-006",
+        "TT-007",
+        "TT-008",
+        "TT-009",
+        "TT-010"
+      ],
       "storeReviewStatus": "pending",
       "reviewedBy": null,
       "reviewedAt": null
@@ -78,19 +102,37 @@
   ],
   "businessDetails": {
     "checkedAt": "2026-10-30",
-    "knownFromExistingProject": ["Ulaanbaatar, Mongolia", "User-provided official Facebook page", "Mongolian and English website enquiry flow"],
-    "sources": [
-      { "url": "https://www.facebook.com/profile.php?id=61572155406045", "checkResult": "Direct public fetch unavailable; no new business claim taken from search results." },
-      { "url": "https://drive.google.com/drive/folders/1xJEoi13p6yXufxGmnIqUVdkxe0-fAgCB", "checkResult": "Connected Drive returned NOT_FOUND for this folder; existing asset manifest retained." }
+    "knownFromExistingProject": [
+      "Ulaanbaatar, Mongolia",
+      "User-provided official Facebook page",
+      "Mongolian and English website enquiry flow"
     ],
-    "streetAddress": null,
-    "openingHours": null,
-    "publicTelephone": null,
+    "sources": [
+      {
+        "url": "https://www.facebook.com/profile.php?id=61572155406045",
+        "checkResult": "Direct public fetch unavailable; no new business claim taken from search results."
+      },
+      {
+        "url": "https://drive.google.com/drive/folders/1xJEoi13p6yXufxGmnIqUVdkxe0-fAgCB",
+        "checkResult": "Connected Drive returned NOT_FOUND for this folder; existing asset manifest retained."
+      }
+    ],
+    "ownerSuppliedDetails": {
+      "receivedAt": "2026-10-30",
+      "source": "User supplied the public business address, telephone, email and opening hours directly in this task.",
+      "limits": "Working days were not supplied. Confirm the day of a visit; these hours do not imply daily opening."
+    },
+    "streetAddress": "Улаанбаатар хот, Сүхбаатар дүүрэг, Жуулчны гудамж, Таван Тансаг",
+    "openingHours": "10:00–17:30",
+    "timeZone": "Asia/Ulaanbaatar",
+    "workingDays": null,
+    "publicTelephone": "+97688111323",
     "responseTimePromise": null,
     "giftPackagingPolicy": null,
     "internationalDeliveryPolicy": null,
     "artisanProfile": null,
     "reviewedBy": null,
-    "reviewedAt": null
+    "reviewedAt": null,
+    "publicEmail": "hello@tavantansag.com"
   }
 }

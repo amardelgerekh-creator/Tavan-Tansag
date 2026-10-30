@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { categories, isLocale } from "@/lib/catalog";
+import { categories, subcategories, isLocale } from "@/lib/catalog";
 import { articles } from "@/lib/articles";
 import { productAvailability, productPrice, relatedProducts } from "@/lib/product-presentation";
 import { getCatalog } from "@/lib/server/catalog-store";
@@ -69,14 +69,15 @@ export default async function Product({
   return (
     <div className="piece-experience">
       <section className="container product-page piece-page">
-        <Link href={"/" + locale + "/collection"} className="back-link">
+        <Link href={`/${locale}/collection?category=${p.category}${p.subcategory ? `&subcategory=${p.subcategory}` : ""}`} className="back-link">
           ← {c.back}
         </Link>
         <div className="product-detail-grid">
           <ProductGallery image={p.image} name={p.name[locale]} reference={p.id} locale={locale} />
           <div className="product-detail-copy">
             <span className="eyebrow">
-              {categories[p.category]?.[locale]} · {p.id}
+              <Link href={`/${locale}/collection?category=${p.category}`}>{categories[p.category][locale]}</Link>
+              {p.subcategory && subcategories[p.category][p.subcategory] && <> / <Link href={`/${locale}/collection?category=${p.category}&subcategory=${p.subcategory}`}>{subcategories[p.category][p.subcategory][locale]}</Link></>} · {p.id}
             </span>
             <h1>{p.name[locale]}</h1>
             <p className="product-description">{p.description[locale]}</p>

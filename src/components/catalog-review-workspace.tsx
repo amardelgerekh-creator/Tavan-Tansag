@@ -2,11 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { User } from "firebase/auth";
-import { categories, type Locale } from "@/lib/catalog";
+import { categories, categoryIds, isSubcategory, subcategories, type Locale } from "@/lib/catalog";
 import { catalogReviewRecordSchema, missingCatalogRequirements, type CatalogReviewFields, type CatalogReviewItem } from "@/lib/catalog-review-contract";
 import "@/app/catalog-review.css";
 
 const labels: Record<string, { mn: string; en: string }> = {
+  category: { mn: "Үндсэн ангилал", en: "Main category" }, subcategory: { mn: "Дэд ангилал", en: "Subcategory" },
   material: { mn: "Материал, сорьц", en: "Material and fineness" }, dimensions: { mn: "Хэмжээ", en: "Dimensions" },
   condition: { mn: "Нөхцөл байдал, мэдэгдэх гэмтэл", en: "Condition and known damage" },
   weight: { mn: "Жин (мэдэгдэж байвал)", en: "Weight (if known)" }, maker: { mn: "Урлаач (нотлогдсон бол)", en: "Maker (if evidenced)" },
@@ -72,7 +73,7 @@ function CatalogReviewEditor({ item, locale, user, onSaved }: { item: CatalogRev
   useEffect(() => { alive.current = true; return () => { alive.current = false; }; }, []);
   const missing = missingCatalogRequirements(fields);
   function change<K extends keyof CatalogReviewFields>(key: K, value: CatalogReviewFields[K]) {
-    setFields((old) => ({ ...old, [key]: value, ...(key === "factsConfirmed" ? {} : { factsConfirmed: false }) }));
+    setFields((old) => ({ ...old, [key]: value, ...(key === "category" ? { subcategory: null } : {}), ...(key === "factsConfirmed" ? {} : { factsConfirmed: false }) }));
   }
   async function save(action: "save" | "publish") {
     if (saving || (action === "publish" && missing.length)) return;
@@ -98,7 +99,8 @@ function CatalogReviewEditor({ item, locale, user, onSaved }: { item: CatalogRev
       <legend>{mn ? "Эдлэлийн мэдээлэл" : "Piece information"}</legend>
       <div className="catalog-review-grid">
         {(["name", "description"] as const).flatMap((key) => (["mn", "en"] as const).map((language) => <label key={`${key}.${language}`}>{labels[`${key}.${language}`][locale]}{key === "description" ? <textarea value={fields[key][language]} maxLength={1000} rows={3} onChange={(event) => change(key, { ...fields[key], [language]: event.target.value })}/> : <input value={fields[key][language]} maxLength={160} onChange={(event) => change(key, { ...fields[key], [language]: event.target.value })}/>}</label>))}
-        <label>{mn ? "Ангилал" : "Category"}<select value={fields.category} onChange={(event) => change("category", event.target.value as CatalogReviewFields["category"])}>{Object.entries(categories).map(([value, label]) => <option value={value} key={value}>{label[locale]}</option>)}</select></label>
+        <label>{labels.category[locale]}<select value={fields.category} onChange={(event) => change("category", event.target.value as CatalogReviewFields["category"])}>{categoryIds.map((value) => <option value={value} key={value}>{categories[value][locale]}</option>)}</select></label>
+        <label>{labels.subcategory[locale]}<select value={fields.subcategory ?? ""} onChange={(event) => change("subcategory", isSubcategory(fields.category, event.target.value) ? event.target.value : null)}><option value="">{mn ? "Дэд ангилал сонгох" : "Choose a subcategory"}</option>{Object.entries(subcategories[fields.category]).map(([value, label]) => <option value={value} key={value}>{label[locale]}</option>)}</select></label>
         {simpleFields.map((key) => <label key={key}>{labels[key][locale]}{["condition", "evidenceNotes"].includes(key) ? <textarea rows={3} value={fields[key]} maxLength={key === "condition" ? 500 : 1000} onChange={(event) => change(key, event.target.value)}/> : <input value={fields[key]} maxLength={key === "material" ? 300 : key === "weight" || key === "period" ? 150 : key.includes("Owner") ? 160 : 200} onChange={(event) => change(key, event.target.value)}/>}</label>)}
         <label>{labels.priceMode[locale]}<select value={fields.priceMode} onChange={(event) => change("priceMode", event.target.value as CatalogReviewFields["priceMode"])}><option value="unconfirmed">{mn ? "Баталгаажаагүй" : "Unconfirmed"}</option><option value="inquiry">{mn ? "Үнэ лавлах" : "Price on enquiry"}</option><option value="fixed">{mn ? "Үнийг харуулах" : "Show price"}</option></select></label>
         {fields.priceMode === "fixed" && <><label>{mn ? "Үнэ" : "Price"}<input type="number" min="0" max="1000000000000" step="0.01" value={fields.price ?? ""} onChange={(event) => change("price", event.target.value === "" ? null : Number(event.target.value))}/></label><label>{mn ? "Валют" : "Currency"}<select value={fields.currency} onChange={(event) => change("currency", event.target.value as CatalogReviewFields["currency"])}>{["MNT", "USD", "EUR"].map((currency) => <option key={currency}>{currency}</option>)}</select></label></>}
@@ -107,6 +109,7 @@ function CatalogReviewEditor({ item, locale, user, onSaved }: { item: CatalogRev
       <div className="catalog-review-checks">{(["imageRightsConfirmed", "distinctItemConfirmed", "factsConfirmed"] as const).map((key) => <label key={key}><input type="checkbox" checked={fields[key]} onChange={(event) => change(key, event.target.checked)}/><span>{labels[key][locale]}</span></label>)}</div>
     </fieldset>
     <p className="catalog-review-help">{mn ? "Жин, урлаач, он цаг тодорхойгүй бол хоосон үлдээнэ. Эх сурвалж, хариуцагч, тэмдэглэл зөвхөн ажилтанд харагдана. Нийтлэхэд таны Google эрх, цаг, өөрчлөлт бүртгэгдэнэ." : "Leave unknown weight, maker and period blank. Evidence, owners and notes stay private. Publication records your Google identity, time and changes."}</p>
+    <p className="catalog-review-help">{mn ? "Үндсэн ангиллыг солиход дэд ангиллыг дахин сонгож, мэдээллээ дахин баталгаажуулна. Ангиллын нэр нь материал, сорьцын баталгаа биш." : "Changing the main category clears its subcategory and requires fresh verification. A category name does not verify material or fineness."}</p>
     {missing.length > 0 && <details><summary>{mn ? `Нийтлэхийн өмнө ${missing.length} шалгуур гүйцээнэ` : `${missing.length} requirements remain before publication`}</summary><ul>{missing.map((key) => <li key={key}>{labels[key]?.[locale] ?? key}</li>)}</ul></details>}
     {error && <p className="crm-message crm-error" role="alert">{error}</p>}
     <div className="catalog-review-actions"><button type="submit" className="crm-secondary" disabled={saving}>{saving ? mn ? "Хадгалж байна…" : "Saving…" : mn ? "Ноорог хадгалах" : "Save draft"}</button><button type="button" className="button button-dark" disabled={saving || missing.length > 0} onClick={() => void save("publish")}>{mn ? "Баталгаажуулж нийтлэх" : "Verify and publish"}</button></div>

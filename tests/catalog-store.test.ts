@@ -78,8 +78,9 @@ test("Firebase upload contains ten public sample docs, no provenance, and refuse
     assert.equal(product.visibility, "public");
     assert.equal(product.publicationStatus, "sample");
     assert.equal(product.verificationStatus, "needs_review");
-    // Older seed documents predate these optional, reviewed public fields.
-    assert.deepEqual(Object.keys(product).sort(), catalogFields.filter((field) => !["condition", "priceMode"].includes(field)).sort());
+    // Old seed files omit newly introduced public fields; new exports may carry them.
+    for (const field of Object.keys(product)) assert.ok(catalogFields.includes(field), `Unexpected public field: ${field}`);
+    for (const field of catalogFields.filter((field) => !["condition", "priceMode", "subcategory"].includes(field))) assert.ok(field in product, `Missing required public field: ${field}`);
     assert.equal(writes[i].currentDocument.exists, false);
     assert.equal(writes[i].update.name, `projects/tavan-tansag-30560/databases/tavan-tansag-preview/documents/catalog_public/${product.id}`);
   }

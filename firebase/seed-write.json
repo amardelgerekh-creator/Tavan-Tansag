@@ -11,6 +11,9 @@
             "stringValue": "saddle-blue-border"
           },
           "category": {
+            "stringValue": "horse"
+          },
+          "subcategory": {
             "stringValue": "saddles"
           },
           "name": {
@@ -82,6 +85,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -102,6 +108,9 @@
             "stringValue": "saddle-multicolour-border"
           },
           "category": {
+            "stringValue": "horse"
+          },
+          "subcategory": {
             "stringValue": "saddles"
           },
           "name": {
@@ -173,6 +182,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -193,6 +205,9 @@
             "stringValue": "saddle-dark-border"
           },
           "category": {
+            "stringValue": "horse"
+          },
+          "subcategory": {
             "stringValue": "saddles"
           },
           "name": {
@@ -264,6 +279,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -284,6 +302,9 @@
             "stringValue": "saddle-green-flaps"
           },
           "category": {
+            "stringValue": "horse"
+          },
+          "subcategory": {
             "stringValue": "saddles"
           },
           "name": {
@@ -355,6 +376,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -375,6 +399,9 @@
             "stringValue": "saddle-burgundy-flaps"
           },
           "category": {
+            "stringValue": "horse"
+          },
+          "subcategory": {
             "stringValue": "saddles"
           },
           "name": {
@@ -446,6 +473,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -466,7 +496,10 @@
             "stringValue": "bowl-orange-band"
           },
           "category": {
-            "stringValue": "vessels"
+            "stringValue": "silverware"
+          },
+          "subcategory": {
+            "stringValue": "bowls"
           },
           "name": {
             "mapValue": {
@@ -537,6 +570,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -557,7 +593,10 @@
             "stringValue": "bowl-geometric-base"
           },
           "category": {
-            "stringValue": "vessels"
+            "stringValue": "silverware"
+          },
+          "subcategory": {
+            "stringValue": "bowls"
           },
           "name": {
             "mapValue": {
@@ -628,6 +667,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -648,7 +690,10 @@
             "stringValue": "bowl-wide-tan-band"
           },
           "category": {
-            "stringValue": "vessels"
+            "stringValue": "silverware"
+          },
+          "subcategory": {
+            "stringValue": "bowls"
           },
           "name": {
             "mapValue": {
@@ -719,6 +764,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -739,7 +787,10 @@
             "stringValue": "bowl-low-orange-band"
           },
           "category": {
-            "stringValue": "vessels"
+            "stringValue": "silverware"
+          },
+          "subcategory": {
+            "stringValue": "bowls"
           },
           "name": {
             "mapValue": {
@@ -810,6 +861,9 @@
           "period": {
             "nullValue": null
           },
+          "priceMode": {
+            "stringValue": "inquiry"
+          },
           "visibility": {
             "stringValue": "public"
           }
@@ -830,7 +884,10 @@
             "stringValue": "bowl-dark-surface"
           },
           "category": {
-            "stringValue": "vessels"
+            "stringValue": "silverware"
+          },
+          "subcategory": {
+            "stringValue": "bowls"
           },
           "name": {
             "mapValue": {
@@ -900,6 +957,9 @@
           },
           "period": {
             "nullValue": null
+          },
+          "priceMode": {
+            "stringValue": "inquiry"
           },
           "visibility": {
             "stringValue": "public"

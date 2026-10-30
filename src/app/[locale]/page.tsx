@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { isLocale } from "@/lib/catalog";
+import { categories, categoryIds, subcategories, isLocale } from "@/lib/catalog";
 import { getCatalog } from "@/lib/server/catalog-store";
 import { t } from "@/lib/copy";
 import { Arrow } from "@/components/icons";
 import { ProductCard, Consultation } from "@/components/site";
+import "@/app/home-categories.css";
 
 export async function generateMetadata({
   params,
@@ -92,6 +93,17 @@ export default async function Home({
           {locale === "mn" ? "ӨӨРИЙН ГЭСЭН ОНЦЛОГ" : "INDIVIDUAL CHARACTER"}
         </span>
       </div>
+      <section className="section container home-categories" aria-labelledby="home-categories-heading">
+        <div className="section-heading"><div>
+          <span className="eyebrow">{locale === "mn" ? "ТАВАН ТАНСАГИЙН ЦУГЛУУЛГА" : "THE TAVAN TANSAG COLLECTION"}</span>
+          <h2 id="home-categories-heading">{locale === "mn" ? "Эдлэлээ төрлөөр нь сонгоорой." : "Discover the collection by category."}</h2>
+        </div></div>
+        <div className="home-category-grid">{categoryIds.map((category, index) => <article key={category}>
+          <span className="home-category-number" aria-hidden="true">0{index + 1}</span>
+          <h3><Link href={`/${locale}/collection?category=${category}`}>{categories[category][locale]}<Arrow diagonal /></Link></h3>
+          <ul>{Object.entries(subcategories[category]).map(([key, label]) => <li key={key}><Link href={`/${locale}/collection?category=${category}&subcategory=${key}`}>{label[locale]}</Link></li>)}</ul>
+        </article>)}</div>
+      </section>
       <section className="section container featured">
         <div className="section-heading">
           <div>

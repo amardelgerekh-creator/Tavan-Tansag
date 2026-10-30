@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow } from "@/components/icons";
 import { facebookUrl, isLocale, type Localized } from "@/lib/catalog";
+import { businessDetails } from "@/lib/business";
 import "@/app/services.css";
 
 const services: {
@@ -17,7 +18,7 @@ const services: {
     title: { mn: "Эдлэлийг биеэр үзэх", en: "Arrange a viewing" },
     description: { mn: "Зургаас сонирхсон эдлэлээ ойроос үзэх хүсэлт үлдээгээрэй.", en: "Ask to take a closer look at a piece you have discovered in the collection." },
     prepare: { mn: "Эдлэлийн код, боломжтой өдөр болон цагаа бичнэ үү.", en: "Include the piece reference and your preferred day and time." },
-    confirm: { mn: "Биеэр очихоос өмнө эдлэлийг үзүүлэх боломж, уулзах хаяг, цагийг ажилтантай баталгаажуулна.", en: "Before travelling, confirm viewing availability, the exact meeting address and time with the team." },
+    confirm: { mn: "Биеэр очихоос өмнө эдлэлийг үзүүлэх боломж, очих өдөр, цагаа ажилтантай баталгаажуулна.", en: "Before travelling, confirm viewing availability and the day and time of your visit with the team." },
     action: { mn: "Уулзалт хүсэх", en: "Request a viewing" },
   },
   {
@@ -80,14 +81,17 @@ export default async function Services({ params }: { params: Promise<{ locale: s
           <h2 id="contact-heading">{mn ? "Танд тохирох сувгаа сонгоорой." : "Choose how to reach us."}</h2>
           <div className="services-contact-actions">
             <Link href={`/${locale}/inquiry?purpose=general`} className="button button-dark">{mn ? "Хүсэлт үлдээх" : "Send an enquiry"}<Arrow /></Link>
+            <a href={`tel:${businessDetails.phone}`} className="text-link">{businessDetails.phoneDisplay}<Arrow diagonal /></a>
+            <a href={`mailto:${businessDetails.email}`} className="text-link">{businessDetails.email}<Arrow diagonal /></a>
             <a href={facebookUrl} target="_blank" rel="noreferrer" className="text-link">Facebook<Arrow diagonal /></a>
           </div>
         </div>
         <dl>
-          <div><dt>{mn ? "Байршил" : "Location"}</dt><dd>{mn ? "Улаанбаатар, Монгол" : "Ulaanbaatar, Mongolia"}</dd></div>
+          <div><dt>{mn ? "Хаяг" : "Address"}</dt><dd>{businessDetails.address[locale]}</dd></div>
+          <div><dt>{mn ? "Ажиллах цаг" : "Opening hours"}</dt><dd>{businessDetails.hours} · {mn ? "Улаанбаатарын цагаар" : "Ulaanbaatar time"}</dd></div>
           <div><dt>{mn ? "Харилцах хэл" : "Enquiry languages"}</dt><dd>{mn ? "Монгол · Англи" : "Mongolian · English"}</dd></div>
           <div><dt>{mn ? "Цагийн бүс" : "Time zone"}</dt><dd>{mn ? "Улаанбаатар · UTC+8" : "Ulaanbaatar · UTC+8"}</dd></div>
-          <div><dt>{mn ? "Биеэр ирэхийн өмнө" : "Before your visit"}</dt><dd>{mn ? "Уулзах хаяг, өдөр, цагийг ажилтантай урьдчилан баталгаажуулна уу." : "Confirm the meeting address, day and time with the team before travelling."}</dd></div>
+          <div><dt>{mn ? "Биеэр ирэхийн өмнө" : "Before your visit"}</dt><dd>{mn ? "Ажиллах өдрүүдийг утсаар лавлаж, очих өдөр, цагаа урьдчилан баталгаажуулна уу." : "Please call to check opening days and confirm the day and time of your visit."}</dd></div>
         </dl>
       </section>
 
@@ -120,7 +124,7 @@ export default async function Services({ params }: { params: Promise<{ locale: s
           <li>{mn ? "Ажилтан таны сонгосон и-мэйл эсвэл утсаар холбогдож, шаардлагатай мэдээллийг тодруулна." : "A member of the team can contact you by your chosen email or phone to clarify the details."}</li>
           <li>{mn ? "Эдлэл, үнэ, бэлэн байдал болон хүлээн авах нөхцөлийг тохиролцож байж дараагийн алхмаа шийднэ." : "Agree the piece, price, availability and handover terms before deciding the next step."}</li>
         </ol>
-        <p>{mn ? "Хүсэлт нь худалдан авалт, уулзалт эсвэл нөөцлөлтийн баталгаа биш. Яаралтай зүйл байвал Facebook хуудсаар хүсэлтийн дугаараа дурдаж холбогдоорой." : "An enquiry does not confirm a purchase, appointment or reservation. If your enquiry is time-sensitive, you can also contact the Facebook page with your reference."}</p>
+        <p>{mn ? "Хүсэлт нь худалдан авалт, уулзалт эсвэл нөөцлөлтийн баталгаа биш. Яаралтай зүйл байвал утсаар эсвэл Facebook хуудсаар хүсэлтийн дугаараа дурдаж холбогдоорой." : "An enquiry does not confirm a purchase, appointment or reservation. If your enquiry is time-sensitive, call or contact the Facebook page with your reference."}</p>
       </section>
     </div>
   );

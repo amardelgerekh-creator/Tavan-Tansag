@@ -28,7 +28,7 @@ export const articles: Article[] = [
       en: "From the overall silhouette to the smallest joint: what to notice in a photograph, and what to ask next.",
     },
     imageIndex: 0,
-    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    relevantCategories: ["men", "women", "silverware", "horse", "snuff-bottles"],
     readingMinutes: 3,
     sources: [{
       title: { mn: "ICOM — Эдлэлийг таньж тодорхойлох бүртгэлийн заавар", en: "ICOM — Object identification and documentation" },
@@ -98,7 +98,7 @@ export const articles: Article[] = [
       en: "Clarify your intended use, the evidence behind the description, and the terms of a purchase.",
     },
     imageIndex: 4,
-    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    relevantCategories: ["men", "women", "silverware", "horse", "snuff-bottles"],
     readingMinutes: 3,
     sources: [{
       title: { mn: "ICOM — Эдлэлийн мэдээлэл, зураг, тайлбарыг бүртгэх нь", en: "ICOM — Recording an object’s details, photographs and description" },
@@ -172,7 +172,7 @@ export const articles: Article[] = [
       en: "A thoughtful way to approach Mongolian craft: distinguish what is visible, what has been shared, and what can be established.",
     },
     imageIndex: 7,
-    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    relevantCategories: ["men", "women", "silverware", "horse", "snuff-bottles"],
     readingMinutes: 4,
     takeaways: [
       { mn: "Ерөнхий соёлын тайлбар болон тухайн эдлэлийн түүхийг ялгах", en: "Distinguish cultural context from the history of one object" },
@@ -246,7 +246,7 @@ export const articles: Article[] = [
       en: "What to establish before caring for a saddle, bowl or another object made from several materials.",
     },
     imageIndex: 5,
-    relevantCategories: ["saddles", "vessels", "accessories", "jewelry", "objects"],
+    relevantCategories: ["men", "women", "silverware", "horse", "snuff-bottles"],
     readingMinutes: 2,
     takeaways: [
       { mn: "Материал, бүрэлт, засварын түүхийг эхэлж тодруулах", en: "First establish materials, finishes and previous repairs" },

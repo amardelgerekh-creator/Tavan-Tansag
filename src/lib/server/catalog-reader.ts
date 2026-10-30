@@ -1,11 +1,12 @@
 import { z } from "zod";
-import type { Product } from "../catalog";
+import { categoryIds, isSubcategory, normalizeLegacyTaxonomy, type Product } from "../catalog";
 
 const localized = z.object({ mn: z.string(), en: z.string() });
-const publicProduct = z.object({
+const publicProductFields = z.object({
   id: z.string().regex(/^TT-\d{3,6}$/),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  category: z.enum(["saddles", "vessels", "accessories", "jewelry", "objects"]),
+  category: z.enum(categoryIds),
+  subcategory: z.string().max(80).nullable().default(null),
   name: localized.extend({ mn: z.string().min(1), en: z.string().min(1) }),
   description: localized.extend({
     mn: z.string().min(1),
@@ -28,6 +29,10 @@ const publicProduct = z.object({
   condition: z.string().nullish(),
   priceMode: z.enum(["fixed", "inquiry"]).nullish(),
 });
+const publicProduct = publicProductFields.superRefine((product, context) => {
+  if (product.subcategory !== null && !isSubcategory(product.category, product.subcategory))
+    context.addIssue({ code: "custom", path: ["subcategory"], message: "Subcategory does not belong to this category" });
+});
 
 export class CatalogUnavailableError extends Error {
   constructor() {
@@ -38,12 +43,12 @@ export class CatalogUnavailableError extends Error {
 
 /** Zod strips every property outside the public contract, even in file mode. */
 export function publicCatalogProduct(value: unknown): Product {
-  return publicProduct.parse(value);
+  return publicProduct.parse(normalizeLegacyTaxonomy(value));
 }
 
 // Keep private provenance in the internal seed source, never in this collection.
 // Projection is defense in depth; Firestore Rules authorize whole documents.
-export const catalogFields = [...Object.keys(publicProduct.shape), "visibility"];
+export const catalogFields = [...Object.keys(publicProductFields.shape), "visibility"];
 export const catalogCollection = "catalog_public";
 
 type DatabaseRow = Record<string, unknown>;

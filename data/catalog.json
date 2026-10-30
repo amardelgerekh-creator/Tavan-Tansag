@@ -2,7 +2,7 @@
   {
     "id": "TT-001",
     "slug": "saddle-blue-border",
-    "category": "saddles",
+    "category": "horse",
     "name": {
       "mn": "Улаан суудалтай, цэнхэр хүрээтэй эмээл",
       "en": "Red-seat saddle with blue edging"
@@ -38,12 +38,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "saddles"
   },
   {
     "id": "TT-002",
     "slug": "saddle-multicolour-border",
-    "category": "saddles",
+    "category": "horse",
     "name": {
       "mn": "Олон өнгийн хүрээтэй, шаргал гөлөмтэй эмээл",
       "en": "Saddle with multicolour edging and tan flaps"
@@ -79,12 +80,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "saddles"
   },
   {
     "id": "TT-003",
     "slug": "saddle-dark-border",
-    "category": "saddles",
+    "category": "horse",
     "name": {
       "mn": "Хар хүрээтэй, улаан суудалтай эмээл",
       "en": "Red-seat saddle with dark edging"
@@ -120,12 +122,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "saddles"
   },
   {
     "id": "TT-004",
     "slug": "saddle-green-flaps",
-    "category": "saddles",
+    "category": "horse",
     "name": {
       "mn": "Ногоон гөлөмтэй эмээл",
       "en": "Saddle with green flaps"
@@ -161,12 +164,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "saddles"
   },
   {
     "id": "TT-005",
     "slug": "saddle-burgundy-flaps",
-    "category": "saddles",
+    "category": "horse",
     "name": {
       "mn": "Улаан хүрэн гөлөмтэй эмээл",
       "en": "Saddle with burgundy flaps"
@@ -202,12 +206,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "saddles"
   },
   {
     "id": "TT-006",
     "slug": "bowl-orange-band",
-    "category": "vessels",
+    "category": "silverware",
     "name": {
       "mn": "Улбар хүрээтэй, хээт суурьтай аяга",
       "en": "Bowl with an orange band and patterned foot"
@@ -243,12 +248,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "bowls"
   },
   {
     "id": "TT-007",
     "slug": "bowl-geometric-base",
-    "category": "vessels",
+    "category": "silverware",
     "name": {
       "mn": "Сүлжээ хээтэй суурь бүхий аяга",
       "en": "Bowl with a geometric patterned base"
@@ -284,12 +290,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "bowls"
   },
   {
     "id": "TT-008",
     "slug": "bowl-wide-tan-band",
-    "category": "vessels",
+    "category": "silverware",
     "name": {
       "mn": "Өргөн шаргал бүслүүртэй аяга",
       "en": "Bowl with a wide tan band"
@@ -325,12 +332,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "bowls"
   },
   {
     "id": "TT-009",
     "slug": "bowl-low-orange-band",
-    "category": "vessels",
+    "category": "silverware",
     "name": {
       "mn": "Намхан их биетэй, улбар хүрээтэй аяга",
       "en": "Low-profile bowl with an orange band"
@@ -366,12 +374,13 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "bowls"
   },
   {
     "id": "TT-010",
     "slug": "bowl-dark-surface",
-    "category": "vessels",
+    "category": "silverware",
     "name": {
       "mn": "Бараан гадаргуутай, хээт бүслүүртэй аяга",
       "en": "Dark-surfaced bowl with a patterned band"
@@ -407,6 +416,7 @@
       "Урлаач, гарал үүсэл ба он цаг",
       "Үнэ ба одоогийн бэлэн байдал",
       "Зурагт харагдах дагалдах зүйл багтах эсэх"
-    ]
+    ],
+    "subcategory": "bowls"
   }
 ]
