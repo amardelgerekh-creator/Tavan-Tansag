@@ -9,6 +9,7 @@ import "@/app/crm.css";
 import { inquiryPurposeLabels } from "@/lib/inquiry-options";
 import { CatalogReviewWorkspace } from "./catalog-review-workspace";
 import { CrmMetrics } from "./crm-metrics";
+import { CommunityWorkspace } from "./community-workspace";
 import "@/app/crm-metrics.css";
 
 const statusNames: Record<CrmStatus, Record<Locale, string>> = {
@@ -62,7 +63,7 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
   const [hasMore, setHasMore] = useState(false);
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selected, setSelected] = useState<InquiryRecord | null>(null);
-  const [workspace, setWorkspace] = useState<"inquiries" | "catalog" | "metrics">("inquiries");
+  const [workspace, setWorkspace] = useState<"inquiries" | "catalog" | "metrics" | "community">("inquiries");
 
   useEffect(() => {
     let active = true;
@@ -156,7 +157,7 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
       <header className="crm-header">
         <div><span className="eyebrow">TAVAN TANSAG / {locale === "mn" ? "АЖИЛТНЫ ХЭСЭГ" : "STAFF AREA"}</span>
           <h1>{locale === "mn" ? "Дэлгүүрийн ажлын талбар" : "Store workspace"}</h1>
-          <p>{locale === "mn" ? "Хүсэлт, эдлэлийн баталгаажуулалт, үр дүнгийн тайлан." : "Enquiries, catalog verification and results."}</p>
+          <p>{locale === "mn" ? "Хүсэлт, эдлэлийн баталгаажуулалт, үр дүнгийн тайлан, хүрээллийн бүртгэл." : "Enquiries, catalog verification, results and community requests."}</p>
         </div>
         {user && <div className="crm-session"><span>{staffEmail || user.email}</span><button type="button" className="crm-secondary" onClick={() => void logout()}>{locale === "mn" ? "Гарах" : "Sign out"}</button></div>}
       </header>
@@ -170,9 +171,9 @@ export function CrmDashboard({ locale, config }: { locale: Locale; config: Fireb
         {!ready && error && <button type="button" className="crm-secondary" onClick={() => window.location.reload()}>{locale === "mn" ? "Хуудсыг дахин ачаалах" : "Reload page"}</button>}
       </section> : <>
         {staffEmail && <nav className="staff-workspace-nav" aria-label={locale === "mn" ? "Ажилтны цэс" : "Workspace sections"}>
-          {(["inquiries", "catalog", "metrics"] as const).map(value => <button key={value} type="button" aria-pressed={workspace === value} onClick={() => { setWorkspace(value); setNotice(""); }}>{({ inquiries: { mn: "Хүсэлтүүд", en: "Enquiries" }, catalog: { mn: "Эдлэлийн бүртгэл", en: "Catalog verification" }, metrics: { mn: "Үр дүн", en: "Results" } })[value][locale]}</button>)}
+          {(["inquiries", "catalog", "metrics", "community"] as const).map(value => <button key={value} type="button" aria-pressed={workspace === value} onClick={() => { setWorkspace(value); setNotice(""); }}>{({ inquiries: { mn: "Хүсэлтүүд", en: "Enquiries" }, catalog: { mn: "Эдлэлийн бүртгэл", en: "Catalog verification" }, metrics: { mn: "Үр дүн", en: "Results" }, community: { mn: "Хүрээллийн хүсэлт", en: "Community requests" } })[value][locale]}</button>)}
         </nav>}
-        {workspace === "catalog" && staffEmail ? <CatalogReviewWorkspace locale={locale} user={user} /> : workspace === "metrics" && staffEmail ? <CrmMetrics locale={locale} user={user} /> : <>
+        {workspace === "catalog" && staffEmail ? <CatalogReviewWorkspace locale={locale} user={user} /> : workspace === "metrics" && staffEmail ? <CrmMetrics locale={locale} user={user} /> : workspace === "community" && staffEmail ? <CommunityWorkspace key={user.uid} locale={locale} user={user} /> : <>
         <div className="crm-toolbar">
           <label>{locale === "mn" ? "Хүсэлтийн төлөв" : "Status"}<select value={status} onChange={(event) => { setSelected(null); setItems([]); setHasMore(false); setNextCursor(null); setNotice(""); setStatus(event.target.value as CrmStatus | ""); }}><option value="">{locale === "mn" ? "Бүх төлөв" : "All statuses"}</option>{crmStatuses.map((value) => <option key={value} value={value}>{statusNames[value][locale]}</option>)}</select></label>
           <span className="crm-result-count">{items.length} {locale === "mn" ? "хүсэлт ачаалсан" : "enquiries loaded"}</span>

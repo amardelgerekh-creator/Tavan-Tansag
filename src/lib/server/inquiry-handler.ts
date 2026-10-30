@@ -4,6 +4,7 @@ import {
   type PersistInquiry,
 } from "./inquiry-contract";
 import { isIP } from "node:net";
+import { requestOriginAllowed } from "./request-origin";
 
 const MAX_BYTES = 12_000;
 
@@ -31,9 +32,7 @@ export function createInquiryHandler(options: {
   allowedOrigin?: string;
 }) {
   return async function handleInquiry(request: Request): Promise<Response> {
-    const requestOrigin = request.headers.get("origin");
-    const expectedOrigin = options.allowedOrigin ?? new URL(request.url).origin;
-    if (requestOrigin && requestOrigin !== expectedOrigin) {
+    if (!requestOriginAllowed(request, options.allowedOrigin, true)) {
       return respond(403, { ok: false, code: "ORIGIN_DENIED" });
     }
     if (

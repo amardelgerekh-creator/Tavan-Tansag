@@ -11,7 +11,8 @@ import { t } from "@/lib/copy";
 import { Arrow } from "./icons";
 import { BrandLogo } from "./brand-logo";
 import { productPrice } from "@/lib/product-presentation";
-import { businessDetails } from "@/lib/business";
+import { ContactDetails } from "./contact-details";
+import { EngagementTrigger } from "./engagement-provider";
 
 export function ProductCard({
   product: p,
@@ -78,17 +79,21 @@ export function Footer({ locale }: { locale: Locale }) {
   const c = t(locale);
   return (
     <footer className="footer">
+      <div className="container footer-invitation">
+        <div>
+          <span className="eyebrow">TAVAN TANSAG COMMUNITY</span>
+          <h2>{locale === "mn" ? "Өв соёлоор холбогдох хүрээлэл." : "Connected by heritage."}</h2>
+          <p>{locale === "mn" ? "Шинэ эдлэл, өв соёлын түүх, онцлох үйл явдлын тухай мэдээлэл авах хүсэлтээ үлдээгээрэй." : "Request updates on new pieces, heritage stories and events."}</p>
+        </div>
+        <EngagementTrigger kind="community" className="button">{locale === "mn" ? "Хүрээлэлд нэгдэх" : "Join our community"}<Arrow /></EngagementTrigger>
+      </div>
       <div className="container footer-main">
         <div>
           <Link href={"/" + locale} className="footer-brand">
             <BrandLogo locale={locale} />
           </Link>
           <p>{c.footerLine}</p>
-          <address className="footer-business">{businessDetails.address[locale]}<br />
-            <a href={`tel:${businessDetails.phone}`}>{businessDetails.phoneDisplay}</a><br />
-            <a href={`mailto:${businessDetails.email}`}>{businessDetails.email}</a><br />
-            {businessDetails.hours} · {locale === "mn" ? "Ирэх өдрөө урьдчилан лавлана уу." : "Please confirm your visiting day."}
-          </address>
+          <ContactDetails locale={locale} compact />
         </div>
         <div className="footer-links">
           <Link href={"/" + locale + "/collection"}>{c.collection}</Link>
@@ -101,7 +106,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <a href={facebookUrl} target="_blank" rel="noreferrer">
             Facebook <Arrow diagonal />
           </a>
-          <Link href={"/" + locale + "/inquiry"}>{c.contact}</Link>
+          <EngagementTrigger kind="contact">{c.contact}<Arrow diagonal /></EngagementTrigger>
           <Link href={"/" + locale + "/privacy"}>{c.privacy}</Link>
         </div>
       </div>

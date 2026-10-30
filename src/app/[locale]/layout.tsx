@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale, siteUrl } from "@/lib/catalog";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/site";
+import { EngagementProvider } from "@/components/engagement-provider";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -52,9 +53,11 @@ export default async function LocaleLayout({
         <a className="skip-link" href="#main">
           {locale === "mn" ? "Үндсэн агуулга руу" : "Skip to content"}
         </a>
-        <Navigation locale={locale} />
-        <main id="main">{children}</main>
-        <Footer locale={locale} />
+        <EngagementProvider locale={locale}>
+          <Navigation locale={locale} />
+          <main id="main">{children}</main>
+          <Footer locale={locale} />
+        </EngagementProvider>
       </body>
     </html>
   );

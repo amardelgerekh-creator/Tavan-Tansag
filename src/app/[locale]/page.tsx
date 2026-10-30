@@ -8,6 +8,7 @@ import { Arrow } from "@/components/icons";
 import { ProductCard, Consultation } from "@/components/site";
 import { ReelsGallery } from "@/components/reels-gallery";
 import "@/app/home-categories.css";
+import "@/app/home-experience.css";
 
 export async function generateMetadata({
   params,
@@ -35,32 +36,9 @@ export default async function Home({
   const story = products[Math.min(8, products.length - 1)];
   const featured = [products[0], products[5], products[3]].filter(Boolean);
   return (
-    <>
-      <section className="hero">
-        <div className="hero-copy">
-          <span className="eyebrow gold">{c.heroEyebrow}</span>
-          <h1>
-            {c.heroTitle[0]}
-            <br />
-            <em>{c.heroTitle[1]}</em>
-          </h1>
-          <p>{c.heroText}</p>
-          <Link
-            className="button button-gold"
-            href={"/" + locale + "/collection"}
-          >
-            {c.explore}
-            <Arrow />
-          </Link>
-          <div className="hero-bottom">
-            <span>
-              {products.length ? "01" : "00"} /{" "}
-              {String(products.length).padStart(2, "0")}
-            </span>
-            <span>{c.since} · ULAANBAATAR</span>
-          </div>
-        </div>
-        <div className="hero-art">
+    <div className="home-experience">
+      <section className="home-hero" aria-labelledby="home-hero-title">
+        <div className="home-hero-media">
           {hero && (
             <Image
               src={hero.image}
@@ -68,21 +46,25 @@ export default async function Home({
               fill
               loading="eager"
               fetchPriority="high"
-              sizes="(max-width: 760px) 100vw, 55vw"
-              className="hero-image"
+              sizes="100vw"
+              className="home-hero-image"
             />
           )}
-          <div className="hero-art-caption">
-            <span>{hero?.name[locale]}</span>
-            {hero && (
-              <Link
-                href={"/" + locale + "/products/" + hero?.slug}
-                aria-label={c.viewPiece}
-              >
-                <Arrow diagonal />
-              </Link>
-            )}
+        </div>
+        <div className="home-hero-content">
+          <span className="eyebrow">{c.heroEyebrow}</span>
+          <h1 id="home-hero-title"><span>{c.heroTitle[0]}</span><em>{c.heroTitle[1]}</em></h1>
+          <p>{c.heroText}</p>
+          <div className="home-hero-actions">
+            <Link className="button home-hero-primary" href={`/${locale}/collection`}>{c.explore}<Arrow /></Link>
+            <Link className="home-hero-inquiry" href={`/${locale}/inquiry`}>{c.enquire}<Arrow diagonal /></Link>
           </div>
+        </div>
+        <div className="home-hero-meta">
+          <span className="home-hero-location">{c.since}<span aria-hidden="true"> / </span>ULAANBAATAR</span>
+          {hero && <Link className="home-hero-piece" href={`/${locale}/products/${hero.slug}`}>
+            <span className="home-hero-reference">{hero.id}</span><span>{hero.name[locale]}</span><Arrow diagonal />
+          </Link>}
         </div>
       </section>
       <div className="craft-strip">
@@ -160,6 +142,6 @@ export default async function Home({
         </Link>
       </section>
       <Consultation locale={locale} />
-    </>
+    </div>
   );
 }

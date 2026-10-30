@@ -1,16 +1,18 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Locale } from "@/lib/catalog";
 import { t } from "@/lib/copy";
 import { Arrow } from "./icons";
 import { BrandLogo } from "./brand-logo";
+import { EngagementTrigger } from "./engagement-provider";
 
 export function Navigation({ locale }: { locale: Locale }) {
   const c = t(locale);
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  useEffect(() => setOpen(false), [pathname]);
   const switched = pathname.replace(
     /^\/(mn|en)(?=\/|$)/,
     locale === "mn" ? "/en" : "/mn",
@@ -63,10 +65,10 @@ export function Navigation({ locale }: { locale: Locale }) {
           >
             {locale === "mn" ? "EN" : "МН"}
           </Link>
-          <Link href={"/" + locale + "/inquiry"} className="nav-contact">
-            {c.enquire}
+          <EngagementTrigger kind="contact" className="nav-contact">
+            {locale === "mn" ? "Холбоо барих" : "Contact us"}
             <Arrow diagonal />
-          </Link>
+          </EngagementTrigger>
           <button
             className="menu-toggle"
             aria-expanded={open}
@@ -93,6 +95,8 @@ export function Navigation({ locale }: { locale: Locale }) {
           <Link href={"/" + locale + "/inquiry"} onClick={() => setOpen(false)}>
             {c.enquire}
           </Link>
+          <EngagementTrigger kind="contact">{locale === "mn" ? "Холбоо барих" : "Contact us"}</EngagementTrigger>
+          <EngagementTrigger kind="community">{locale === "mn" ? "Хүрээлэлд нэгдэх" : "Join our community"}</EngagementTrigger>
         </nav>
       )}
     </header>

@@ -5,7 +5,7 @@ import { inquiryStorageConfigured } from "@/lib/server/inquiry-service";
 import { t } from "@/lib/copy";
 import { InquiryForm } from "@/components/inquiry-form";
 import { Arrow } from "@/components/icons";
-import { businessDetails } from "@/lib/business";
+import { ContactDetails } from "@/components/contact-details";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
@@ -40,10 +40,7 @@ export default async function Inquiry({
         <h1>{c.formTitle}</h1>
         <p>{c.formText}</p>
         <div className="contact-detail">
-          <address>{businessDetails.address[locale]}</address>
-          <a className="text-link" href={`tel:${businessDetails.phone}`}>{businessDetails.phoneDisplay}<Arrow diagonal /></a>
-          <a className="text-link" href={`mailto:${businessDetails.email}`}>{businessDetails.email}<Arrow diagonal /></a>
-          <p>{businessDetails.hours} · {locale === "mn" ? "Улаанбаатарын цагаар. Ирэх өдрөө урьдчилан лавлана уу." : "Ulaanbaatar time. Please confirm opening days before visiting."}</p>
+          <ContactDetails locale={locale} />
           <a
             className="text-link"
             href={facebookUrl}

@@ -1,4 +1,5 @@
 import { StaffAuthError } from "./staff-auth";
+import { requestOriginAllowed } from "./request-origin";
 
 export function staffResponse(body: unknown, status = 200) {
   return Response.json(body, { status, headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex, nofollow", Vary: "Authorization" } });
@@ -12,7 +13,7 @@ export function staffFailure(error: unknown) {
 }
 
 export async function readStaffPatch(request: Request) {
-  if (request.headers.get("origin") !== (process.env.SITE_ORIGIN ?? new URL(request.url).origin)) throw new StaffAuthError(403);
+  if (!requestOriginAllowed(request, process.env.SITE_ORIGIN)) throw new StaffAuthError(403);
   if (!request.headers.get("content-type")?.startsWith("application/json")) throw Object.assign(new Error(), { code: "INVALID_INPUT" });
   const reader = request.body?.getReader();
   if (!reader) throw Object.assign(new Error(), { code: "INVALID_INPUT" });

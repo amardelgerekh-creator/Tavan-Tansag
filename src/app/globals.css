@@ -598,9 +598,7 @@ button {
   gap: 11px;
   font-size: 12px;
 }
-.footer-business { font-style: normal; font-size: 12px; line-height: 1.9; color: var(--muted); max-width: 42ch; margin-top: 18px; }
-.footer-business a { text-decoration: underline; }
-.contact-detail address { font-style: normal; max-width: 40ch; }
+.contact-detail address { font-style: normal; }
 .contact-detail p { font-size: 13px; margin: 0; }
 .footer-links a {
   display: flex;

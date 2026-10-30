@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { facebookUrl, isLocale } from "@/lib/catalog";
 import { inquiryStorageConfigured } from "@/lib/server/inquiry-service";
+import { businessDetails } from "@/lib/business";
 
 export const dynamic = "force-dynamic";
 
@@ -31,8 +32,8 @@ export default async function Privacy({
         <h1>{locale === "mn" ? "Мэдээллийн нууцлал" : "Your information"}</h1>
         <p>
           {locale === "mn"
-            ? "Зөвлөгөө авах үедээ хуваалцах мэдээллийн тухай."
-            : "About the information you share when making an enquiry."}
+            ? "Зөвлөгөө хүсэх болон Таван Тансагийн хүрээлэлд сайн дураар нэгдэхдээ хуваалцах мэдээллийн тухай."
+            : "About the information you share when making an enquiry or voluntarily joining the Tavan Tansag community."}
         </p>
       </div>
       <div className="article-body">
@@ -43,12 +44,24 @@ export default async function Privacy({
           <p>
             {locale === "mn"
               ? enabled
-                ? "Энэ хуудсанд хүсэлтэд хариулахад ашиглах мэдээллийн хүрээг тайлбарлав."
+                ? "Энэ хуудсанд зөвлөгөөний хүсэлт болон хүрээллийн бүртгэлийн мэдээллийг хэрхэн ашиглахыг тайлбарлав."
                 : "Та вебсайтын ажлын хувилбарыг үзэж байна. Одоогоор цахим хүсэлтийн маягтаар мэдээлэл хүлээн авах боломж нээгдээгүй бөгөөд маягт дахь мэдээллийг илгээхгүй. Зөвлөгөө авах бол манай Facebook хуудсаар холбогдоно уу."
               : enabled
-                ? "This page describes the information used to respond to an enquiry."
+                ? "This page describes how enquiry and community request information is used."
                 : "You are viewing a working version of the website. Online enquiries are not open, and the form does not submit your details. Please contact our Facebook page if you would like assistance."}
           </p>
+        </section>
+        <section>
+          <h2>{locale === "mn" ? "Хүрээлэлд сайн дураар нэгдэх" : "Joining the community is optional"}</h2>
+          <p>{locale === "mn"
+            ? "Шинэ эдлэл, өв соёлын нийтлэл, үйл явдлын мэдээлэл авахыг хүсвэл хүрээллийн тусдаа маягтаар зөвшөөрлөө өгч болно. Энэ нь зөвлөгөө авах, эдлэл сонирхохын заавал биелүүлэх нөхцөл биш. Зөвлөгөөний хүсэлт илгээх нь хүрээлэлд автоматаар бүртгэхгүй."
+            : "You may choose to give separate consent through the community form for updates about collections, heritage stories and events. Joining is not required to make an enquiry or view pieces. Sending an enquiry does not automatically create a community request."}</p>
+          <p>{locale === "mn"
+            ? "Маягт нь таны нэр, и-мэйл хаяг, хэрэв оруулсан бол овог, сонгосон сонирхлын ангилал, хэл, зөвшөөрөл өгсөн хугацаа болон зөвшөөрлийн тайлбарын хувилбарыг бүртгэнэ. Сонирхлын сонголтыг танд хамаарах мэдээллийг тодорхойлоход ашиглана. Эрх бүхий ажилтан хүсэлтийг шалгах, харилцаа болон цуцлалтын төлөвийг хөтлөхөд эдгээр мэдээллийг ашиглана. Мэдээллийг Firebase-д хадгалж, нийтэд харуулахгүй."
+            : "The form records your first name, email address, optional last name, selected interests, language, consent timestamp and consent wording version. Your interests help identify relevant updates. Authorized staff use these details to review your request and manage contact and withdrawal status. The information is stored in Firebase and is not displayed publicly."}</p>
+          <p>{locale === "mn"
+            ? "Маягт илгээсэн нь тухайн и-мэйл хаягийн эзэмшигчийг баталгаажуулахгүй. Энэ хувилбар хүсэлтийг бүртгэх бөгөөд автоматаар сурталчилгааны и-мэйл илгээхгүй."
+            : "Submitting the form does not verify ownership of the email address. This version records your request and does not automatically send marketing emails."}</p>
         </section>
         <section>
           <h2>
@@ -95,14 +108,18 @@ export default async function Privacy({
         <section>
           <h2>
             {locale === "mn"
-              ? "Мэдээллээ тодруулах, засуулах"
-              : "Questions or corrections"}
+              ? "Мэдээллээ засуулах, зөвшөөрлөө цуцлах"
+              : "Corrections and withdrawing consent"}
           </h2>
           <p>
             {locale === "mn"
-              ? "Хуваалцсан мэдээллийнхээ талаар асуух, засвар хүсэх эсвэл устгах хүсэлт гаргах бол манай албан ёсны Facebook хуудсаар холбогдоно уу. Хүсэлтийн дугаар байгаа бол хамт дурдана уу."
-              : "To ask about information you have shared, request a correction or ask for deletion, contact our official Facebook page. Include an enquiry reference if you have one."}
+              ? `Хуваалцсан мэдээллээ тодруулах, засуулах, сонирхлын сонголтоо өөрчлөх, устгах хүсэлт гаргах эсвэл хүрээллийн мэдээлэл авах зөвшөөрлөө цуцлах бол ${businessDetails.email} хаягаар эсвэл дэлгүүрийн ажилтанд мэдэгдэнэ үү. Бүртгүүлсэн и-мэйл хаягаа, зөвлөгөөний хүсэлтийн дугаар байгаа бол хамт дурдана уу.`
+              : `To ask about your information, request a correction or deletion, change your interests or withdraw consent for community updates, contact ${businessDetails.email} or speak to store staff. Include the email address you used and an enquiry reference if you have one.`}
           </p>
+          <p>{locale === "mn"
+            ? "Ажилтан цуцлалтыг бүртгэсний дараа тухайн хүсэлтийг мэдээлэл илгээхэд ашиглахгүй. Зөвшөөрөл цуцлах нь бүртгэлийг автоматаар устгахгүй; мэдээлэл устгах хүсэлтийг тусад нь гаргаж болно. Энэ хувилбарт автоматаар устгах тогтсон хугацаа тохируулаагүй."
+            : "Once staff record your withdrawal, the request will no longer be used for updates. Withdrawal does not automatically delete the record; you may separately request deletion. This version has no automatic deletion schedule."}</p>
+          <p><a className="text-link" href={`mailto:${businessDetails.email}`}>{businessDetails.email} ↗</a></p>
           <p>
             <a
               className="text-link"
@@ -119,8 +136,8 @@ export default async function Privacy({
         </section>
         <p className="article-meta">
           {locale === "mn"
-            ? "Энэхүү мэдэгдэл нь Таван Тансагийн зөвлөгөөний хүсэлтийн үйлчилгээнд хамаарна. Шинэчлэгдсэн: 2026 оны 10 дугаар сарын 30."
-            : "This notice applies to Tavan Tansag’s enquiry service. Updated 30 October 2026."}
+            ? "Энэхүү мэдэгдэл нь Таван Тансагийн зөвлөгөөний болон хүрээллийн хүсэлтэд хамаарна. Шинэчлэгдсэн: 2026 оны 10 дугаар сарын 30."
+            : "This notice applies to Tavan Tansag’s enquiry and community requests. Updated 30 October 2026."}
         </p>
       </div>
     </section>

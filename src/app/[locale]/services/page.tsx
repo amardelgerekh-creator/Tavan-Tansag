@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Arrow } from "@/components/icons";
 import { facebookUrl, isLocale, type Localized } from "@/lib/catalog";
-import { businessDetails } from "@/lib/business";
+import { ContactDetails } from "@/components/contact-details";
 import "@/app/services.css";
 
 const services: {
@@ -81,18 +81,16 @@ export default async function Services({ params }: { params: Promise<{ locale: s
           <h2 id="contact-heading">{mn ? "Танд тохирох сувгаа сонгоорой." : "Choose how to reach us."}</h2>
           <div className="services-contact-actions">
             <Link href={`/${locale}/inquiry?purpose=general`} className="button button-dark">{mn ? "Хүсэлт үлдээх" : "Send an enquiry"}<Arrow /></Link>
-            <a href={`tel:${businessDetails.phone}`} className="text-link">{businessDetails.phoneDisplay}<Arrow diagonal /></a>
-            <a href={`mailto:${businessDetails.email}`} className="text-link">{businessDetails.email}<Arrow diagonal /></a>
             <a href={facebookUrl} target="_blank" rel="noreferrer" className="text-link">Facebook<Arrow diagonal /></a>
           </div>
         </div>
-        <dl>
-          <div><dt>{mn ? "Хаяг" : "Address"}</dt><dd>{businessDetails.address[locale]}</dd></div>
-          <div><dt>{mn ? "Ажиллах цаг" : "Opening hours"}</dt><dd>{businessDetails.hours} · {mn ? "Улаанбаатарын цагаар" : "Ulaanbaatar time"}</dd></div>
+        <div>
+        <ContactDetails locale={locale} />
+        <dl className="services-contact-meta">
           <div><dt>{mn ? "Харилцах хэл" : "Enquiry languages"}</dt><dd>{mn ? "Монгол · Англи" : "Mongolian · English"}</dd></div>
           <div><dt>{mn ? "Цагийн бүс" : "Time zone"}</dt><dd>{mn ? "Улаанбаатар · UTC+8" : "Ulaanbaatar · UTC+8"}</dd></div>
-          <div><dt>{mn ? "Биеэр ирэхийн өмнө" : "Before your visit"}</dt><dd>{mn ? "Ажиллах өдрүүдийг утсаар лавлаж, очих өдөр, цагаа урьдчилан баталгаажуулна уу." : "Please call to check opening days and confirm the day and time of your visit."}</dd></div>
         </dl>
+        </div>
       </section>
 
       <section aria-labelledby="service-options-heading">
