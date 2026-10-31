@@ -1,6 +1,7 @@
 .reels-section {
   border-top: 1px solid var(--line);
 }
+.reels-scroll-hint { display: none; }
 .reels-heading p {
   max-width: 580px;
 }
@@ -18,7 +19,7 @@
   aspect-ratio: 9 / 16;
   overflow: hidden;
   background: var(--charcoal);
-  border-radius: 6px;
+  border-radius: 0;
 }
 .reel-screen video {
   display: block;
@@ -54,11 +55,16 @@
 }
 @media (max-width: 760px) {
   .reels-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
-    max-width: 380px;
-    margin-inline: auto;
+    grid-template-columns: repeat(3, minmax(0, 78vw));
+    gap: 20px;
+    max-width: none;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    padding-bottom: 20px;
   }
+  .reel-card { scroll-snap-align: start; }
+  .reels-scroll-hint { display: block; color: var(--muted); font-size: 11px; }
   .reel-card figcaption {
     padding-top: 16px;
   }

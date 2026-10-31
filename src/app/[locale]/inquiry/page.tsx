@@ -32,14 +32,25 @@ export default async function Inquiry({
   const { piece, purpose } = await searchParams;
   const enabled = inquiryStorageConfigured();
   return (
-    <section className="container inquiry-page">
+    <section className="container inquiry-page inquiry-experience">
       <div className="inquiry-intro">
         <span className="eyebrow">
           {locale === "mn" ? "ТАНТАЙ ЯРИЛЦЪЯ" : "LET’S CONNECT"}
         </span>
         <h1>{c.formTitle}</h1>
         <p>{c.formText}</p>
-        <div className="contact-detail">
+      </div>
+      <div className="inquiry-form-panel">
+        <InquiryForm
+          locale={locale}
+          products={products}
+          selectedId={piece}
+          purpose={purpose}
+          enabled={enabled}
+        />
+      </div>
+        <div className="contact-detail inquiry-other-contact">
+          <h2>{locale === "mn" ? "Шууд холбогдох" : "Prefer a conversation?"}</h2>
           <ContactDetails locale={locale} />
           <a
             className="text-link"
@@ -51,14 +62,6 @@ export default async function Inquiry({
             <Arrow diagonal />
           </a>
         </div>
-      </div>
-      <InquiryForm
-        locale={locale}
-        products={products}
-        selectedId={piece}
-        purpose={purpose}
-        enabled={enabled}
-      />
     </section>
   );
 }

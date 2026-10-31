@@ -1,4 +1,11 @@
 .piece-experience .product-detail-grid { align-items: start; gap: clamp(28px, 5vw, 76px); }
+.piece-breadcrumbs { margin-bottom: 24px; color: var(--muted); font-size: 12px; }
+.piece-breadcrumbs ol { display: flex; align-items: center; flex-wrap: wrap; gap: 0 12px; list-style: none; padding: 0; margin: 0; }
+.piece-breadcrumbs li { display: flex; align-items: center; gap: 12px; }
+.piece-breadcrumbs li + li::before { content: "/"; color: var(--bronze); opacity: .7; }
+.piece-breadcrumbs a { display: inline-flex; align-items: center; min-height: 40px; text-underline-offset: 4px; }
+.piece-breadcrumbs a:hover { color: var(--ink); text-decoration: underline; }
+.piece-breadcrumbs [aria-current] { color: var(--ink); }
 .piece-gallery { min-width: 0; position: sticky; top: 115px; }
 .piece-gallery-trigger { display: block; width: 100%; position: relative; aspect-ratio: 1 / 1.1; border: 0; padding: 0; overflow: hidden; background: #e5dccf; cursor: zoom-in; }
 .piece-gallery-trigger img { object-fit: contain; }
@@ -21,15 +28,18 @@
 .piece-enquiry-block .detail-price { margin: 0 0 3px; font-size: 23px; }
 .piece-availability { font-size: 11px; color: var(--muted); margin-bottom: 21px; }
 .piece-enquiry-block > .button { width: 100%; }
+.piece-viewing-link { display: flex; justify-content: center; align-items: center; gap: 12px; min-height: 46px; margin-top: 8px; font-size: 12px; text-underline-offset: 4px; }
+.piece-viewing-link:hover { text-decoration: underline; }
+.piece-viewing-link svg { width: 16px; height: 16px; }
 .piece-enquiry-block .detail-note { max-width: none; }
 .piece-details { border-top: 1px solid var(--line); }
 .piece-details summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 18px 0; font-size: 14px; list-style: none; }
 .piece-details summary::-webkit-details-marker { display: none; }
 .piece-details summary span { font-size: 21px; line-height: 1; }
 .piece-details[open] summary span { transform: rotate(45deg); }
-.piece-review-note { font-size: 11px; line-height: 1.8; color: var(--muted); margin-bottom: 15px; }
+.piece-review-note { display: grid; gap: 5px; font-size: 12px; line-height: 1.8; color: var(--muted); margin: 18px 0 0; }
 .piece-details .spec-list { margin: 0; }
-.piece-details .spec-list > div { gap: 20px; font-size: 11px; }
+.piece-details .spec-list > div { gap: 20px; font-size: 12px; }
 .piece-details .spec-list dt { flex: 0 0 35%; }
 .piece-details .spec-list dd { overflow-wrap: anywhere; }
 .piece-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; padding-top: 65px; padding-bottom: 65px; margin-top: 65px; border-top: 1px solid var(--line); }

@@ -9,10 +9,11 @@ export function ReelsGallery({ locale }: { locale: Locale }) {
     <section className="section container reels-section" id="films" aria-labelledby="reels-heading">
       <div className="section-heading reels-heading">
         <div>
-          <span className="eyebrow">{locale === "mn" ? "ТАВАН ТАНСАГ · БОГИНО БИЧЛЭГ" : "TAVAN TANSAG · SHORT FILMS"}</span>
-          <h2 id="reels-heading">{locale === "mn" ? "Таван Тансагийн богино бичлэгүүд" : "Short films from Tavan Tansag"}</h2>
-          <p>{locale === "mn" ? "Таван Тансагийн сонгосон богино бичлэгүүдийг үзээрэй." : "Explore a selection of short films from Tavan Tansag."}</p>
+          <span className="eyebrow">{locale === "mn" ? "БОГИНО БИЧЛЭГ" : "SHORT FILMS"}</span>
+          <h2 id="reels-heading">{locale === "mn" ? "Эдлэл ба дүр төрх." : "Heritage, worn and shared."}</h2>
+          <p>{locale === "mn" ? "Дээл, гоёл, морины хэрэглэл — Таван Тансагийн бичлэгүүдээс ойроос хараарай." : "A closer view of deel, adornment and equestrian pieces through our films."}</p>
         </div>
+        <span className="reels-scroll-hint">{locale === "mn" ? "Хажуу тийш гүйлгэж үзээрэй →" : "Scroll to explore →"}</span>
       </div>
       <div className="reels-grid">
         {reels.map((reel, index) => (

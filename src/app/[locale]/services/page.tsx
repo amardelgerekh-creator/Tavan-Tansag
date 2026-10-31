@@ -4,6 +4,7 @@ import { Arrow } from "@/components/icons";
 import { facebookUrl, isLocale, type Localized } from "@/lib/catalog";
 import { ContactDetails } from "@/components/contact-details";
 import "@/app/services.css";
+import "@/app/editorial-experience.css";
 
 const services: {
   purpose: "visit" | "gift" | "international" | "care";
@@ -64,65 +65,57 @@ export default async function Services({ params }: { params: Promise<{ locale: s
   if (!isLocale(locale)) notFound();
   const mn = locale === "mn";
   return (
-    <div className="container section services-page">
-      <header className="services-intro">
-        <div>
-          <span className="eyebrow">{mn ? "ТАНЫ СОНГОЛТЫН ДАРААГИЙН АЛХАМ" : "THE NEXT STEP IN YOUR CHOICE"}</span>
-          <h1>{mn ? "Эдлэлээс эхлэх яриа." : "A conversation around a piece."}</h1>
-        </div>
-        <p>{mn
-          ? "Сонирхсон эдлэлийнхээ талаар асуух, уулзалт хүсэх, бэлэг сонгохдоо бидэнтэй холбогдоорой. Үнэ, бэлэн байдал болон үйлчилгээний нөхцөлийг хамт тодруулна."
-          : "Ask about a piece, request a viewing or find a gift. Together we can clarify availability, price and the details that matter to you."}</p>
+    <div className="editorial-page services-editorial">
+      <header className="container editorial-heading">
+        <span className="eyebrow">{mn ? "ЗӨВЛӨГӨӨ БА ҮЙЛЧИЛГЭЭ" : "PERSONAL ADVICE & SERVICES"}</span>
+        <h1>{mn ? "Сонголт бүрд тань\nзориулсан зөвлөгөө." : "Advice shaped\naround your choice."}</h1>
+        <p>{mn ? "Биеэр үзэх, бэлэг сонгох, арчилгаа эсвэл гадаадаас лавлах. Танд хэрэгтэй мэдээллээс яриагаа эхэлье." : "A viewing, a gift, care advice or an enquiry from abroad. Let’s begin with what matters to you."}</p>
+        <nav className="service-jump-links" aria-label={mn ? "Үйлчилгээний төрлүүд" : "Services on this page"}>
+          {services.map((service) => <a key={service.purpose} href={`#${service.purpose}`}>{service.action[locale]}<Arrow /></a>)}
+        </nav>
       </header>
 
-      <section className="services-contact" aria-labelledby="contact-heading">
-        <div>
-          <span className="eyebrow">{mn ? "ХОЛБОО БАРИХ" : "GET IN TOUCH"}</span>
-          <h2 id="contact-heading">{mn ? "Танд тохирох сувгаа сонгоорой." : "Choose how to reach us."}</h2>
-          <div className="services-contact-actions">
-            <Link href={`/${locale}/inquiry?purpose=general`} className="button button-dark">{mn ? "Хүсэлт үлдээх" : "Send an enquiry"}<Arrow /></Link>
-            <a href={facebookUrl} target="_blank" rel="noreferrer" className="text-link">Facebook<Arrow diagonal /></a>
-          </div>
-        </div>
-        <div>
-        <ContactDetails locale={locale} />
-        <dl className="services-contact-meta">
-          <div><dt>{mn ? "Харилцах хэл" : "Enquiry languages"}</dt><dd>{mn ? "Монгол · Англи" : "Mongolian · English"}</dd></div>
-          <div><dt>{mn ? "Цагийн бүс" : "Time zone"}</dt><dd>{mn ? "Улаанбаатар · UTC+8" : "Ulaanbaatar · UTC+8"}</dd></div>
-        </dl>
-        </div>
-      </section>
-
-      <section aria-labelledby="service-options-heading">
-        <h2 id="service-options-heading" className="services-options-title">{mn ? "Юуны талаар ярилцах вэ?" : "How can we help?"}</h2>
+      <section className="container services-editorial-options" aria-labelledby="service-options-heading">
+        <div className="editorial-section-heading"><span className="eyebrow">{mn ? "ХАМТДАА ТОДРУУЛЪЯ" : "LET’S EXPLORE THE DETAILS"}</span><h2 id="service-options-heading">{mn ? "Юуны талаар ярилцах вэ?" : "How can we help?"}</h2></div>
         <div className="services-options">
           {services.map((service, index) => (
             <article key={service.purpose} id={service.purpose} className="service-option">
               <span className="service-number">0{index + 1}</span>
               <h3>{service.title[locale]}</h3>
               <p className="service-description">{service.description[locale]}</p>
-              <dl>
-                <div><dt>{mn ? "Хүсэлтдээ дурдах" : "What to include"}</dt><dd>{service.prepare[locale]}</dd></div>
-                <div><dt>{mn ? "Хамт тодруулах" : "What we will clarify"}</dt><dd>{service.confirm[locale]}</dd></div>
-              </dl>
+              <p className="service-prepare">{service.prepare[locale]}</p>
               <Link className="text-link" href={`/${locale}/inquiry?purpose=${service.purpose}`}>{service.action[locale]}<Arrow /></Link>
-              {service.purpose === "care" && <Link className="service-reading-link" href={`/${locale}/heritage/caring-for-your-piece`}>{mn ? "Арчилгааны тэмдэглэл унших" : "Read the care guide"} →</Link>}
+              <details className="service-clarification">
+                <summary>{mn ? "Урьдчилан мэдэх зүйл" : "Before we arrange the details"}</summary>
+                <p>{service.confirm[locale]}</p>
+                {service.purpose === "care" && <Link className="service-reading-link" href={`/${locale}/heritage/caring-for-your-piece`}>{mn ? "Арчилгааны тэмдэглэл унших" : "Read the care guide"} →</Link>}
+              </details>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="services-next" aria-labelledby="services-next-heading">
-        <div>
-          <span className="eyebrow">{mn ? "ХҮСЭЛТИЙН ДАРАА" : "AFTER YOUR ENQUIRY"}</span>
-          <h2 id="services-next-heading">{mn ? "Дараа нь юу болох вэ?" : "What happens next?"}</h2>
-        </div>
-        <ol>
-          <li>{mn ? "Хүсэлт хадгалагдсаны дараа дэлгэц дээр гарсан дугаарыг тэмдэглэж авна." : "Keep the reference shown on screen once your enquiry is saved."}</li>
-          <li>{mn ? "Ажилтан таны сонгосон и-мэйл эсвэл утсаар холбогдож, шаардлагатай мэдээллийг тодруулна." : "A member of the team can contact you by your chosen email or phone to clarify the details."}</li>
-          <li>{mn ? "Эдлэл, үнэ, бэлэн байдал болон хүлээн авах нөхцөлийг тохиролцож байж дараагийн алхмаа шийднэ." : "Agree the piece, price, availability and handover terms before deciding the next step."}</li>
+      <section className="container services-editorial-next" aria-labelledby="services-next-heading">
+        <div className="editorial-section-heading"><span className="eyebrow">{mn ? "ЭНГИЙН ГУРВАН АЛХАМ" : "THREE SIMPLE STEPS"}</span><h2 id="services-next-heading">{mn ? "Хүсэлтээс дараагийн алхам хүртэл." : "From enquiry to your next step."}</h2></div>
+        <ol className="house-principles">
+          <li><span>01</span><h3>{mn ? "Хүсэлтээ үлдээх" : "Send your enquiry"}</h3><p>{mn ? "Эдлэлийн код, асуулт, холбоо барих мэдээллээ бичээрэй. Илгээсний дараа гарсан хүсэлтийн дугаарыг хадгалаарай." : "Share the piece reference, your questions and contact details. Keep the enquiry reference shown after you submit."}</p></li>
+          <li><span>02</span><h3>{mn ? "Дэлгэрэнгүй ярилцах" : "Discuss the details"}</h3><p>{mn ? "Ажилтан таны сонгосон и-мэйл эсвэл утсаар холбогдож, эдлэлийн мэдээлэл, үнэ, бэлэн байдлыг тодруулна." : "The team will use your chosen email or phone to discuss the piece, its price and availability."}</p></li>
+          <li><span>03</span><h3>{mn ? "Хамт тохиролцох" : "Agree what comes next"}</h3><p>{mn ? "Үзэх уулзалт, хүлээн авах арга болон холбогдох нөхцөлийг тусад нь тохиролцоно. Хүсэлт илгээх нь худалдан авалт, уулзалт эсвэл нөөцлөлтийн баталгаа биш." : "Arrange a viewing, handover and applicable terms with the team. An enquiry does not confirm a purchase, appointment or reservation."}</p></li>
         </ol>
-        <p>{mn ? "Хүсэлт нь худалдан авалт, уулзалт эсвэл нөөцлөлтийн баталгаа биш. Яаралтай зүйл байвал утсаар эсвэл Facebook хуудсаар хүсэлтийн дугаараа дурдаж холбогдоорой." : "An enquiry does not confirm a purchase, appointment or reservation. If your enquiry is time-sensitive, call or contact the Facebook page with your reference."}</p>
+      </section>
+
+      <section className="container editorial-visit" aria-labelledby="contact-heading">
+        <div>
+          <span className="eyebrow">{mn ? "МОНГОЛ · АНГЛИ ХЭЛЭЭР" : "MONGOLIAN · ENGLISH"}</span>
+          <h2 id="contact-heading">{mn ? "Бидэнтэй ярилцаарай." : "We would love to hear from you."}</h2>
+          <p>{mn ? "Сонирхсон эдлэлээ дурдан холбогдоорой. Хугацаа чухал бол утсаар эсвэл Facebook хуудсаар хүсэлтийн дугаараа хэлж лавлаж болно." : "Let us know which piece you have in mind. If timing matters, call or contact our Facebook page with your enquiry reference."}</p>
+          <div className="services-contact-actions">
+            <Link href={`/${locale}/inquiry?purpose=general`} className="button button-dark">{mn ? "Хүсэлт үлдээх" : "Send an enquiry"}<Arrow /></Link>
+            <a href={facebookUrl} target="_blank" rel="noreferrer" className="text-link">Facebook<Arrow diagonal /></a>
+          </div>
+          <p className="editorial-small-note">{mn ? "Улаанбаатарын цаг · UTC+8. Ирэх өдрөө урьдчилан баталгаажуулна уу." : "Ulaanbaatar time · UTC+8. Please confirm your visiting day in advance."}</p>
+        </div>
+        <ContactDetails locale={locale} />
       </section>
     </div>
   );

@@ -1,0 +1,27 @@
+.collection-experience .collection-breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 30px; color: var(--muted); font-size: 11px; }
+.collection-experience .collection-breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
+.collection-experience .collection-breadcrumb a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.collection-experience .collection-breadcrumb > span[aria-hidden] { color: var(--bronze); }
+.collection-heading { display: grid; grid-template-columns: 1.1fr 1fr; align-items: end; gap: 64px; padding: 38px 0 58px; }
+.collection-heading h1 { font-size: clamp(38px, 4.5vw, 65px); font-weight: 400; line-height: 1.15; max-width: 17ch; text-wrap: balance; margin-top: 20px; }
+.collection-heading-intro { max-width: 48ch; justify-self: end; padding-bottom: 4px; }
+.collection-heading-intro > p { color: var(--muted); font-size: 14px; line-height: 1.9; }
+.collection-heading-intro .text-link { margin-top: 20px; font-size: 12px; }
+.collection-experience > [role="region"] > .product-grid { gap: 46px 28px; }
+@media (max-width: 1000px) {
+  .collection-heading { gap: 40px; }
+  .collection-experience > [role="region"] > .product-grid { gap: 36px 22px; }
+}
+@media (max-width: 760px) {
+  .collection-experience .collection-breadcrumb { padding-top: 4px; gap: 9px; }
+  .collection-heading { grid-template-columns: 1fr; gap: 14px; padding: 12px 0 24px; }
+  .collection-heading .eyebrow { font-size: 9px; letter-spacing: .14em; }
+  .collection-heading h1 { font-size: clamp(30px, 7.5vw, 42px); max-width: 20ch; margin-top: 10px; }
+  .collection-heading-intro { justify-self: start; max-width: 52ch; padding-bottom: 0; }
+  .collection-heading-intro > p { font-size: 13px; line-height: 1.65; }
+  .collection-heading-intro .text-link { margin-top: 8px; min-height: 44px; }
+}
+@media (max-width: 450px) {
+  .collection-heading-intro > p { font-size: 13px; }
+  .collection-experience > [role="region"] > .product-grid { gap: 30px 14px; }
+}

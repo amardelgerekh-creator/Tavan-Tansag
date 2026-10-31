@@ -53,31 +53,39 @@ export default async function Product({
   const c = t(locale);
   const mn = locale === "mn";
   const inquiryHref = `/${locale}/inquiry?piece=${p.id}`;
+  const visitHref = `${inquiryHref}&purpose=visit`;
+  const categoryHref = `/${locale}/collection?category=${p.category}`;
+  const subcategoryName = p.subcategory ? subcategories[p.category][p.subcategory]?.[locale] : undefined;
   const related = relatedProducts(products, p);
   const guides = articles.filter((article) => article.relevantCategories?.includes(p.category)).slice(0, 2);
   const confirmed = p.verificationStatus === "verified";
   const specifications = [
-    [c.code, p.id],
     [c.material, p.material],
     [c.dimensions, p.dimensions],
     [mn ? "Нөхцөл байдал" : "Condition", p.condition],
     [mn ? "Жин" : "Weight", p.weight],
     [mn ? "Урлаач" : "Maker", p.maker],
     [mn ? "Хийсэн үе" : "Period", p.period],
-    [c.availability, productAvailability(p, locale)],
-  ];
+  ] as const;
+  const suppliedSpecifications = specifications.filter(([, value]) => value?.trim());
+  const missingSpecificationLabels = specifications.filter(([, value]) => !value?.trim()).map(([label]) => label);
   return (
     <div className="piece-experience">
       <section className="container product-page piece-page">
-        <Link href={`/${locale}/collection?category=${p.category}${p.subcategory ? `&subcategory=${p.subcategory}` : ""}`} className="back-link">
-          ← {c.back}
-        </Link>
+        <nav className="piece-breadcrumbs" aria-label={mn ? "Хуудасны байршил" : "Breadcrumb"}>
+          <ol>
+            <li><Link href={`/${locale}`}>{mn ? "Нүүр" : "Home"}</Link></li>
+            <li><Link href={`/${locale}/collection`}>{c.collection}</Link></li>
+            <li><Link href={categoryHref}>{categories[p.category][locale]}</Link></li>
+            {subcategoryName && <li><Link href={`${categoryHref}&subcategory=${p.subcategory}`}>{subcategoryName}</Link></li>}
+            <li><span aria-current="page">{p.id}</span></li>
+          </ol>
+        </nav>
         <div className="product-detail-grid">
           <ProductGallery image={p.image} name={p.name[locale]} reference={p.id} locale={locale} />
           <div className="product-detail-copy">
             <span className="eyebrow">
-              <Link href={`/${locale}/collection?category=${p.category}`}>{categories[p.category][locale]}</Link>
-              {p.subcategory && subcategories[p.category][p.subcategory] && <> / <Link href={`/${locale}/collection?category=${p.category}&subcategory=${p.subcategory}`}>{subcategories[p.category][p.subcategory][locale]}</Link></>} · {p.id}
+              {subcategoryName || categories[p.category][locale]} · {p.id}
             </span>
             <h1>{p.name[locale]}</h1>
             <p className="product-description">{p.description[locale]}</p>
@@ -91,18 +99,25 @@ export default async function Product({
               {c.enquire}
               <Arrow diagonal />
             </Link>
+            <Link className="piece-viewing-link" href={visitHref}>
+              {mn ? "Дэлгүүрт үзэх хүсэлт" : "Request a viewing"}<Arrow />
+            </Link>
             <p className="detail-note">{c.productNote}</p>
             </div>
             <details className="piece-details" open>
               <summary>{c.details}<span aria-hidden="true">+</span></summary>
-              {!confirmed && <p className="piece-review-note">{mn
-                ? "Энэ бүртгэлийн үзүүлэлтүүдийг нягталж байна. Тодруулах мэдээллийг зөвлөхөөс асуугаарай."
-                : "Details for this record are being reviewed. Our team can help clarify the information you need."}</p>}
               <dl className="spec-list">
-                {specifications.map(([label, value]) => <div key={label}>
-                  <dt>{label}</dt><dd>{value?.trim() || c.confirm}</dd>
+                <div><dt>{c.code}</dt><dd>{p.id}</dd></div>
+                {suppliedSpecifications.map(([label, value]) => <div key={label}>
+                  <dt>{label}</dt><dd>{value?.trim()}</dd>
                 </div>)}
               </dl>
+              {(!confirmed || missingSpecificationLabels.length > 0) && <p className="piece-review-note">
+                {!confirmed && <span>{mn ? "Эдлэлийн үзүүлэлтүүдийг нягталж байна." : "Details for this piece are under review."}</span>}
+                {missingSpecificationLabels.length > 0 && <span>
+                  {mn ? "Зөвлөхтэй тодруулах мэдээлэл: " : "Please confirm with our team: "}{missingSpecificationLabels.join(", ")}.
+                </span>}
+              </p>}
             </details>
           </div>
         </div>
@@ -122,7 +137,7 @@ export default async function Product({
           <p>{mn
             ? "Хэмжээ, нэмэлт зураг, багтах дагалдах зүйл, бэлэглэх хугацаа эсвэл арчилгааны талаар асуугаарай. Сонгосон эдлэлийн код таны хүсэлтэд автоматаар орно."
             : "Ask about scale, additional photographs, included accessories, gifting dates or care. This piece’s reference will be included in your enquiry."}</p>
-          <Link className="text-link" href={inquiryHref}>{c.enquire}<Arrow /></Link>
+          <Link className="text-link" href={`${inquiryHref}&purpose=general`}>{mn ? "Нэмэлт зураг, мэдээлэл лавлах" : "Ask for more photographs & details"}<Arrow /></Link>
         </div>
       </section>
       {guides.length > 0 && <section className="container piece-reading">

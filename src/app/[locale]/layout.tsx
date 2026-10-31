@@ -5,6 +5,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/site";
 import { EngagementProvider } from "@/components/engagement-provider";
 import "../globals.css";
+import "../site-refinement.css";
 
 export function generateStaticParams() {
   return [{ locale: "mn" }, { locale: "en" }];

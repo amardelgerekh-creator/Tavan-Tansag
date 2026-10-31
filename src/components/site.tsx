@@ -96,6 +96,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <ContactDetails locale={locale} compact />
         </div>
         <div className="footer-links">
+          <span className="footer-group-title">{locale === "mn" ? "ТАНИЛЦАХ" : "EXPLORE"}</span>
           <Link href={"/" + locale + "/collection"}>{c.collection}</Link>
           <Link href={"/" + locale + "/heritage"}>{c.heritage}</Link>
           <Link href={"/" + locale + "#films"}>{locale === "mn" ? "Богино бичлэг" : "Short films"}</Link>
@@ -103,6 +104,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <Link href={"/" + locale + "/services"}>{locale === "mn" ? "Үйлчилгээ" : "Services"}</Link>
         </div>
         <div className="footer-links">
+          <span className="footer-group-title">{locale === "mn" ? "БИДЭНТЭЙ ХОЛБОГДОХ" : "KEEP IN TOUCH"}</span>
           <a href={facebookUrl} target="_blank" rel="noreferrer">
             Facebook <Arrow diagonal />
           </a>
